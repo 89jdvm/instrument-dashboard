@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Instrument Project — Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(to right,rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;}
+
+/* Ambient glow */
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;}
+.ambient::before{content:'';position:absolute;top:-15%;left:-10%;width:700px;height:700px;border-radius:50%;background:rgba(156,220,170,.06);filter:blur(140px);}
+.ambient::after{content:'';position:absolute;bottom:-20%;right:-10%;width:600px;height:600px;border-radius:50%;background:rgba(139,92,246,.04);filter:blur(150px);}
+
+.wrap{max-width:1200px;margin:0 auto;padding:32px 24px 80px;position:relative;z-index:1;}
+
+/* ── Header ── */
+.header{text-align:center;margin-bottom:24px;}
+.header .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:100px;background:rgba(156,220,170,.08);border:1px solid rgba(156,220,170,.18);color:#9cdcaa;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;margin-bottom:16px;}
+.header .pill .dot{width:7px;height:7px;border-radius:50%;background:#9cdcaa;box-shadow:0 0 8px rgba(156,220,170,.5);animation:pulse 2s ease-in-out infinite;}
+.header h1{font-size:clamp(26px,4.5vw,42px);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:6px;}
+.header h1 span{color:#9cdcaa;}
+.header .sub{color:rgba(243,241,238,.4);font-size:13px;font-weight:300;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── Stats bar ── */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px;}
+@media(max-width:700px){.stats{grid-template-columns:repeat(3,1fr);}}
+.stat{text-align:center;padding:20px 12px;border-radius:14px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);transition:border-color .3s;}
+.stat:hover{border-color:rgba(156,220,170,.2);}
+.stat .num{font-size:clamp(24px,3vw,32px);font-weight:700;color:#9cdcaa;line-height:1.1;}
+.stat .lbl{font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;letter-spacing:.12em;margin-top:4px;font-weight:500;}
+.stat.health .num.green{color:#9cdcaa;} .stat.health .num.yellow{color:#f0c674;} .stat.health .num.red{color:#cc6666;}
+
+/* ── Tabs ── */
+.tab-nav{display:flex;gap:6px;margin-bottom:28px;padding:4px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(255,255,255,.06);}
+.tab-btn{flex:1;padding:10px 16px;border:none;background:transparent;color:rgba(243,241,238,.5);font-family:inherit;font-size:13px;font-weight:600;border-radius:8px;cursor:pointer;transition:all .2s;letter-spacing:.02em;}
+.tab-btn:hover{color:#f3f1ee;background:rgba(255,255,255,.04);}
+.tab-btn.active{background:rgba(156,220,170,.12);color:#9cdcaa;border:1px solid rgba(156,220,170,.2);}
+.tab-content{display:none;} .tab-content.active{display:block;}
+
+/* ── Section titles ── */
+.stitle{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;letter-spacing:-.01em;}
+.stitle .ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:rgba(156,220,170,.1);}
+
+/* ── Project cards ── */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px;margin-bottom:36px;}
+.proj-card{padding:20px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-left:4px solid var(--pcolor);transition:border-color .3s;}
+.proj-card:hover{border-color:rgba(156,220,170,.15);}
+.proj-card .phead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.proj-card .pid{font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;color:#fff;}
+.proj-card h3{font-size:14px;font-weight:600;margin-bottom:2px;}
+.proj-card .pgoal{font-size:11px;color:rgba(243,241,238,.4);font-weight:300;line-height:1.4;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.progress{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-bottom:6px;}
+.progress-fill{height:100%;border-radius:3px;transition:width .5s ease;}
+.progress-text{font-size:10px;color:rgba(243,241,238,.4);font-weight:500;margin-bottom:10px;}
+.proj-card .pnext{font-size:11px;color:rgba(243,241,238,.55);font-weight:400;}
+.proj-card .pnext strong{color:#9cdcaa;font-weight:600;}
+.health-badge{font-size:9px;font-weight:700;padding:3px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.08em;}
+.hb-green{background:rgba(156,220,170,.1);color:#9cdcaa;}
+.hb-yellow{background:rgba(240,198,116,.1);color:#f0c674;}
+.hb-red{background:rgba(204,102,102,.1);color:#cc6666;}
+
+/* ── Gate timeline ── */
+.gate-timeline{position:relative;padding:32px 20px;margin-bottom:36px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);}
+.gate-track{position:relative;height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin:0 30px;}
+.gate-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;cursor:pointer;z-index:2;transition:transform .2s;}
+.gate-marker:hover{transform:translate(-50%,-50%) scale(1.15);}
+.gate-label{position:absolute;top:28px;left:50%;transform:translateX(-50%);font-size:9px;color:rgba(243,241,238,.4);white-space:nowrap;font-weight:500;}
+.current-marker{position:absolute;top:-16px;bottom:-24px;width:2px;background:#f3f1ee;opacity:.4;z-index:1;animation:pulse 2s ease-in-out infinite;}
+.current-marker::after{content:'W1';position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:9px;color:#9cdcaa;font-weight:600;white-space:nowrap;}
+
+/* ── Critical path ── */
+.cpath{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:36px;padding:24px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);}
+.cp-node{padding:10px 16px;border-radius:10px;font-size:11px;font-weight:600;text-align:center;line-height:1.3;border:1px solid rgba(255,255,255,.1);}
+.cp-arrow{color:rgba(243,241,238,.2);font-size:16px;}
+
+/* ── Risk grid ── */
+.risk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:36px;}
+.risk-cell{padding:14px;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);cursor:pointer;transition:transform .2s,border-color .3s;position:relative;}
+.risk-cell:hover{transform:translateY(-2px);border-color:rgba(156,220,170,.15);}
+.risk-cell .rtop{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.risk-cell .rscore{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.risk-cell .rname{font-size:11px;font-weight:500;line-height:1.3;}
+.risk-cell .rdesc{font-size:10px;color:rgba(243,241,238,.35);font-weight:300;line-height:1.4;display:none;}
+.risk-cell.expanded .rdesc{display:block;margin-top:6px;}
+
+/* ── Budget ── */
+.budget-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px;}
+@media(max-width:700px){.budget-grid{grid-template-columns:1fr;}}
+.budget-card{padding:20px;border-radius:14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);}
+.payment-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.payment-item:last-child{border:none;}
+.payment-status{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;}
+.ps-triggered{background:rgba(156,220,170,.15);color:#9cdcaa;border:1px solid rgba(156,220,170,.3);}
+.ps-upcoming{background:rgba(255,255,255,.05);color:rgba(243,241,238,.3);border:1px solid rgba(255,255,255,.08);}
+.payment-info{flex:1;font-size:11px;color:rgba(243,241,238,.6);font-weight:400;}
+.payment-amount{font-size:13px;font-weight:600;color:#9cdcaa;}
+.payment-amount.upcoming{color:rgba(243,241,238,.3);}
+
+/* ── Week Plan tab ── */
+.week-banner{padding:20px 24px;border-radius:14px;background:rgba(156,220,170,.06);border:1px solid rgba(156,220,170,.15);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.week-banner h2{font-size:20px;font-weight:700;} .week-banner h2 span{color:#9cdcaa;}
+.week-banner .wdetails{font-size:12px;color:rgba(243,241,238,.5);font-weight:400;}
+
+.priority-list{margin-bottom:28px;}
+.priority-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;margin-bottom:8px;transition:border-color .3s;}
+.priority-item:hover{border-color:rgba(156,220,170,.15);}
+.priority-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;}
+.pn-overdue{background:rgba(204,102,102,.15);color:#cc6666;border:2px solid rgba(204,102,102,.3);}
+.pn-due{background:rgba(240,198,116,.15);color:#f0c674;border:2px solid rgba(240,198,116,.3);}
+.pn-upcoming{background:rgba(129,162,190,.15);color:#81a2be;border:2px solid rgba(129,162,190,.3);}
+.priority-content{flex:1;}
+.priority-content .pdesc{font-size:13px;font-weight:500;margin-bottom:3px;}
+.priority-content .pmeta{font-size:10px;color:rgba(243,241,238,.4);display:flex;gap:12px;}
+.priority-content .pmeta .pbadge{padding:2px 8px;border-radius:6px;font-weight:600;font-size:9px;}
+
+/* ── Team commitments ── */
+.team-section{margin-bottom:28px;}
+.team-person{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;margin-bottom:8px;overflow:hidden;}
+.team-person-head{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none;}
+.team-person-head .avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;border:2px solid rgba(255,255,255,.08);flex-shrink:0;}
+.team-person-head .tname{font-size:13px;font-weight:600;flex:1;}
+.team-person-head .tcount{font-size:10px;color:rgba(243,241,238,.4);font-weight:500;padding:3px 10px;border-radius:100px;background:rgba(255,255,255,.04);}
+.team-person-head .tarrow{font-size:14px;color:rgba(243,241,238,.25);transition:transform .3s;}
+.team-person.open .tarrow{transform:rotate(180deg);}
+.team-person-body{display:none;padding:0 16px 14px 60px;}
+.team-person.open .team-person-body{display:block;}
+.team-task{font-size:12px;color:rgba(243,241,238,.6);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.03);display:flex;align-items:center;gap:8px;}
+.team-task:last-child{border:none;}
+.team-task .checkbox{width:14px;height:14px;border:2px solid rgba(255,255,255,.15);border-radius:3px;flex-shrink:0;}
+
+/* ── Meeting Prep tab ── */
+.meeting-header{padding:20px 24px;border-radius:14px;background:rgba(156,220,170,.06);border:1px solid rgba(156,220,170,.15);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.meeting-header h2{font-size:18px;font-weight:700;} .meeting-header h2 span{color:#9cdcaa;}
+
+.section-block{margin-bottom:24px;}
+.section-block .sblabel{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.section-block .sblabel .dur{padding:3px 10px;border-radius:100px;background:rgba(156,220,170,.08);color:#9cdcaa;font-size:9px;letter-spacing:.06em;}
+
+.status-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:20px;}
+.status-card{padding:16px;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);}
+.status-card .scname{font-size:12px;font-weight:600;margin-bottom:8px;}
+.status-card .scitem{font-size:11px;color:rgba(243,241,238,.5);margin-bottom:4px;display:flex;gap:6px;}
+.status-card .scitem .sclabel{color:#9cdcaa;font-weight:600;font-size:10px;text-transform:uppercase;min-width:70px;}
+
+.decision-card{padding:16px;border-radius:12px;background:rgba(240,198,116,.04);border:1px solid rgba(240,198,116,.15);margin-bottom:10px;}
+.decision-card h4{font-size:13px;font-weight:600;color:#f0c674;margin-bottom:6px;}
+.decision-card .dinfo{font-size:11px;color:rgba(243,241,238,.5);line-height:1.5;}
+
+.blocker-card{padding:14px 16px;border-radius:12px;background:rgba(204,102,102,.04);border:1px solid rgba(204,102,102,.2);margin-bottom:8px;}
+.blocker-card .bname{font-size:12px;font-weight:600;color:#cc6666;margin-bottom:4px;}
+.blocker-card .binfo{font-size:11px;color:rgba(243,241,238,.45);}
+
+/* ── Agenda (printable) ── */
+/* ── Last meeting recap ── */
+.recap-highlight{padding:6px 0;font-size:12px;color:rgba(243,241,238,.6);border-bottom:1px solid rgba(255,255,255,.03);}
+
+.agenda-box{background:rgba(255,255,255,.02);border:1px solid rgba(156,220,170,.15);border-radius:14px;padding:24px;margin-bottom:20px;}
+.agenda-box h3{font-size:15px;font-weight:700;margin-bottom:4px;color:#9cdcaa;}
+.agenda-box .agenda-sub{font-size:11px;color:rgba(243,241,238,.4);margin-bottom:16px;}
+.agenda-section{margin-bottom:16px;}
+.agenda-section h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(243,241,238,.6);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(255,255,255,.06);}
+.agenda-section .aitem{font-size:12px;color:rgba(243,241,238,.5);padding:4px 0;padding-left:12px;border-left:2px solid rgba(156,220,170,.15);}
+.agenda-section .aitem.critical{border-left-color:#cc6666;}
+
+/* ── Timeline tab ── */
+.tl-container{overflow-x:auto;padding-bottom:10px;}
+.tl-phases{margin-bottom:24px;}
+.tl-phase{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+.tl-phase .tl-label{width:120px;font-size:11px;font-weight:500;color:rgba(243,241,238,.5);text-align:right;flex-shrink:0;}
+.tl-bar-container{flex:1;height:24px;position:relative;background:rgba(255,255,255,.03);border-radius:6px;overflow:hidden;}
+.tl-bar{position:absolute;top:0;height:100%;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:rgba(255,255,255,.7);}
+.tl-current{position:absolute;top:0;bottom:0;width:2px;background:#f3f1ee;opacity:.5;z-index:10;}
+.tl-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;border:2px solid #fff;z-index:5;cursor:pointer;transition:transform .2s;}
+.tl-dot:hover{transform:translate(-50%,-50%) scale(1.8);z-index:20;}
+.tl-dot .tl-tooltip{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#2b2b2b;border:1px solid rgba(156,220,170,.25);border-radius:8px;padding:8px 12px;font-size:11px;color:#f3f1ee;white-space:nowrap;z-index:30;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,.5);}
+.tl-dot .tl-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2b2b2b;}
+.tl-dot:hover .tl-tooltip{display:block;}
+.tl-tooltip .tt-week{color:#9cdcaa;font-weight:600;margin-right:4px;}
+.tl-tooltip .tt-status{padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600;margin-left:6px;}
+
+/* ── Buttons ── */
+.btn{padding:8px 18px;border:1px solid rgba(156,220,170,.3);background:rgba(156,220,170,.08);color:#9cdcaa;border-radius:8px;font-family:inherit;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.06em;}
+.btn:hover{background:rgba(156,220,170,.15);}
+
+/* ── Footer ── */
+.foot{text-align:center;padding-top:32px;border-top:1px solid rgba(255,255,255,.05);margin-top:20px;}
+.foot p{font-size:10px;color:rgba(243,241,238,.2);font-weight:300;}
+
+/* ── Print ── */
+@media print{
+  body{background:#fff!important;color:#1a1a1a!important;background-image:none!important;}
+  .ambient,.tab-nav,.no-print{display:none!important;}
+  .tab-content{display:block!important;}
+  .stat,.proj-card,.risk-cell,.budget-card,.priority-item,.status-card,.decision-card,.blocker-card,.agenda-box,.team-person{border-color:#ddd!important;background:#f8f8f8!important;}
+  .stat .num,.header h1 span{color:#16a34a!important;}
+  .progress-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .team-person-body{display:block!important;}
+}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="wrap">
+
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+  <div class="pill"><div class="dot"></div> Live Dashboard</div>
+  <h1>Instrument Project<br><span>Operations Dashboard</span></h1>
+  <p class="sub">W1 of 31 &nbsp;|&nbsp; 30 weeks remaining &nbsp;|&nbsp; Generated 2026-04-05 01:48</p>
+</div>
+
+<!-- ═══ STATS ═══ -->
+<div class="stats">
+  <div class="stat"><div class="num">W1</div><div class="lbl">Current Week</div></div>
+  <div class="stat"><div class="num">30</div><div class="lbl">Weeks Left</div></div>
+  <div class="stat"><div class="num">0/48</div><div class="lbl">Milestones</div></div>
+  <div class="stat"><div class="num">0/7</div><div class="lbl">Gates Passed</div></div>
+  <div class="stat health"><div class="num yellow">50</div><div class="lbl">Health Score</div></div>
+</div>
+
+<!-- ═══ TABS ═══ -->
+<div class="tab-nav no-print">
+  <button class="tab-btn" data-tab="overview" onclick="switchTab('overview')">Overview</button>
+  <button class="tab-btn" data-tab="weekplan" onclick="switchTab('weekplan')">Week Plan</button>
+  <button class="tab-btn" data-tab="meetingprep" onclick="switchTab('meetingprep')">Meeting Prep</button>
+  <button class="tab-btn" data-tab="budget" onclick="switchTab('budget')">Budget</button>
+  <button class="tab-btn" data-tab="timeline" onclick="switchTab('timeline')">Timeline</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- TAB 1: OVERVIEW -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="tab-overview" class="tab-content">
+
+<!-- Critical Path -->
+<div class="stitle"><div class="ico">⚡</div> Critical Path</div>
+<div class="cpath">
+  
+  <div class="cp-node" style="background:#55555515;color:#555555;border-color:#55555540;">
+    W9<br>Specs Locked
+  </div>
+  <span class="cp-arrow">→</span>
+  
+  <div class="cp-node" style="background:#55555515;color:#555555;border-color:#55555540;">
+    W15<br>Contract Signed
+  </div>
+  <span class="cp-arrow">→</span>
+  
+  <div class="cp-node" style="background:#55555515;color:#555555;border-color:#55555540;">
+    W18<br>Pricing / G0
+  </div>
+  <span class="cp-arrow">→</span>
+  
+  <div class="cp-node" style="background:#55555515;color:#555555;border-color:#55555540;">
+    W23<br>Video / G3
+  </div>
+  <span class="cp-arrow">→</span>
+  
+  <div class="cp-node" style="background:#55555515;color:#555555;border-color:#55555540;">
+    W30<br>Audience / G4
+  </div>
+  <span class="cp-arrow">→</span>
+  
+  <div class="cp-node" style="background:#55555515;color:#555555;border-color:#55555540;">
+    W31<br>Launch / G5
+  </div>
+  
+  
+</div>
+
+<!-- Project Cards -->
+<div class="stitle"><div class="ico">📦</div> Projects</div>
+<div class="proj-grid">
+  
+  <div class="proj-card" style="--pcolor:#81a2be">
+    <div class="phead">
+      <div>
+        <div class="pid" style="background:#81a2be">P1</div>
+      </div>
+      <span class="health-badge hb-red">red</span>
+    </div>
+    <h3>Product Development</h3>
+    <div class="progress"><div class="progress-fill" style="width:0%;background:#81a2be"></div></div>
+    <div class="progress-text">0/8 milestones (0%)</div>
+    
+    <div class="pnext"><strong>W2</strong> — Spec sheet template defined</div>
+    
+  </div>
+  
+  <div class="proj-card" style="--pcolor:#de935f">
+    <div class="phead">
+      <div>
+        <div class="pid" style="background:#de935f">P2</div>
+      </div>
+      <span class="health-badge hb-red">red</span>
+    </div>
+    <h3>Ivan Contract</h3>
+    <div class="progress"><div class="progress-fill" style="width:0%;background:#de935f"></div></div>
+    <div class="progress-text">0/5 milestones (0%)</div>
+    
+    <div class="pnext"><strong>W11</strong> — 2+ alternative luthier quotes obtained</div>
+    
+  </div>
+  
+  <div class="proj-card" style="--pcolor:#9cdcaa">
+    <div class="phead">
+      <div>
+        <div class="pid" style="background:#9cdcaa">P3</div>
+      </div>
+      <span class="health-badge hb-red">red</span>
+    </div>
+    <h3>Financial Model</h3>
+    <div class="progress"><div class="progress-fill" style="width:0%;background:#9cdcaa"></div></div>
+    <div class="progress-text">0/6 milestones (0%)</div>
+    
+    <div class="pnext"><strong>W8</strong> — Packaging costs researched (2+ provider quotes)</div>
+    
+  </div>
+  
+  <div class="proj-card" style="--pcolor:#b294bb">
+    <div class="phead">
+      <div>
+        <div class="pid" style="background:#b294bb">P4</div>
+      </div>
+      <span class="health-badge hb-red">red</span>
+    </div>
+    <h3>Kickstarter Setup</h3>
+    <div class="progress"><div class="progress-fill" style="width:0%;background:#b294bb"></div></div>
+    <div class="progress-text">0/9 milestones (0%)</div>
+    
+    <div class="pnext"><strong>W2</strong> — KS entity decision made (Ecuador entity viability + third-party backup)</div>
+    
+  </div>
+  
+  <div class="proj-card" style="--pcolor:#cc6666">
+    <div class="phead">
+      <div>
+        <div class="pid" style="background:#cc6666">P5</div>
+      </div>
+      <span class="health-badge hb-red">red</span>
+    </div>
+    <h3>Marketing Execution</h3>
+    <div class="progress"><div class="progress-fill" style="width:0%;background:#cc6666"></div></div>
+    <div class="progress-text">0/14 milestones (0%)</div>
+    
+    <div class="pnext"><strong>W3</strong> — Email platform selected, configured, integrated with landing page</div>
+    
+  </div>
+  
+  <div class="proj-card" style="--pcolor:#8abeb7">
+    <div class="phead">
+      <div>
+        <div class="pid" style="background:#8abeb7">P6</div>
+      </div>
+      <span class="health-badge hb-red">red</span>
+    </div>
+    <h3>Team Operations</h3>
+    <div class="progress"><div class="progress-fill" style="width:0%;background:#8abeb7"></div></div>
+    <div class="progress-text">0/6 milestones (0%)</div>
+    
+    <div class="pnext"><strong>W1</strong> — Claude Code environment set up</div>
+    
+  </div>
+  
+</div>
+
+<!-- Gate Timeline -->
+<div class="stitle"><div class="ico">🚪</div> Milestone Gates</div>
+<div class="gate-timeline">
+  <div class="gate-track">
+    <div class="current-marker" style="left:0.0%"></div>
+    
+    <div class="gate-marker" style="left:20.0%;background:#66666620;color:#666666;border:2px solid #666666">
+      G1
+      <div class="gate-label">Research Complete<br>W7</div>
+    </div>
+    
+    <div class="gate-marker" style="left:30.0%;background:#66666620;color:#666666;border:2px solid #666666">
+      G2
+      <div class="gate-label">Strategy Approved<br>W10</div>
+    </div>
+    
+    <div class="gate-marker" style="left:56.7%;background:#66666620;color:#666666;border:2px solid #666666">
+      G0
+      <div class="gate-label">Foundation Complete<br>W18</div>
+    </div>
+    
+    <div class="gate-marker" style="left:73.3%;background:#66666620;color:#666666;border:2px solid #666666">
+      G3
+      <div class="gate-label">Video Approved<br>W23</div>
+    </div>
+    
+    <div class="gate-marker" style="left:96.7%;background:#66666620;color:#666666;border:2px solid #666666">
+      G4
+      <div class="gate-label">Pre-Launch Ready<br>W30</div>
+    </div>
+    
+    <div class="gate-marker" style="left:100.0%;background:#66666620;color:#666666;border:2px solid #666666">
+      G5
+      <div class="gate-label">Campaign Live<br>W31</div>
+    </div>
+    
+    <div class="gate-marker" style="left:100.0%;background:#66666620;color:#666666;border:2px solid #666666">
+      G6
+      <div class="gate-label">48-Hour Check<br>W31</div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- Risks -->
+<div class="stitle"><div class="ico">⚠️</div> Risk Register</div>
+<div class="risk-grid">
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#cc666618;color:#cc6666;border:1px solid #cc666640">4</div>
+      <div class="rname">R1: Jd Delivery Reliability</div>
+    </div>
+    <div class="rdesc">Established pattern of lateness on deliverables</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#cc666618;color:#cc6666;border:1px solid #cc666640">4</div>
+      <div class="rname">R2: Team Bandwidth Collapse</div>
+    </div>
+    <div class="rdesc">All team members have other primary responsibilities — project is secondary in their lives</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#cc666618;color:#cc6666;border:1px solid #cc666640">4</div>
+      <div class="rname">R3: Video Production Overtime</div>
+    </div>
+    <div class="rdesc">Video is hardest deliverable — duration highly uncertain</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#cc666618;color:#cc6666;border:1px solid #cc666640">4</div>
+      <div class="rname">R4: Ks Campaign Fails Funding Goal</div>
+    </div>
+    <div class="rdesc">Campaign fails to reach $37,000 goal</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#de935f18;color:#de935f;border:1px solid #de935f40">3</div>
+      <div class="rname">R5: Ivan Informality Derailing Delivery</div>
+    </div>
+    <div class="rdesc">Ivan's informal work style causes quality or delivery failures</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#de935f18;color:#de935f;border:1px solid #de935f40">3</div>
+      <div class="rname">R6: Ivan Single Point Of Failure</div>
+    </div>
+    <div class="rdesc">No backup if Ivan exits project</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#de935f18;color:#de935f;border:1px solid #de935f40">3</div>
+      <div class="rname">R7: Ks Video Quality Insufficient</div>
+    </div>
+    <div class="rdesc">In-house AI production budget limits video quality</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#de935f18;color:#de935f;border:1px solid #de935f40">3</div>
+      <div class="rname">R8: Ineffective Marketing</div>
+    </div>
+    <div class="rdesc">Insufficient audience conversion to backers</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#de935f18;color:#de935f;border:1px solid #de935f40">3</div>
+      <div class="rname">R9: Ineffective Paid Ads</div>
+    </div>
+    <div class="rdesc">Low conversion, high cost per lead on paid ads</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#de935f18;color:#de935f;border:1px solid #de935f40">3</div>
+      <div class="rname">R10: Campaign Launches Weak Audience</div>
+    </div>
+    <div class="rdesc">Insufficient pre-launch audience — weak first 48 hours</div>
+  </div>
+  
+  <div class="risk-cell" onclick="this.classList.toggle('expanded')">
+    <div class="rtop">
+      <div class="rscore" style="background:#f0c67418;color:#f0c674;border:1px solid #f0c67440">2</div>
+      <div class="rname">R11: Cajon Specs Delayed By Thor</div>
+    </div>
+    <div class="rdesc">Thor's cajon spec sheet delayed — impacts P1 timeline</div>
+  </div>
+  
+</div>
+
+</div><!-- /tab-overview -->
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- TAB 2: WEEK PLAN -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="tab-weekplan" class="tab-content">
+
+<div class="week-banner">
+  <h2>Week <span>1</span> Plan</h2>
+  <div class="wdetails">2026-04-01 — 2026-04-07 &nbsp;|&nbsp; 9 items</div>
+</div>
+
+<!-- Priority Queue -->
+<div class="stitle"><div class="ico">🎯</div> Priority Queue</div>
+<div class="priority-list">
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">1</div>
+    <div class="priority-content">
+      <div class="pdesc">Claude Code environment set up</div>
+      <div class="pmeta">
+        <span class="pbadge" style="background:#8abeb720;color:#8abeb7">P6</span>
+        <span>JD</span>
+        <span>W1 — 2026-04-01</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">2</div>
+    <div class="priority-content">
+      <div class="pdesc">Task tracking tool set up + shared with team</div>
+      <div class="pmeta">
+        <span class="pbadge" style="background:#8abeb720;color:#8abeb7">P6</span>
+        <span>JD</span>
+        <span>W1 — 2026-04-01</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">3</div>
+    <div class="priority-content">
+      <div class="pdesc">JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity)</div>
+      <div class="pmeta">
+        <span class="pbadge" style="background:#8abeb720;color:#8abeb7">P6</span>
+        <span>JD</span>
+        <span>W1 — 2026-04-01</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">4</div>
+    <div class="priority-content">
+      <div class="pdesc">Google Drive folder created — "Consultoría JD - Instrument Project" (ACTION FROM 2026-04-02 MEETING)</div>
+      <div class="pmeta">
+        <span class="pbadge" style="background:#8abeb720;color:#8abeb7">P6</span>
+        <span>JD</span>
+        <span>W1 — 2026-04-01</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-upcoming">5</div>
+    <div class="priority-content">
+      <div class="pdesc">Spec sheet template defined</div>
+      <div class="pmeta">
+        <span class="pbadge" style="background:#81a2be20;color:#81a2be">P1</span>
+        <span>JD (UKULELE, GUITAR, SPEAKER, STAND)</span>
+        <span>W2 — 2026-04-08</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-upcoming">6</div>
+    <div class="priority-content">
+      <div class="pdesc">Launch product decision locked (guitar or ukulele — URGENT)</div>
+      <div class="pmeta">
+        <span class="pbadge" style="background:#81a2be20;color:#81a2be">P1</span>
+        <span>JD (UKULELE, GUITAR, SPEAKER, STAND)</span>
+        <span>W2 — 2026-04-08</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-upcoming">7</div>
+    <div class="priority-content">
+      <div class="pdesc">KS entity decision made (Ecuador entity viability + third-party backup)</div>
+      <div class="pmeta">
+        <span class="pbadge" style="background:#b294bb20;color:#b294bb">P4</span>
+        <span>JD</span>
+        <span>W2 — 2026-04-08</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-upcoming">8</div>
+    <div class="priority-content">
+      <div class="pdesc">Document presented to full team — goals + owners confirmed</div>
+      <div class="pmeta">
+        <span class="pbadge" style="background:#8abeb720;color:#8abeb7">P6</span>
+        <span>JD</span>
+        <span>W2 — 2026-04-08</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-upcoming">9</div>
+    <div class="priority-content">
+      <div class="pdesc">JD revised milestone payment schedule agreed with Juanca</div>
+      <div class="pmeta">
+        <span class="pbadge" style="background:#8abeb720;color:#8abeb7">P6</span>
+        <span>JD</span>
+        <span>W2 — 2026-04-08</span>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+
+<!-- Action Items -->
+
+<div class="stitle"><div class="ico">📋</div> Action Items (from Meeting)</div>
+<div class="priority-list">
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">1</div>
+    <div class="priority-content">
+      <div class="pdesc">Create Google Drive folder structure</div>
+      <div class="pmeta">
+        <span>JD</span>
+        <span>W1 (2026-04-07)</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">2</div>
+    <div class="priority-content">
+      <div class="pdesc">Upload all existing documents to Google Drive</div>
+      <div class="pmeta">
+        <span>JD</span>
+        <span>W1 (2026-04-07)</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">3</div>
+    <div class="priority-content">
+      <div class="pdesc">LOCK LAUNCH PRODUCT DECISION — ukulele OR guitar</div>
+      <div class="pmeta">
+        <span>JD + Thor</span>
+        <span>W2 (2026-04-08) — BLOCKS spec sheet work</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">4</div>
+    <div class="priority-content">
+      <div class="pdesc">JD + Juanca alignment conversation</div>
+      <div class="pmeta">
+        <span>JD initiates</span>
+        <span>W1 (2026-04-07)</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">5</div>
+    <div class="priority-content">
+      <div class="pdesc">Confirm cajon production cost with Thor</div>
+      <div class="pmeta">
+        <span>JD asks Thor</span>
+        <span>W1 (2026-04-07)</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">6</div>
+    <div class="priority-content">
+      <div class="pdesc">Set up recurring Thursday meeting</div>
+      <div class="pmeta">
+        <span>JD schedules</span>
+        <span>W1</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">7</div>
+    <div class="priority-content">
+      <div class="pdesc">Research KS entity options</div>
+      <div class="pmeta">
+        <span>JD</span>
+        <span>W2 (2026-04-08)</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">8</div>
+    <div class="priority-content">
+      <div class="pdesc">Create spec sheet template</div>
+      <div class="pmeta">
+        <span>JD</span>
+        <span>W2 (2026-04-08)</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">9</div>
+    <div class="priority-content">
+      <div class="pdesc">Select and set up email marketing platform</div>
+      <div class="pmeta">
+        <span>JD</span>
+        <span>W3 (2026-04-15)</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="priority-item">
+    <div class="priority-num pn-due">10</div>
+    <div class="priority-content">
+      <div class="pdesc">Set up Claude Code environment for project management</div>
+      <div class="pmeta">
+        <span>JD</span>
+        <span>W1 (2026-04-01)</span>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+<!-- Team Commitments -->
+<div class="stitle"><div class="ico">👥</div> Team Commitments</div>
+<div class="team-section">
+  
+  <div class="team-person open">
+    <div class="team-person-head" onclick="this.parentElement.classList.toggle('open')">
+      <div class="avatar" style="background:rgba(156,220,170,.1)">J</div>
+      <div class="tname">JD</div>
+      <div class="tcount">7 items</div>
+      <div class="tarrow">▼</div>
+    </div>
+    <div class="team-person-body">
+      
+      <div class="team-task">
+        <div class="checkbox"></div>
+        Claude Code environment set up <span style="color:rgba(243,241,238,.3);font-size:10px;margin-left:auto;">W1</span>
+      </div>
+      
+      <div class="team-task">
+        <div class="checkbox"></div>
+        Task tracking tool set up + shared with team <span style="color:rgba(243,241,238,.3);font-size:10px;margin-left:auto;">W1</span>
+      </div>
+      
+      <div class="team-task">
+        <div class="checkbox"></div>
+        JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity) <span style="color:rgba(243,241,238,.3);font-size:10px;margin-left:auto;">W1</span>
+      </div>
+      
+      <div class="team-task">
+        <div class="checkbox"></div>
+        Google Drive folder created — "Consultoría JD - Instrument Project" (ACTION FROM 2026-04-02 MEETING) <span style="color:rgba(243,241,238,.3);font-size:10px;margin-left:auto;">W1</span>
+      </div>
+      
+      <div class="team-task">
+        <div class="checkbox"></div>
+        KS entity decision made (Ecuador entity viability + third-party backup) <span style="color:rgba(243,241,238,.3);font-size:10px;margin-left:auto;">W2</span>
+      </div>
+      
+      <div class="team-task">
+        <div class="checkbox"></div>
+        Document presented to full team — goals + owners confirmed <span style="color:rgba(243,241,238,.3);font-size:10px;margin-left:auto;">W2</span>
+      </div>
+      
+      <div class="team-task">
+        <div class="checkbox"></div>
+        JD revised milestone payment schedule agreed with Juanca <span style="color:rgba(243,241,238,.3);font-size:10px;margin-left:auto;">W2</span>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="team-person">
+    <div class="team-person-head" onclick="this.parentElement.classList.toggle('open')">
+      <div class="avatar" style="background:rgba(156,220,170,.1)">J</div>
+      <div class="tname">JD (UKULELE, GUITAR, SPEAKER, STAND)</div>
+      <div class="tcount">2 items</div>
+      <div class="tarrow">▼</div>
+    </div>
+    <div class="team-person-body">
+      
+      <div class="team-task">
+        <div class="checkbox"></div>
+        Spec sheet template defined <span style="color:rgba(243,241,238,.3);font-size:10px;margin-left:auto;">W2</span>
+      </div>
+      
+      <div class="team-task">
+        <div class="checkbox"></div>
+        Launch product decision locked (guitar or ukulele — URGENT) <span style="color:rgba(243,241,238,.3);font-size:10px;margin-left:auto;">W2</span>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+<!-- Blockers -->
+
+
+</div><!-- /tab-weekplan -->
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- TAB 3: MEETING PREP -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="tab-meetingprep" class="tab-content">
+
+<div class="meeting-header">
+  <h2>Thursday Meeting — <span>W1</span></h2>
+  <div style="display:flex;gap:8px;">
+    <button class="btn" onclick="copyAgenda()">📋 Copy Agenda</button>
+    <button class="btn" onclick="window.print()">🖨️ Print</button>
+  </div>
+</div>
+
+<!-- Last Meeting Recap -->
+
+<div style="padding:16px 20px;border-radius:12px;background:rgba(129,162,190,.05);border:1px solid rgba(129,162,190,.15);margin-bottom:20px;font-size:12px;color:rgba(243,241,238,.4);">
+  No previous meeting recap available. After your next meeting, share the transcript with Claude Code to populate this section.
+</div>
+
+
+<!-- Structured Agenda -->
+<div class="agenda-box">
+  <h3>MEETING AGENDA</h3>
+  <div class="agenda-sub">2026-04-09 &nbsp;|&nbsp; Week 1 &nbsp;|&nbsp; 30 weeks to launch</div>
+
+  <div class="agenda-section">
+    <h4>1. Status Round <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(5 min)</span></h4>
+    
+    <div class="aitem"><strong>JD:</strong> Completed: No completions this period | In progress: Claude Code environment set up</div>
+    
+    <div class="aitem"><strong>JUANCA:</strong> Completed: No completions this period | In progress: No upcoming milestones</div>
+    
+    <div class="aitem"><strong>DIEGO:</strong> Completed: No completions this period | In progress: No upcoming milestones</div>
+    
+    <div class="aitem"><strong>THOR:</strong> Completed: No completions this period | In progress: No upcoming milestones</div>
+    
+  </div>
+
+  <div class="agenda-section">
+    <h4>2. Milestone Check <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(10 min)</span></h4>
+    
+    <div class="aitem">Due this week: Claude Code environment set up (JD), Task tracking tool set up + shared with team (JD), JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity) (JD), Google Drive folder created — "Consultoría JD - Instrument Project" (ACTION FROM 2026-04-02 MEETING) (JD)</div>
+    
+    
+    <div class="aitem">Overdue: None</div>
+    
+    <div class="aitem">Completed: None yet</div>
+  </div>
+
+  <div class="agenda-section">
+    <h4>3. Blockers <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(15 min)</span></h4>
+    
+    <div class="aitem">No blockers identified</div>
+    
+  </div>
+
+  <div class="agenda-section">
+    <h4>4. Decisions Needed <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(15 min)</span></h4>
+    
+    <div class="aitem">No pending decisions</div>
+    
+  </div>
+
+  <div class="agenda-section">
+    <h4>5. Next Week Commitments <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(5 min)</span></h4>
+    
+    
+    <div class="aitem">W2: Spec sheet template defined (JD (UKULELE, GUITAR, SPEAKER, STAND))</div>
+    
+    <div class="aitem">W2: Launch product decision locked (guitar or ukulele — URGENT) (JD (UKULELE, GUITAR, SPEAKER, STAND))</div>
+    
+    <div class="aitem">W2: KS entity decision made (Ecuador entity viability + third-party backup) (JD)</div>
+    
+    <div class="aitem">W2: Document presented to full team — goals + owners confirmed (JD)</div>
+    
+    <div class="aitem">W2: JD revised milestone payment schedule agreed with Juanca (JD)</div>
+    
+    
+  </div>
+</div>
+
+<!-- Status Round Cards -->
+<div class="stitle"><div class="ico">🎤</div> Status Round Detail</div>
+<div class="status-cards">
+  
+  <div class="status-card">
+    <div class="scname">JD</div>
+    <div class="scitem"><span class="sclabel">✓ Done:</span> No completions this period</div>
+    <div class="scitem"><span class="sclabel">→ Doing:</span> Claude Code environment set up</div>
+  </div>
+  
+  <div class="status-card">
+    <div class="scname">JUANCA</div>
+    <div class="scitem"><span class="sclabel">✓ Done:</span> No completions this period</div>
+    <div class="scitem"><span class="sclabel">→ Doing:</span> No upcoming milestones</div>
+  </div>
+  
+  <div class="status-card">
+    <div class="scname">DIEGO</div>
+    <div class="scitem"><span class="sclabel">✓ Done:</span> No completions this period</div>
+    <div class="scitem"><span class="sclabel">→ Doing:</span> No upcoming milestones</div>
+  </div>
+  
+  <div class="status-card">
+    <div class="scname">THOR</div>
+    <div class="scitem"><span class="sclabel">✓ Done:</span> No completions this period</div>
+    <div class="scitem"><span class="sclabel">→ Doing:</span> No upcoming milestones</div>
+  </div>
+  
+</div>
+
+<!-- Decisions -->
+
+
+<!-- Metrics -->
+
+<div class="stitle"><div class="ico">📊</div> Tool Activity (Last 7 Days)</div>
+<div class="stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px;">
+  <div class="stat"><div class="num">9</div><div class="lbl">Tool Runs</div></div>
+  <div class="stat"><div class="num">89.0%</div><div class="lbl">Success Rate</div></div>
+  <div class="stat"><div class="num">2</div><div class="lbl">Tools Used</div></div>
+</div>
+
+
+</div><!-- /tab-meetingprep -->
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- TAB 4: BUDGET -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="tab-budget" class="tab-content">
+
+<!-- Big budget numbers -->
+<div class="stats" style="grid-template-columns:repeat(4,1fr);margin-bottom:28px;">
+  <div class="stat"><div class="num">$4500</div><div class="lbl">JD Total Fees</div></div>
+  <div class="stat"><div class="num" style="color:#9cdcaa;">$0</div><div class="lbl">Disbursed</div></div>
+  <div class="stat"><div class="num" style="color:#f0c674;">$4500</div><div class="lbl">Remaining</div></div>
+  <div class="stat"><div class="num">$37K</div><div class="lbl">KS Goal</div></div>
+</div>
+
+<!-- JD Milestone Payments -->
+<div class="stitle"><div class="ico">💵</div> JD Milestone Payments ($4500 total)</div>
+<div class="budget-card" style="margin-bottom:28px;">
+  <div class="progress" style="height:12px;margin-bottom:12px;">
+    <div class="progress-fill" style="width:0.0%;background:linear-gradient(90deg,#9cdcaa,#8abeb7);"></div>
+  </div>
+  <div style="font-size:11px;color:rgba(243,241,238,.4);margin-bottom:16px;">$0 of $4500 disbursed (0.0%)</div>
+
+  
+  <div class="payment-item" style="">
+    <div class="payment-status ps-upcoming">○</div>
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.6);">M1: Plan approved by team, work begins</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:2px;">W2 — 2026-04-08</div>
+    </div>
+    <div class="payment-amount upcoming" style="font-size:16px;">$400</div>
+  </div>
+  
+  <div class="payment-item" style="">
+    <div class="payment-status ps-upcoming">○</div>
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.6);">M2: All 6 spec sheets locked and signed off</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:2px;">W9 — 2026-05-27</div>
+    </div>
+    <div class="payment-amount upcoming" style="font-size:16px;">$600</div>
+  </div>
+  
+  <div class="payment-item" style="">
+    <div class="payment-status ps-upcoming">○</div>
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.6);">M3: Ivan contract signed</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:2px;">W15 — 2026-07-08</div>
+    </div>
+    <div class="payment-amount upcoming" style="font-size:16px;">$500</div>
+  </div>
+  
+  <div class="payment-item" style="">
+    <div class="payment-status ps-upcoming">○</div>
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.6);">M4: Foundation complete — pricing model approved (G0)</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:2px;">W18 — 2026-07-29</div>
+    </div>
+    <div class="payment-amount upcoming" style="font-size:16px;">$600</div>
+  </div>
+  
+  <div class="payment-item" style="">
+    <div class="payment-status ps-upcoming">○</div>
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.6);">M5: Video approved by full team (G3)</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:2px;">W23 — 2026-09-02</div>
+    </div>
+    <div class="payment-amount upcoming" style="font-size:16px;">$800</div>
+  </div>
+  
+  <div class="payment-item" style="">
+    <div class="payment-status ps-upcoming">○</div>
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.6);">M6: Pre-launch ready (G4)</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:2px;">W30 — 2026-10-21</div>
+    </div>
+    <div class="payment-amount upcoming" style="font-size:16px;">$700</div>
+  </div>
+  
+  <div class="payment-item" style="">
+    <div class="payment-status ps-upcoming">○</div>
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.6);">M7: Campaign closed</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:2px;">W36 — 2026-12-03</div>
+    </div>
+    <div class="payment-amount upcoming" style="font-size:16px;">$900</div>
+  </div>
+  
+</div>
+
+<!-- Operational Costs -->
+<div class="stitle"><div class="ico">🔧</div> Operational Costs (Estimated Range)</div>
+<div class="budget-grid" style="margin-bottom:28px;">
+  
+  
+  <div class="budget-card" style="padding:14px 16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:12px;font-weight:600;">AI Tools (Video)</div>
+        <div style="font-size:10px;color:rgba(243,241,238,.3);">W10-W30</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:14px;font-weight:600;color:#f0c674;">$84 - $188</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="budget-card" style="padding:14px 16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:12px;font-weight:600;">Email Platform</div>
+        <div style="font-size:10px;color:rgba(243,241,238,.3);">W3-W31</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:14px;font-weight:600;color:#f0c674;">$54 - $180</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="budget-card" style="padding:14px 16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:12px;font-weight:600;">Legal Review</div>
+        <div style="font-size:10px;color:rgba(243,241,238,.3);">W14</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:14px;font-weight:600;color:#f0c674;">$100 - $300</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="budget-card" style="padding:14px 16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:12px;font-weight:600;">KS Entity Registration</div>
+        <div style="font-size:10px;color:rgba(243,241,238,.3);">W2-W4</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:14px;font-weight:600;color:#f0c674;">$0 - $500</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="budget-card" style="padding:14px 16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:12px;font-weight:600;">Paid Advertising</div>
+        <div style="font-size:10px;color:rgba(243,241,238,.3);">W26-W31</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:14px;font-weight:600;color:#f0c674;">$300 - $500</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="budget-card" style="padding:14px 16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:12px;font-weight:600;">Giveaway Unit</div>
+        <div style="font-size:10px;color:rgba(243,241,238,.3);">W29</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:14px;font-weight:600;color:#f0c674;">$80 - $100</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="budget-card" style="padding:14px 16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:12px;font-weight:600;">Packaging Research</div>
+        <div style="font-size:10px;color:rgba(243,241,238,.3);">W8-W9</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:14px;font-weight:600;color:#f0c674;">$50 - $100</div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- Total Pre-Campaign -->
+<div class="stitle"><div class="ico">📊</div> Total Pre-Campaign Investment</div>
+<div class="budget-grid" style="margin-bottom:28px;">
+  <div class="budget-card">
+    <div style="font-size:11px;color:rgba(243,241,238,.4);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em;">Juanca's Existing Investment</div>
+    <div style="font-size:28px;font-weight:700;color:#de935f;">$2,000 - $3,000</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:4px;">Prototypes + brand guide + landing page</div>
+  </div>
+  <div class="budget-card">
+    <div style="font-size:11px;color:rgba(243,241,238,.4);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em;">Total Required from Juanca</div>
+    <div style="font-size:28px;font-weight:700;color:#cc6666;">$4,268 - $5,468</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:4px;">JD fees ($4500) + operational ($668-$1,868)</div>
+  </div>
+</div>
+
+<!-- Profitability Estimates -->
+<div class="stitle"><div class="ico">🎯</div> Target Scenario (80 Backers)</div>
+<div class="budget-card" style="margin-bottom:28px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;text-align:center;">
+    <div>
+      <div style="font-size:24px;font-weight:700;color:#9cdcaa;">$27,120</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;">Gross Revenue</div>
+    </div>
+    <div>
+      <div style="font-size:24px;font-weight:700;color:#cc6666;">$20,211</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;">All-In Costs</div>
+    </div>
+    <div>
+      <div style="font-size:24px;font-weight:700;color:#f0c674;">$6,909</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;">Net to Business</div>
+    </div>
+  </div>
+  <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);">
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:rgba(243,241,238,.4);">
+      <span>Working prices: Ukulele $299 | Cajon $379</span>
+      <span>Min. gross margin: 50%</span>
+    </div>
+  </div>
+  <div style="margin-top:8px;font-size:10px;color:rgba(243,241,238,.3);font-style:italic;">⚠ All values are estimates — will be replaced with real numbers at W18 (Project 3)</div>
+</div>
+
+<!-- Scenarios Comparison -->
+<div class="stitle"><div class="ico">📈</div> KS Scenarios</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;">
+  <div class="budget-card" style="text-align:center;">
+    <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;margin-bottom:8px;">Conservative</div>
+    <div style="font-size:22px;font-weight:700;color:#de935f;">35-50</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);">backers</div>
+    <div style="font-size:16px;font-weight:600;color:rgba(243,241,238,.6);margin-top:8px;">$15K-$20K</div>
+  </div>
+  <div class="budget-card" style="text-align:center;border-color:rgba(156,220,170,.2);">
+    <div style="font-size:10px;color:#9cdcaa;text-transform:uppercase;margin-bottom:8px;font-weight:600;">Target</div>
+    <div style="font-size:22px;font-weight:700;color:#9cdcaa;">80+</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);">backers</div>
+    <div style="font-size:16px;font-weight:600;color:#9cdcaa;margin-top:8px;">$37,000</div>
+  </div>
+  <div class="budget-card" style="text-align:center;">
+    <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;margin-bottom:8px;">Stretch</div>
+    <div style="font-size:22px;font-weight:700;color:#b294bb;">120-150</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);">backers</div>
+    <div style="font-size:16px;font-weight:600;color:rgba(243,241,238,.6);margin-top:8px;">$60K-$75K</div>
+  </div>
+</div>
+
+<!-- Post-KS Allocation -->
+<div class="stitle"><div class="ico">🏦</div> Post-KS Allocation (Profit First)</div>
+<div class="budget-card" style="margin-bottom:28px;">
+  
+  
+  <div class="payment-item">
+    <div style="width:24px;height:24px;border-radius:50%;background:rgba(156,220,170,.1);color:#9cdcaa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">1</div>
+    <div class="payment-info" style="font-size:12px;">KS platform + payment fees</div>
+    <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.5);">~$2,170-$4,000</div>
+  </div>
+  
+  <div class="payment-item">
+    <div style="width:24px;height:24px;border-radius:50%;background:rgba(156,220,170,.1);color:#9cdcaa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">2</div>
+    <div class="payment-info" style="font-size:12px;">Ivan production payment (all units)</div>
+    <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.5);">Per contract</div>
+  </div>
+  
+  <div class="payment-item">
+    <div style="width:24px;height:24px;border-radius:50%;background:rgba(156,220,170,.1);color:#9cdcaa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">3</div>
+    <div class="payment-info" style="font-size:12px;">Shipping + fulfillment reserves</div>
+    <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.5);">Per financial model</div>
+  </div>
+  
+  <div class="payment-item">
+    <div style="width:24px;height:24px;border-radius:50%;background:rgba(156,220,170,.1);color:#9cdcaa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">4</div>
+    <div class="payment-info" style="font-size:12px;">Juanca total investment returned</div>
+    <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.5);">~$6,000-$8,500</div>
+  </div>
+  
+  <div class="payment-item">
+    <div style="width:24px;height:24px;border-radius:50%;background:rgba(156,220,170,.1);color:#9cdcaa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">5</div>
+    <div class="payment-info" style="font-size:12px;">JD milestone fee M7</div>
+    <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.5);">$900</div>
+  </div>
+  
+  <div class="payment-item">
+    <div style="width:24px;height:24px;border-radius:50%;background:rgba(156,220,170,.1);color:#9cdcaa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">6</div>
+    <div class="payment-info" style="font-size:12px;">Operating reserve for Collection 2</div>
+    <div style="font-size:12px;font-weight:600;color:rgba(243,241,238,.5);">Remainder</div>
+  </div>
+  
+  <div style="margin-top:10px;font-size:10px;color:rgba(243,241,238,.3);font-style:italic;">No reordering without full team agreement</div>
+</div>
+
+</div><!-- /tab-budget -->
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- TAB 5: TIMELINE -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="tab-timeline" class="tab-content">
+
+<div class="stitle"><div class="ico">📅</div> Project Timeline (W1-W31)</div>
+
+<div class="tl-container">
+<div class="tl-phases">
+
+  <!-- Phase bars -->
+  
+
+  
+  <div class="tl-phase">
+    <div class="tl-label">Foundation</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:0.0%;width:29.0%;background:#9cdcaa25;border:1px solid #9cdcaa40;color:#9cdcaa">W1-W9</div>
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+  <div class="tl-phase">
+    <div class="tl-label">Contracts & Financial</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:29.0%;width:29.0%;background:#de935f25;border:1px solid #de935f40;color:#de935f">W10-W18</div>
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+  <div class="tl-phase">
+    <div class="tl-label">Video Production</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:58.1%;width:16.1%;background:#b294bb25;border:1px solid #b294bb40;color:#b294bb">W19-W23</div>
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+  <div class="tl-phase">
+    <div class="tl-label">Audience Building</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:74.2%;width:19.4%;background:#81a2be25;border:1px solid #81a2be40;color:#81a2be">W24-W29</div>
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+  <div class="tl-phase">
+    <div class="tl-label">Launch</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:93.5%;width:6.5%;background:#f0c67425;border:1px solid #f0c67440;color:#f0c674">W30-W31</div>
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+
+  <!-- Separator -->
+  <div style="height:16px;"></div>
+
+  <!-- Per-project bars -->
+  
+  
+  
+  
+  <div class="tl-phase">
+    <div class="tl-label" style="color:#81a2be">P1: Product Development</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:3.2%;width:25.8%;background:#81a2be20;border:1px solid #81a2be30;">
+      </div>
+      
+      <div class="tl-dot" style="left:4.8%;background:#de935f;border-color:#de935f">
+        <div class="tl-tooltip"><span class="tt-week">W2</span> Spec sheet template defined <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:4.8%;background:#de935f;border-color:#de935f">
+        <div class="tl-tooltip"><span class="tt-week">W2</span> Launch product decision locked (guitar or ukulele — URGENT) <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:11.3%;background:#81a2be;border-color:#81a2be">
+        <div class="tl-tooltip"><span class="tt-week">W4</span> Ukulele + guitar spec sheet first drafts <span class="tt-status" style="background:#81a2be25;color:#81a2be">On Track</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:14.5%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W5</span> Cajon x2 spec sheets finalized from Thor's existing 95% draft <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:14.5%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W5</span> Passive speaker + guitar stand spec sheet first drafts <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:21.0%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W7</span> Ivan reviews all 6 spec sheets for production feasibility <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:24.2%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W8</span> All revisions completed <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:27.4%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W9</span> ALL 6 SPECS LOCKED — approved JD + Juanca <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="tl-phase">
+    <div class="tl-label" style="color:#de935f">P2: Ivan Contract</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:32.3%;width:16.1%;background:#de935f20;border:1px solid #de935f30;">
+      </div>
+      
+      <div class="tl-dot" style="left:33.9%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W11</span> 2+ alternative luthier quotes obtained <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:37.1%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W12</span> Contract first draft (Claude-assisted, all 6 spec sheets as exhibit) <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:40.3%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W13</span> Juanca reviews draft <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:43.5%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W14</span> Legal review completed <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:46.8%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W15</span> CONTRACT SIGNED <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="tl-phase">
+    <div class="tl-label" style="color:#9cdcaa">P3: Financial Model</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:22.6%;width:35.5%;background:#9cdcaa20;border:1px solid #9cdcaa30;">
+      </div>
+      
+      <div class="tl-dot" style="left:24.2%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W8</span> Packaging costs researched (2+ provider quotes) <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:27.4%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W9</span> Shipping costs researched — US + EU for both products <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:30.6%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W10</span> Fulfillment provider identified, workflow mapped, delivery timeline confirmed <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:50.0%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W16</span> Full cost stack built (production + packaging + shipping + KS fees + 10% contingency) <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:53.2%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W17</span> Pricing model first draft — 50% margin applied, Early Bird + standard tiers defined <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:56.5%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W18</span> PRICING MODEL APPROVED by Juanca <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="tl-phase">
+    <div class="tl-label" style="color:#b294bb">P4: Kickstarter Setup</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:3.2%;width:93.5%;background:#b294bb20;border:1px solid #b294bb30;">
+      </div>
+      
+      <div class="tl-dot" style="left:4.8%;background:#de935f;border-color:#de935f">
+        <div class="tl-tooltip"><span class="tt-week">W2</span> KS entity decision made (Ecuador entity viability + third-party backup) <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:11.3%;background:#81a2be;border-color:#81a2be">
+        <div class="tl-tooltip"><span class="tt-week">W4</span> Entity registered OR third-party service engaged <span class="tt-status" style="background:#81a2be25;color:#81a2be">On Track</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:14.5%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W5</span> KS account created and verified <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:59.7%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W19</span> Reward tiers defined (after pricing model approved) <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:79.0%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W25</span> Campaign page first draft (story, descriptions, tiers, FAQ) <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:85.5%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W27</span> Internal team review + revisions <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:88.7%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W28</span> External review (2 cold readers — confirm understanding of product + price without explanation) <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:91.9%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W29</span> Final revisions <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:95.2%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W30</span> CAMPAIGN PAGE APPROVED — ready to launch <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="tl-phase">
+    <div class="tl-label" style="color:#cc6666">P5: Marketing Execution</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:6.5%;width:93.5%;background:#cc666620;border:1px solid #cc666630;">
+      </div>
+      
+      <div class="tl-dot" style="left:8.1%;background:#81a2be;border-color:#81a2be">
+        <div class="tl-tooltip"><span class="tt-week">W3</span> Email platform selected, configured, integrated with landing page <span class="tt-status" style="background:#81a2be25;color:#81a2be">On Track</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:21.0%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W7</span> Phase 1 research report — KS benchmarks, competitor analysis, pricing validation, audience + channels confirmed <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:30.6%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W10</span> Social media accounts optimized — profiles aligned with brand guide <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:30.6%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W10</span> Strategy brief approved (Diego + Juanca) — persona, message, tiers, channels <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:56.5%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W18</span> Video pre-production complete — script, storyboard, AI assets approved <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:56.5%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W18</span> Product photography session (final prototypes of launch products) <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:62.9%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W20</span> Video first draft <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:69.4%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W22</span> Video revision 1 complete <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:72.6%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W23</span> VIDEO APPROVED — Gate G3 — warm outreach begins <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:75.8%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W24</span> Warm outreach to personal networks initiated <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:85.5%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W27</span> 200+ qualified email subscribers + 500+ IG followers <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:91.9%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W29</span> Giveaway executed (300+ entries) + 2+ influencer confirmations <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:95.2%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W30</span> 300+ emails + paid ads active + 20-30 pre-commitments — Gate G4 <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:98.4%;background:#666666;border-color:#666666">
+        <div class="tl-tooltip"><span class="tt-week">W31</span> CAMPAIGN LIVE <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+      </div>
+      
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="tl-phase">
+    <div class="tl-label" style="color:#8abeb7">P6: Team Operations</div>
+    <div class="tl-bar-container">
+      <div class="tl-bar" style="left:0.0%;width:6.5%;background:#8abeb720;border:1px solid #8abeb730;">
+      </div>
+      
+      <div class="tl-dot" style="left:1.6%;background:#f0c674;border-color:#f0c674">
+        <div class="tl-tooltip"><span class="tt-week">W1</span> Claude Code environment set up <span class="tt-status" style="background:#f0c67425;color:#f0c674">Due This Week</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:1.6%;background:#f0c674;border-color:#f0c674">
+        <div class="tl-tooltip"><span class="tt-week">W1</span> Task tracking tool set up + shared with team <span class="tt-status" style="background:#f0c67425;color:#f0c674">Due This Week</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:1.6%;background:#f0c674;border-color:#f0c674">
+        <div class="tl-tooltip"><span class="tt-week">W1</span> JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity) <span class="tt-status" style="background:#f0c67425;color:#f0c674">Due This Week</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:1.6%;background:#f0c674;border-color:#f0c674">
+        <div class="tl-tooltip"><span class="tt-week">W1</span> Google Drive folder created — "Consultoría JD - Instrument Project" (ACTION FROM 2026-04-02 MEETING) <span class="tt-status" style="background:#f0c67425;color:#f0c674">Due This Week</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:4.8%;background:#de935f;border-color:#de935f">
+        <div class="tl-tooltip"><span class="tt-week">W2</span> Document presented to full team — goals + owners confirmed <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
+      </div>
+      
+      <div class="tl-dot" style="left:4.8%;background:#de935f;border-color:#de935f">
+        <div class="tl-tooltip"><span class="tt-week">W2</span> JD revised milestone payment schedule agreed with Juanca <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
+      </div>
+      
+      <div class="tl-current" style="left:1.6%"></div>
+    </div>
+  </div>
+  
+
+</div>
+</div>
+
+<!-- Gate positions on timeline -->
+<div class="stitle" style="margin-top:24px;"><div class="ico">🚪</div> Gates on Timeline</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;">
+  
+  <div style="padding:10px 16px;border-radius:10px;background:#66666612;border:1px solid #66666630;font-size:11px;font-weight:600;color:#666666">
+    G1: Research Complete — W7 (6w)
+  </div>
+  
+  <div style="padding:10px 16px;border-radius:10px;background:#66666612;border:1px solid #66666630;font-size:11px;font-weight:600;color:#666666">
+    G2: Strategy Approved — W10 (9w)
+  </div>
+  
+  <div style="padding:10px 16px;border-radius:10px;background:#66666612;border:1px solid #66666630;font-size:11px;font-weight:600;color:#666666">
+    G0: Foundation Complete — W18 (17w)
+  </div>
+  
+  <div style="padding:10px 16px;border-radius:10px;background:#66666612;border:1px solid #66666630;font-size:11px;font-weight:600;color:#666666">
+    G3: Video Approved — W23 (22w)
+  </div>
+  
+  <div style="padding:10px 16px;border-radius:10px;background:#66666612;border:1px solid #66666630;font-size:11px;font-weight:600;color:#666666">
+    G4: Pre-Launch Ready — W30 (29w)
+  </div>
+  
+  <div style="padding:10px 16px;border-radius:10px;background:#66666612;border:1px solid #66666630;font-size:11px;font-weight:600;color:#666666">
+    G5: Campaign Live — W31 (30w)
+  </div>
+  
+  <div style="padding:10px 16px;border-radius:10px;background:#66666612;border:1px solid #66666630;font-size:11px;font-weight:600;color:#666666">
+    G6: 48-Hour Check — W31 (30w)
+  </div>
+  
+</div>
+
+</div><!-- /tab-timeline -->
+
+<!-- ═══ FOOTER ═══ -->
+<div class="foot">
+  <p>Instrument Project — Operations Dashboard — Generated 2026-04-05 01:48</p>
+  <p style="margin-top:4px;">Press <kbd style="background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;">F</kbd> for Focus Mode</p>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+// ── Tab switching ──
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  var el = document.getElementById('tab-' + tab);
+  if (el) el.classList.add('active');
+  var btn = document.querySelector('[data-tab="' + tab + '"]');
+  if (btn) btn.classList.add('active');
+  history.replaceState(null, '', '#' + tab);
+}
+
+// ── Auto-navigate by day of week ──
+(function() {
+  var hash = location.hash.replace('#','');
+  if (hash && document.getElementById('tab-' + hash)) {
+    switchTab(hash);
+    return;
+  }
+  var day = new Date().getDay();
+  if (day === 4) switchTab('weekplan');       // Thursday → plan the week
+  else if (day === 3) switchTab('meetingprep'); // Wednesday → prep meeting
+  else if (day === 1) switchTab('meetingprep'); // Monday → WhatsApp update data
+  else switchTab('overview');
+})();
+
+// ── Focus mode ──
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'f' || e.key === 'F') {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    document.body.classList.toggle('focus-mode');
+  }
+  if (e.key === 'Escape') {
+    document.body.classList.remove('focus-mode');
+  }
+});
+
+// ── Copy agenda to clipboard ──
+function copyAgenda() {
+  var agenda = document.querySelector('.agenda-box');
+  if (!agenda) return;
+  var text = agenda.innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.querySelector('[onclick="copyAgenda()"]');
+    btn.textContent = '✓ Copied!';
+    setTimeout(function() { btn.textContent = '📋 Copy Agenda'; }, 2000);
+  });
+}
+</script>
+
+<style>
+/* Focus mode - show only top 3 priorities */
+.focus-mode .header, .focus-mode .stats, .focus-mode .tab-nav, .focus-mode .foot { opacity: .15; }
+.focus-mode .tab-content { display: none !important; }
+.focus-mode::after {
+  content: 'FOCUS MODE — Top 3 Priorities — Press Esc to exit';
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 18px; font-weight: 700; color: #9cdcaa; text-align: center;
+  z-index: 100;
+}
+</style>
+</body>
+</html>

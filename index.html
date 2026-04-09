@@ -213,16 +213,16 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
 <div class="header">
   <div class="pill"><div class="dot"></div> Live Dashboard</div>
   <h1>Instrument Project<br><span>Operations Dashboard</span></h1>
-  <p class="sub">W1 of 31 &nbsp;|&nbsp; 30 weeks remaining &nbsp;|&nbsp; Generated 2026-04-07 23:42</p>
+  <p class="sub">W1 of 31 &nbsp;|&nbsp; 29 weeks remaining &nbsp;|&nbsp; Generated 2026-04-09 11:59</p>
 </div>
 
 <!-- ═══ STATS ═══ -->
 <div class="stats">
   <div class="stat"><div class="num">W1</div><div class="lbl">Current Week</div></div>
-  <div class="stat"><div class="num">30</div><div class="lbl">Weeks Left</div></div>
-  <div class="stat"><div class="num">3/48</div><div class="lbl">Milestones</div></div>
+  <div class="stat"><div class="num">29</div><div class="lbl">Weeks Left</div></div>
+  <div class="stat"><div class="num">6/48</div><div class="lbl">Milestones</div></div>
   <div class="stat"><div class="num">0/7</div><div class="lbl">Gates Passed</div></div>
-  <div class="stat health"><div class="num yellow">56</div><div class="lbl">Health Score</div></div>
+  <div class="stat health"><div class="num yellow">62</div><div class="lbl">Health Score</div></div>
 </div>
 
 <!-- ═══ TABS ═══ -->
@@ -287,10 +287,10 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
       <span class="health-badge hb-red">red</span>
     </div>
     <h3>Product Development</h3>
-    <div class="progress"><div class="progress-fill" style="width:0%;background:#81a2be"></div></div>
-    <div class="progress-text">0/8 milestones (0%)</div>
+    <div class="progress"><div class="progress-fill" style="width:25%;background:#81a2be"></div></div>
+    <div class="progress-text">2/8 milestones (25%)</div>
     
-    <div class="pnext"><strong>W2</strong> — Spec sheet template defined</div>
+    <div class="pnext"><strong>W4</strong> — Guitar + ukulele spec sheets filled with real measurements and prototype photos. Done = all dimension fields populated, 5+ reference photos pasted, shared with Thor for review</div>
     
   </div>
   
@@ -362,10 +362,10 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
       <span class="health-badge hb-red">red</span>
     </div>
     <h3>Team Operations</h3>
-    <div class="progress"><div class="progress-fill" style="width:50%;background:#8abeb7"></div></div>
-    <div class="progress-text">3/6 milestones (50%)</div>
+    <div class="progress"><div class="progress-fill" style="width:67%;background:#8abeb7"></div></div>
+    <div class="progress-text">4/6 milestones (67%)</div>
     
-    <div class="pnext"><strong>W1</strong> — JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity)</div>
+    <div class="pnext"><strong>W2</strong> — Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks</div>
     
   </div>
   
@@ -516,212 +516,177 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div id="tab-weekplan" class="tab-content">
 
-<div class="week-banner">
-  <h2>Week <span>1</span> Plan</h2>
-  <div class="wdetails">2026-04-01 — 2026-04-07</div>
+<!-- Week navigation -->
+<div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;">
+  <button id="wp-prev" onclick="wpNav(-1)" style="width:36px;height:36px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#9cdcaa;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Previous week">←</button>
+  <div style="text-align:center;">
+    <div id="wp-week-label" style="font-size:24px;font-weight:800;color:#f3f1ee;">Week <span style="color:#9cdcaa;">1</span></div>
+    <div id="wp-date-label" style="font-size:11px;color:rgba(243,241,238,.4);margin-top:2px;">2026-04-01 — 2026-04-09</div>
+    <div id="wp-badge" style="display:none;margin-top:6px;font-size:10px;padding:3px 12px;border-radius:100px;background:rgba(156,220,170,.08);color:#9cdcaa;font-weight:600;display:inline-block;">CURRENT WEEK</div>
+  </div>
+  <button id="wp-next" onclick="wpNav(1)" style="width:36px;height:36px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#9cdcaa;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Next week">→</button>
 </div>
 
-<!-- Progress bar -->
-<div style="margin-bottom:24px;">
-  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px;">
-    <span style="color:rgba(243,241,238,.4);">5 of 11 done</span>
-    <span style="color:#9cdcaa;font-weight:600;">45%</span>
-  </div>
-  <div style="height:6px;border-radius:3px;background:rgba(255,255,255,.06);overflow:hidden;">
-    <div style="height:100%;border-radius:3px;background:#9cdcaa;width:45%;transition:width .3s;"></div>
-  </div>
+<div id="wp-content">
+<!-- Rendered by JS from week_plans_all data -->
 </div>
 
-<!-- Unified task list -->
+<script>
+const weekPlans = {"1": {"week": 1, "week_start": "2026-04-01", "week_end": "2026-04-09", "tasks": [{"description": "Create Google Drive folder structure", "detail": "Initial folder \"Consultoría JD\" created Apr 7. Reorganized Apr 8 into \"Kickstarter Phase One Launch\" with P1-P6 aligned subfolders (8 folders total). 50+ files organized from legacy folders.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "Google Drive folder 'Kickstarter Phase One Launch' live with 8 subfolders: P1 Fichas Técnicas, P1 Diseño y Prototipos, P2 Contrato y Legal, P3 Modelo Financiero, P4 Campaña Kickstarter, P5 Marketing, P6 Reuniones y Operaciones, Marca y Assets. Link: https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder. 50+ files organized from legacy folders and root. Env keys stored in .env for automated uploads.", "source": "meeting"}, {"description": "Upload and organize all project documents in Google Drive", "detail": "Created \"Kickstarter Phase One Launch\" folder with P1-P6 aligned subfolders. Organized 50+ files from legacy folders and root into correct locations. Uploaded spec sheets, meeting docs, brand assets.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder with 8 subfolders. No project files floating loose at Drive root.", "source": "meeting"}, {"description": "LOCK LAUNCH PRODUCT DECISION — GUITAR chosen", "detail": "Guitar confirmed as second launch product alongside cajon. Brand identity priority. Quality concerns to be resolved during spec sheet phase with Ivan.", "owner": "JD", "status": "done", "completed_date": "2026-04-05", "verification": "Decision: Guitar + Cajon are the two Kickstarter launch products. Ukulele deferred to Collection 2. Decided 2026-04-05 by JD based on Juanca's preference (guitar as hero product) and brand identity alignment. Documented in context file v1.1.", "measurable_result": "Launch product lineup locked. Spec sheet work scoped to guitar + cajon (+ 4 other products for full catalog).", "source": "meeting"}, {"description": "JD + Juanca alignment conversation", "detail": "Message sent via WhatsApp covering success definition, milestone payment schedule, budget ceiling, KS entity approach.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "WhatsApp message sent to Juanca on Tuesday April 8, 2026. Topics covered: success definition, JD milestone payment schedule ($4500 total), budget ceiling, KS entity resolution (US LLC via Juanca). Awaiting Juanca's response.", "measurable_result": "Juanca has received the alignment message. Awaiting response on specifics (M1 payment trigger, budget ceiling confirmation).", "source": "meeting"}, {"description": "Confirm cajon production cost with Thor", "detail": "WhatsApp message sent to Thor requesting cajon production cost per unit, his existing ficha técnica, and shared the guitar spec sheet template as reference. Awaiting Thor's response with the number.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "\"WhatsApp message sent to Thor on April 8, 2026. Requested: (1) USD production cost per unit for cajón, (2) his existing ficha técnica del cajón, (3) shared guitar spec sheet link for reference. Thor's response pending — will be discussed at W2 meeting.\"", "measurable_result": "Message sent. Thor's cost number will be logged in context file when received.", "source": "meeting"}, {"description": "Set up recurring Thursday meeting", "detail": "30 minutes. All team. Already established — on team calendars for over a year.", "owner": "JD", "status": "done", "completed_date": "pre-existing", "verification": "\"Google Calendar recurring event — every Thursday at 2:30 PM Ecuador time (EST). All team members (JD, Juanca, Diego, Thor) have the invite. Active for 1+ year.\"", "measurable_result": "Recurring calendar event exists and all team members attend weekly.", "source": "meeting"}, {"description": "Research KS entity options", "detail": "Ecuador is NOT eligible for Kickstarter. Recommended path — Juanca launches via US presence (individual or LLC ~$200). LLC preferred for liability separation. Discuss at Juanca alignment conversation.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "KS eligibility research confirmed Ecuador not on Kickstarter's supported country list. Recommendation: Juanca (US resident, Washington DC) launches campaign via US LLC (~$200 Wyoming/Delaware filing). LLC preferred over individual for liability separation. Decision pending Juanca approval in alignment conversation.", "measurable_result": "Research complete with clear recommendation documented. Juanca informed via alignment message (ACTION_4).", "source": "meeting"}, {"description": "Create spec sheet template", "detail": "Spanish (Ecuadorian) spec sheets generated for Guitar and Ukulele. Checkbox-driven, OK/NOT-OK visual comparison sections, explicit design rules checklist (DEBE/NO DEBE), pass/fail quality control, photo reference placeholders, dimension diagram areas. Pre-filled with known specs from DISEÑO DE LA GUITARRA 3.0 doc.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1ge9fjdTBQchLL76XmM8mWFOK4JwuMdSL", "measurable_result": "2 .docx spec sheets generated, uploaded to Drive, ready for Thursday review. Each has 12 sections with zero open-text fields — all checkboxes or pass/fail.", "source": "meeting"}, {"description": "Build custom email marketing system (instead of paying for Mailchimp/Klaviyo)", "detail": "\"Custom email system built with WAT framework — Gmail API sending, Google Sheets subscriber database, Jinja2 branded templates in Spanish, PHP signup/unsubscribe endpoints for cPanel. Replaces $54-180/month email platform budget. Campaign workflow SOP created.\"", "owner": "JD", "status": "done", "completed_date": "2026-04-09", "verification": "\"email_manager.py operational — setup, add, list, preview, send, status commands all working. Subscriber sheet: https://docs.google.com/spreadsheets/d/1FNdg8lA-38EnW3JN3tXEJpTbO42H5MVwGVsJJG13VWU | Test campaign sent 2026-04-09 to instrumentproject@gmail.com — received successfully. 3 branded templates created (base, announcement, welcome). Workflow SOP at workflows/email_campaign.md. PHP endpoints ready for cPanel deploy. $0/month cost.\"", "measurable_result": "Custom email marketing system fully operational. Test email received at instrumentproject@gmail.com with branded design and unsubscribe link.", "source": "meeting"}, {"description": "Set up Claude Code environment for project management", "detail": "Claude Code live with WAT framework — dashboard, milestone tracker, context parser, Google Drive integration. Configured for document updates, research tasks, contract drafting, meeting summaries.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "Dashboard live at .tmp/dashboard.html and deployed at https://89jdvm.github.io/instrument-dashboard/ | Milestone tracker outputs W1 health report | Context parser reads all 10 sections | Google Drive integration uploads to 'Kickstarter Phase One Launch' folder | WAT framework operational with tools/, workflows/, .env structure", "measurable_result": "Full project management environment operational — dashboard renders, milestone tracker calculates week/health, Drive uploads work, context file parses correctly.", "source": "meeting"}], "done_count": 10, "pending_count": 0, "in_progress_count": 0, "this_week": [], "overdue": [], "next_week": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "priority_queue": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "blockers": [], "total_items": 10, "carried_count": 0, "is_future": false}, "2": {"week": 2, "week_start": "2026-04-10", "week_end": "2026-04-16", "tasks": [{"description": "Create Google Drive folder structure", "detail": "Initial folder \"Consultoría JD\" created Apr 7. Reorganized Apr 8 into \"Kickstarter Phase One Launch\" with P1-P6 aligned subfolders (8 folders total). 50+ files organized from legacy folders.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "Google Drive folder 'Kickstarter Phase One Launch' live with 8 subfolders: P1 Fichas Técnicas, P1 Diseño y Prototipos, P2 Contrato y Legal, P3 Modelo Financiero, P4 Campaña Kickstarter, P5 Marketing, P6 Reuniones y Operaciones, Marca y Assets. Link: https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder. 50+ files organized from legacy folders and root. Env keys stored in .env for automated uploads.", "source": "meeting"}, {"description": "Upload and organize all project documents in Google Drive", "detail": "Created \"Kickstarter Phase One Launch\" folder with P1-P6 aligned subfolders. Organized 50+ files from legacy folders and root into correct locations. Uploaded spec sheets, meeting docs, brand assets.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder with 8 subfolders. No project files floating loose at Drive root.", "source": "meeting"}, {"description": "LOCK LAUNCH PRODUCT DECISION — GUITAR chosen", "detail": "Guitar confirmed as second launch product alongside cajon. Brand identity priority. Quality concerns to be resolved during spec sheet phase with Ivan.", "owner": "JD", "status": "done", "completed_date": "2026-04-05", "verification": "Decision: Guitar + Cajon are the two Kickstarter launch products. Ukulele deferred to Collection 2. Decided 2026-04-05 by JD based on Juanca's preference (guitar as hero product) and brand identity alignment. Documented in context file v1.1.", "measurable_result": "Launch product lineup locked. Spec sheet work scoped to guitar + cajon (+ 4 other products for full catalog).", "source": "meeting"}, {"description": "JD + Juanca alignment conversation", "detail": "Message sent via WhatsApp covering success definition, milestone payment schedule, budget ceiling, KS entity approach.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "WhatsApp message sent to Juanca on Tuesday April 8, 2026. Topics covered: success definition, JD milestone payment schedule ($4500 total), budget ceiling, KS entity resolution (US LLC via Juanca). Awaiting Juanca's response.", "measurable_result": "Juanca has received the alignment message. Awaiting response on specifics (M1 payment trigger, budget ceiling confirmation).", "source": "meeting"}, {"description": "Confirm cajon production cost with Thor", "detail": "WhatsApp message sent to Thor requesting cajon production cost per unit, his existing ficha técnica, and shared the guitar spec sheet template as reference. Awaiting Thor's response with the number.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "\"WhatsApp message sent to Thor on April 8, 2026. Requested: (1) USD production cost per unit for cajón, (2) his existing ficha técnica del cajón, (3) shared guitar spec sheet link for reference. Thor's response pending — will be discussed at W2 meeting.\"", "measurable_result": "Message sent. Thor's cost number will be logged in context file when received.", "source": "meeting"}, {"description": "Set up recurring Thursday meeting", "detail": "30 minutes. All team. Already established — on team calendars for over a year.", "owner": "JD", "status": "done", "completed_date": "pre-existing", "verification": "\"Google Calendar recurring event — every Thursday at 2:30 PM Ecuador time (EST). All team members (JD, Juanca, Diego, Thor) have the invite. Active for 1+ year.\"", "measurable_result": "Recurring calendar event exists and all team members attend weekly.", "source": "meeting"}, {"description": "Research KS entity options", "detail": "Ecuador is NOT eligible for Kickstarter. Recommended path — Juanca launches via US presence (individual or LLC ~$200). LLC preferred for liability separation. Discuss at Juanca alignment conversation.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "KS eligibility research confirmed Ecuador not on Kickstarter's supported country list. Recommendation: Juanca (US resident, Washington DC) launches campaign via US LLC (~$200 Wyoming/Delaware filing). LLC preferred over individual for liability separation. Decision pending Juanca approval in alignment conversation.", "measurable_result": "Research complete with clear recommendation documented. Juanca informed via alignment message (ACTION_4).", "source": "meeting"}, {"description": "Create spec sheet template", "detail": "Spanish (Ecuadorian) spec sheets generated for Guitar and Ukulele. Checkbox-driven, OK/NOT-OK visual comparison sections, explicit design rules checklist (DEBE/NO DEBE), pass/fail quality control, photo reference placeholders, dimension diagram areas. Pre-filled with known specs from DISEÑO DE LA GUITARRA 3.0 doc.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1ge9fjdTBQchLL76XmM8mWFOK4JwuMdSL", "measurable_result": "2 .docx spec sheets generated, uploaded to Drive, ready for Thursday review. Each has 12 sections with zero open-text fields — all checkboxes or pass/fail.", "source": "meeting"}, {"description": "Build custom email marketing system (instead of paying for Mailchimp/Klaviyo)", "detail": "\"Custom email system built with WAT framework — Gmail API sending, Google Sheets subscriber database, Jinja2 branded templates in Spanish, PHP signup/unsubscribe endpoints for cPanel. Replaces $54-180/month email platform budget. Campaign workflow SOP created.\"", "owner": "JD", "status": "done", "completed_date": "2026-04-09", "verification": "\"email_manager.py operational — setup, add, list, preview, send, status commands all working. Subscriber sheet: https://docs.google.com/spreadsheets/d/1FNdg8lA-38EnW3JN3tXEJpTbO42H5MVwGVsJJG13VWU | Test campaign sent 2026-04-09 to instrumentproject@gmail.com — received successfully. 3 branded templates created (base, announcement, welcome). Workflow SOP at workflows/email_campaign.md. PHP endpoints ready for cPanel deploy. $0/month cost.\"", "measurable_result": "Custom email marketing system fully operational. Test email received at instrumentproject@gmail.com with branded design and unsubscribe link.", "source": "meeting"}, {"description": "Set up Claude Code environment for project management", "detail": "Claude Code live with WAT framework — dashboard, milestone tracker, context parser, Google Drive integration. Configured for document updates, research tasks, contract drafting, meeting summaries.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "Dashboard live at .tmp/dashboard.html and deployed at https://89jdvm.github.io/instrument-dashboard/ | Milestone tracker outputs W1 health report | Context parser reads all 10 sections | Google Drive integration uploads to 'Kickstarter Phase One Launch' folder | WAT framework operational with tools/, workflows/, .env structure", "measurable_result": "Full project management environment operational — dashboard renders, milestone tracker calculates week/health, Drive uploads work, context file parses correctly.", "source": "meeting"}], "done_count": 10, "pending_count": 0, "in_progress_count": 0, "this_week": [], "overdue": [], "next_week": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "priority_queue": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "blockers": [], "total_items": 10, "is_future": true, "carried_count": 0}, "3": {"week": 3, "week_start": "2026-04-17", "week_end": "2026-04-23", "tasks": [{"description": "Create Google Drive folder structure", "detail": "Initial folder \"Consultoría JD\" created Apr 7. Reorganized Apr 8 into \"Kickstarter Phase One Launch\" with P1-P6 aligned subfolders (8 folders total). 50+ files organized from legacy folders.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "Google Drive folder 'Kickstarter Phase One Launch' live with 8 subfolders: P1 Fichas Técnicas, P1 Diseño y Prototipos, P2 Contrato y Legal, P3 Modelo Financiero, P4 Campaña Kickstarter, P5 Marketing, P6 Reuniones y Operaciones, Marca y Assets. Link: https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder. 50+ files organized from legacy folders and root. Env keys stored in .env for automated uploads.", "source": "meeting"}, {"description": "Upload and organize all project documents in Google Drive", "detail": "Created \"Kickstarter Phase One Launch\" folder with P1-P6 aligned subfolders. Organized 50+ files from legacy folders and root into correct locations. Uploaded spec sheets, meeting docs, brand assets.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder with 8 subfolders. No project files floating loose at Drive root.", "source": "meeting"}, {"description": "LOCK LAUNCH PRODUCT DECISION — GUITAR chosen", "detail": "Guitar confirmed as second launch product alongside cajon. Brand identity priority. Quality concerns to be resolved during spec sheet phase with Ivan.", "owner": "JD", "status": "done", "completed_date": "2026-04-05", "verification": "Decision: Guitar + Cajon are the two Kickstarter launch products. Ukulele deferred to Collection 2. Decided 2026-04-05 by JD based on Juanca's preference (guitar as hero product) and brand identity alignment. Documented in context file v1.1.", "measurable_result": "Launch product lineup locked. Spec sheet work scoped to guitar + cajon (+ 4 other products for full catalog).", "source": "meeting"}, {"description": "JD + Juanca alignment conversation", "detail": "Message sent via WhatsApp covering success definition, milestone payment schedule, budget ceiling, KS entity approach.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "WhatsApp message sent to Juanca on Tuesday April 8, 2026. Topics covered: success definition, JD milestone payment schedule ($4500 total), budget ceiling, KS entity resolution (US LLC via Juanca). Awaiting Juanca's response.", "measurable_result": "Juanca has received the alignment message. Awaiting response on specifics (M1 payment trigger, budget ceiling confirmation).", "source": "meeting"}, {"description": "Confirm cajon production cost with Thor", "detail": "WhatsApp message sent to Thor requesting cajon production cost per unit, his existing ficha técnica, and shared the guitar spec sheet template as reference. Awaiting Thor's response with the number.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "\"WhatsApp message sent to Thor on April 8, 2026. Requested: (1) USD production cost per unit for cajón, (2) his existing ficha técnica del cajón, (3) shared guitar spec sheet link for reference. Thor's response pending — will be discussed at W2 meeting.\"", "measurable_result": "Message sent. Thor's cost number will be logged in context file when received.", "source": "meeting"}, {"description": "Set up recurring Thursday meeting", "detail": "30 minutes. All team. Already established — on team calendars for over a year.", "owner": "JD", "status": "done", "completed_date": "pre-existing", "verification": "\"Google Calendar recurring event — every Thursday at 2:30 PM Ecuador time (EST). All team members (JD, Juanca, Diego, Thor) have the invite. Active for 1+ year.\"", "measurable_result": "Recurring calendar event exists and all team members attend weekly.", "source": "meeting"}, {"description": "Research KS entity options", "detail": "Ecuador is NOT eligible for Kickstarter. Recommended path — Juanca launches via US presence (individual or LLC ~$200). LLC preferred for liability separation. Discuss at Juanca alignment conversation.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "KS eligibility research confirmed Ecuador not on Kickstarter's supported country list. Recommendation: Juanca (US resident, Washington DC) launches campaign via US LLC (~$200 Wyoming/Delaware filing). LLC preferred over individual for liability separation. Decision pending Juanca approval in alignment conversation.", "measurable_result": "Research complete with clear recommendation documented. Juanca informed via alignment message (ACTION_4).", "source": "meeting"}, {"description": "Create spec sheet template", "detail": "Spanish (Ecuadorian) spec sheets generated for Guitar and Ukulele. Checkbox-driven, OK/NOT-OK visual comparison sections, explicit design rules checklist (DEBE/NO DEBE), pass/fail quality control, photo reference placeholders, dimension diagram areas. Pre-filled with known specs from DISEÑO DE LA GUITARRA 3.0 doc.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1ge9fjdTBQchLL76XmM8mWFOK4JwuMdSL", "measurable_result": "2 .docx spec sheets generated, uploaded to Drive, ready for Thursday review. Each has 12 sections with zero open-text fields — all checkboxes or pass/fail.", "source": "meeting"}, {"description": "Build custom email marketing system (instead of paying for Mailchimp/Klaviyo)", "detail": "\"Custom email system built with WAT framework — Gmail API sending, Google Sheets subscriber database, Jinja2 branded templates in Spanish, PHP signup/unsubscribe endpoints for cPanel. Replaces $54-180/month email platform budget. Campaign workflow SOP created.\"", "owner": "JD", "status": "done", "completed_date": "2026-04-09", "verification": "\"email_manager.py operational — setup, add, list, preview, send, status commands all working. Subscriber sheet: https://docs.google.com/spreadsheets/d/1FNdg8lA-38EnW3JN3tXEJpTbO42H5MVwGVsJJG13VWU | Test campaign sent 2026-04-09 to instrumentproject@gmail.com — received successfully. 3 branded templates created (base, announcement, welcome). Workflow SOP at workflows/email_campaign.md. PHP endpoints ready for cPanel deploy. $0/month cost.\"", "measurable_result": "Custom email marketing system fully operational. Test email received at instrumentproject@gmail.com with branded design and unsubscribe link.", "source": "meeting"}, {"description": "Set up Claude Code environment for project management", "detail": "Claude Code live with WAT framework — dashboard, milestone tracker, context parser, Google Drive integration. Configured for document updates, research tasks, contract drafting, meeting summaries.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "Dashboard live at .tmp/dashboard.html and deployed at https://89jdvm.github.io/instrument-dashboard/ | Milestone tracker outputs W1 health report | Context parser reads all 10 sections | Google Drive integration uploads to 'Kickstarter Phase One Launch' folder | WAT framework operational with tools/, workflows/, .env structure", "measurable_result": "Full project management environment operational — dashboard renders, milestone tracker calculates week/health, Drive uploads work, context file parses correctly.", "source": "meeting"}], "done_count": 10, "pending_count": 0, "in_progress_count": 0, "this_week": [], "overdue": [], "next_week": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "priority_queue": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "blockers": [], "total_items": 10, "is_future": true, "carried_count": 0}, "4": {"week": 4, "week_start": "2026-04-24", "week_end": "2026-04-30", "tasks": [{"description": "Create Google Drive folder structure", "detail": "Initial folder \"Consultoría JD\" created Apr 7. Reorganized Apr 8 into \"Kickstarter Phase One Launch\" with P1-P6 aligned subfolders (8 folders total). 50+ files organized from legacy folders.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "Google Drive folder 'Kickstarter Phase One Launch' live with 8 subfolders: P1 Fichas Técnicas, P1 Diseño y Prototipos, P2 Contrato y Legal, P3 Modelo Financiero, P4 Campaña Kickstarter, P5 Marketing, P6 Reuniones y Operaciones, Marca y Assets. Link: https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder. 50+ files organized from legacy folders and root. Env keys stored in .env for automated uploads.", "source": "meeting"}, {"description": "Upload and organize all project documents in Google Drive", "detail": "Created \"Kickstarter Phase One Launch\" folder with P1-P6 aligned subfolders. Organized 50+ files from legacy folders and root into correct locations. Uploaded spec sheets, meeting docs, brand assets.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder with 8 subfolders. No project files floating loose at Drive root.", "source": "meeting"}, {"description": "LOCK LAUNCH PRODUCT DECISION — GUITAR chosen", "detail": "Guitar confirmed as second launch product alongside cajon. Brand identity priority. Quality concerns to be resolved during spec sheet phase with Ivan.", "owner": "JD", "status": "done", "completed_date": "2026-04-05", "verification": "Decision: Guitar + Cajon are the two Kickstarter launch products. Ukulele deferred to Collection 2. Decided 2026-04-05 by JD based on Juanca's preference (guitar as hero product) and brand identity alignment. Documented in context file v1.1.", "measurable_result": "Launch product lineup locked. Spec sheet work scoped to guitar + cajon (+ 4 other products for full catalog).", "source": "meeting"}, {"description": "JD + Juanca alignment conversation", "detail": "Message sent via WhatsApp covering success definition, milestone payment schedule, budget ceiling, KS entity approach.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "WhatsApp message sent to Juanca on Tuesday April 8, 2026. Topics covered: success definition, JD milestone payment schedule ($4500 total), budget ceiling, KS entity resolution (US LLC via Juanca). Awaiting Juanca's response.", "measurable_result": "Juanca has received the alignment message. Awaiting response on specifics (M1 payment trigger, budget ceiling confirmation).", "source": "meeting"}, {"description": "Confirm cajon production cost with Thor", "detail": "WhatsApp message sent to Thor requesting cajon production cost per unit, his existing ficha técnica, and shared the guitar spec sheet template as reference. Awaiting Thor's response with the number.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "\"WhatsApp message sent to Thor on April 8, 2026. Requested: (1) USD production cost per unit for cajón, (2) his existing ficha técnica del cajón, (3) shared guitar spec sheet link for reference. Thor's response pending — will be discussed at W2 meeting.\"", "measurable_result": "Message sent. Thor's cost number will be logged in context file when received.", "source": "meeting"}, {"description": "Set up recurring Thursday meeting", "detail": "30 minutes. All team. Already established — on team calendars for over a year.", "owner": "JD", "status": "done", "completed_date": "pre-existing", "verification": "\"Google Calendar recurring event — every Thursday at 2:30 PM Ecuador time (EST). All team members (JD, Juanca, Diego, Thor) have the invite. Active for 1+ year.\"", "measurable_result": "Recurring calendar event exists and all team members attend weekly.", "source": "meeting"}, {"description": "Research KS entity options", "detail": "Ecuador is NOT eligible for Kickstarter. Recommended path — Juanca launches via US presence (individual or LLC ~$200). LLC preferred for liability separation. Discuss at Juanca alignment conversation.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "KS eligibility research confirmed Ecuador not on Kickstarter's supported country list. Recommendation: Juanca (US resident, Washington DC) launches campaign via US LLC (~$200 Wyoming/Delaware filing). LLC preferred over individual for liability separation. Decision pending Juanca approval in alignment conversation.", "measurable_result": "Research complete with clear recommendation documented. Juanca informed via alignment message (ACTION_4).", "source": "meeting"}, {"description": "Create spec sheet template", "detail": "Spanish (Ecuadorian) spec sheets generated for Guitar and Ukulele. Checkbox-driven, OK/NOT-OK visual comparison sections, explicit design rules checklist (DEBE/NO DEBE), pass/fail quality control, photo reference placeholders, dimension diagram areas. Pre-filled with known specs from DISEÑO DE LA GUITARRA 3.0 doc.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1ge9fjdTBQchLL76XmM8mWFOK4JwuMdSL", "measurable_result": "2 .docx spec sheets generated, uploaded to Drive, ready for Thursday review. Each has 12 sections with zero open-text fields — all checkboxes or pass/fail.", "source": "meeting"}, {"description": "Build custom email marketing system (instead of paying for Mailchimp/Klaviyo)", "detail": "\"Custom email system built with WAT framework — Gmail API sending, Google Sheets subscriber database, Jinja2 branded templates in Spanish, PHP signup/unsubscribe endpoints for cPanel. Replaces $54-180/month email platform budget. Campaign workflow SOP created.\"", "owner": "JD", "status": "done", "completed_date": "2026-04-09", "verification": "\"email_manager.py operational — setup, add, list, preview, send, status commands all working. Subscriber sheet: https://docs.google.com/spreadsheets/d/1FNdg8lA-38EnW3JN3tXEJpTbO42H5MVwGVsJJG13VWU | Test campaign sent 2026-04-09 to instrumentproject@gmail.com — received successfully. 3 branded templates created (base, announcement, welcome). Workflow SOP at workflows/email_campaign.md. PHP endpoints ready for cPanel deploy. $0/month cost.\"", "measurable_result": "Custom email marketing system fully operational. Test email received at instrumentproject@gmail.com with branded design and unsubscribe link.", "source": "meeting"}, {"description": "Set up Claude Code environment for project management", "detail": "Claude Code live with WAT framework — dashboard, milestone tracker, context parser, Google Drive integration. Configured for document updates, research tasks, contract drafting, meeting summaries.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "Dashboard live at .tmp/dashboard.html and deployed at https://89jdvm.github.io/instrument-dashboard/ | Milestone tracker outputs W1 health report | Context parser reads all 10 sections | Google Drive integration uploads to 'Kickstarter Phase One Launch' folder | WAT framework operational with tools/, workflows/, .env structure", "measurable_result": "Full project management environment operational — dashboard renders, milestone tracker calculates week/health, Drive uploads work, context file parses correctly.", "source": "meeting"}], "done_count": 10, "pending_count": 0, "in_progress_count": 0, "this_week": [], "overdue": [], "next_week": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "priority_queue": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "blockers": [], "total_items": 10, "is_future": true, "carried_count": 0}, "5": {"week": 5, "week_start": "2026-05-01", "week_end": "2026-05-07", "tasks": [{"description": "Create Google Drive folder structure", "detail": "Initial folder \"Consultoría JD\" created Apr 7. Reorganized Apr 8 into \"Kickstarter Phase One Launch\" with P1-P6 aligned subfolders (8 folders total). 50+ files organized from legacy folders.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "Google Drive folder 'Kickstarter Phase One Launch' live with 8 subfolders: P1 Fichas Técnicas, P1 Diseño y Prototipos, P2 Contrato y Legal, P3 Modelo Financiero, P4 Campaña Kickstarter, P5 Marketing, P6 Reuniones y Operaciones, Marca y Assets. Link: https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder. 50+ files organized from legacy folders and root. Env keys stored in .env for automated uploads.", "source": "meeting"}, {"description": "Upload and organize all project documents in Google Drive", "detail": "Created \"Kickstarter Phase One Launch\" folder with P1-P6 aligned subfolders. Organized 50+ files from legacy folders and root into correct locations. Uploaded spec sheets, meeting docs, brand assets.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd", "measurable_result": "All active project files accessible in one organized folder with 8 subfolders. No project files floating loose at Drive root.", "source": "meeting"}, {"description": "LOCK LAUNCH PRODUCT DECISION — GUITAR chosen", "detail": "Guitar confirmed as second launch product alongside cajon. Brand identity priority. Quality concerns to be resolved during spec sheet phase with Ivan.", "owner": "JD", "status": "done", "completed_date": "2026-04-05", "verification": "Decision: Guitar + Cajon are the two Kickstarter launch products. Ukulele deferred to Collection 2. Decided 2026-04-05 by JD based on Juanca's preference (guitar as hero product) and brand identity alignment. Documented in context file v1.1.", "measurable_result": "Launch product lineup locked. Spec sheet work scoped to guitar + cajon (+ 4 other products for full catalog).", "source": "meeting"}, {"description": "JD + Juanca alignment conversation", "detail": "Message sent via WhatsApp covering success definition, milestone payment schedule, budget ceiling, KS entity approach.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "WhatsApp message sent to Juanca on Tuesday April 8, 2026. Topics covered: success definition, JD milestone payment schedule ($4500 total), budget ceiling, KS entity resolution (US LLC via Juanca). Awaiting Juanca's response.", "measurable_result": "Juanca has received the alignment message. Awaiting response on specifics (M1 payment trigger, budget ceiling confirmation).", "source": "meeting"}, {"description": "Confirm cajon production cost with Thor", "detail": "WhatsApp message sent to Thor requesting cajon production cost per unit, his existing ficha técnica, and shared the guitar spec sheet template as reference. Awaiting Thor's response with the number.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "\"WhatsApp message sent to Thor on April 8, 2026. Requested: (1) USD production cost per unit for cajón, (2) his existing ficha técnica del cajón, (3) shared guitar spec sheet link for reference. Thor's response pending — will be discussed at W2 meeting.\"", "measurable_result": "Message sent. Thor's cost number will be logged in context file when received.", "source": "meeting"}, {"description": "Set up recurring Thursday meeting", "detail": "30 minutes. All team. Already established — on team calendars for over a year.", "owner": "JD", "status": "done", "completed_date": "pre-existing", "verification": "\"Google Calendar recurring event — every Thursday at 2:30 PM Ecuador time (EST). All team members (JD, Juanca, Diego, Thor) have the invite. Active for 1+ year.\"", "measurable_result": "Recurring calendar event exists and all team members attend weekly.", "source": "meeting"}, {"description": "Research KS entity options", "detail": "Ecuador is NOT eligible for Kickstarter. Recommended path — Juanca launches via US presence (individual or LLC ~$200). LLC preferred for liability separation. Discuss at Juanca alignment conversation.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "KS eligibility research confirmed Ecuador not on Kickstarter's supported country list. Recommendation: Juanca (US resident, Washington DC) launches campaign via US LLC (~$200 Wyoming/Delaware filing). LLC preferred over individual for liability separation. Decision pending Juanca approval in alignment conversation.", "measurable_result": "Research complete with clear recommendation documented. Juanca informed via alignment message (ACTION_4).", "source": "meeting"}, {"description": "Create spec sheet template", "detail": "Spanish (Ecuadorian) spec sheets generated for Guitar and Ukulele. Checkbox-driven, OK/NOT-OK visual comparison sections, explicit design rules checklist (DEBE/NO DEBE), pass/fail quality control, photo reference placeholders, dimension diagram areas. Pre-filled with known specs from DISEÑO DE LA GUITARRA 3.0 doc.", "owner": "JD", "status": "done", "completed_date": "2026-04-08", "verification": "https://drive.google.com/drive/folders/1ge9fjdTBQchLL76XmM8mWFOK4JwuMdSL", "measurable_result": "2 .docx spec sheets generated, uploaded to Drive, ready for Thursday review. Each has 12 sections with zero open-text fields — all checkboxes or pass/fail.", "source": "meeting"}, {"description": "Build custom email marketing system (instead of paying for Mailchimp/Klaviyo)", "detail": "\"Custom email system built with WAT framework — Gmail API sending, Google Sheets subscriber database, Jinja2 branded templates in Spanish, PHP signup/unsubscribe endpoints for cPanel. Replaces $54-180/month email platform budget. Campaign workflow SOP created.\"", "owner": "JD", "status": "done", "completed_date": "2026-04-09", "verification": "\"email_manager.py operational — setup, add, list, preview, send, status commands all working. Subscriber sheet: https://docs.google.com/spreadsheets/d/1FNdg8lA-38EnW3JN3tXEJpTbO42H5MVwGVsJJG13VWU | Test campaign sent 2026-04-09 to instrumentproject@gmail.com — received successfully. 3 branded templates created (base, announcement, welcome). Workflow SOP at workflows/email_campaign.md. PHP endpoints ready for cPanel deploy. $0/month cost.\"", "measurable_result": "Custom email marketing system fully operational. Test email received at instrumentproject@gmail.com with branded design and unsubscribe link.", "source": "meeting"}, {"description": "Set up Claude Code environment for project management", "detail": "Claude Code live with WAT framework — dashboard, milestone tracker, context parser, Google Drive integration. Configured for document updates, research tasks, contract drafting, meeting summaries.", "owner": "JD", "status": "done", "completed_date": "2026-04-07", "verification": "Dashboard live at .tmp/dashboard.html and deployed at https://89jdvm.github.io/instrument-dashboard/ | Milestone tracker outputs W1 health report | Context parser reads all 10 sections | Google Drive integration uploads to 'Kickstarter Phase One Launch' folder | WAT framework operational with tools/, workflows/, .env structure", "measurable_result": "Full project management environment operational — dashboard renders, milestone tracker calculates week/health, Drive uploads work, context file parses correctly.", "source": "meeting"}], "done_count": 10, "pending_count": 0, "in_progress_count": 0, "this_week": [], "overdue": [], "next_week": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "priority_queue": [{"project_id": "P4", "project_name": "Kickstarter Setup", "week": 2, "date": "2026-04-08", "description": "KS entity decision made (Ecuador entity viability + third-party backup)", "owner": "JD", "raw": "W2_2026-04-08: KS entity decision made (Ecuador entity viability + third-party backup)", "color": "#b294bb", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 1}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "owner": "JD", "raw": "W2_2026-04-08: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 2}, {"project_id": "P6", "project_name": "Team Operations", "week": 2, "date": "2026-04-08", "description": "JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "owner": "JD", "raw": "W2_2026-04-08: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp", "color": "#8abeb7", "status": "at_risk", "status_color": "#de935f", "status_label": "At Risk", "priority": "upcoming", "priority_num": 3}], "blockers": [], "total_items": 10, "is_future": true, "carried_count": 0}};
+const currentWeek = 1;
+const maxWeek = Math.max(...Object.keys(weekPlans).map(Number));
+let viewingWeek = currentWeek;
 
-<div class="stitle"><div class="ico">⬜</div> To Do (6)</div>
-<div style="margin-bottom:28px;">
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;margin-bottom:8px;">
-    <div style="width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;"></div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.8);margin-bottom:4px;">Upload all existing documents to Google Drive</div>
-      <div style="font-size:11px;color:rgba(243,241,238,.3);margin-bottom:4px;line-height:1.4;">This plan, marketing plan, Gantt, spec sheet drafts, meeting transcripts</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="padding:2px 8px;border-radius:6px;background:rgba(156,220,170,.1);color:#9cdcaa;font-weight:600;">JD</span>
-        
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;margin-bottom:8px;">
-    <div style="width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;"></div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.8);margin-bottom:4px;">JD + Juanca alignment conversation</div>
-      <div style="font-size:11px;color:rgba(243,241,238,.3);margin-bottom:4px;line-height:1.4;">Confirm — success definition, JD milestone payment schedule ($4500 total, M1 trigger = plan approved), budget ceiling, K…</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="padding:2px 8px;border-radius:6px;background:rgba(156,220,170,.1);color:#9cdcaa;font-weight:600;">JD</span>
-        
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;margin-bottom:8px;">
-    <div style="width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;"></div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.8);margin-bottom:4px;">Confirm cajon production cost with Thor</div>
-      <div style="font-size:11px;color:rgba(243,241,238,.3);margin-bottom:4px;line-height:1.4;">Thor has 95% complete cajon spec sheets. Need production cost per unit for financial model.</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="padding:2px 8px;border-radius:6px;background:rgba(156,220,170,.1);color:#9cdcaa;font-weight:600;">JD</span>
-        
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;margin-bottom:8px;">
-    <div style="width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;"></div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.8);margin-bottom:4px;">Create spec sheet template</div>
-      <div style="font-size:11px;color:rgba(243,241,238,.3);margin-bottom:4px;line-height:1.4;">"[IN PROGRESS] Redesigning — must be in Spanish (Ecuadorian), visual-heavy with OK/NOT-OK comparison photos, UX-designed…</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="padding:2px 8px;border-radius:6px;background:rgba(156,220,170,.1);color:#9cdcaa;font-weight:600;">JD</span>
-        
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;margin-bottom:8px;">
-    <div style="width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;"></div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.8);margin-bottom:4px;">Select and set up email marketing platform</div>
-      <div style="font-size:11px;color:rgba(243,241,238,.3);margin-bottom:4px;line-height:1.4;">Options: Mailchimp, Klaviyo, or alternatives. Must integrate with existing landing page.</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="padding:2px 8px;border-radius:6px;background:rgba(156,220,170,.1);color:#9cdcaa;font-weight:600;">JD</span>
-        
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:12px;margin-bottom:8px;">
-    <div style="width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;"></div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.8);margin-bottom:4px;">JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity)</div>
-      
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="padding:2px 8px;border-radius:6px;background:rgba(156,220,170,.1);color:#9cdcaa;font-weight:600;">JD</span>
-        <span style="color:rgba(243,241,238,.25);">P6</span>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</div>
+function renderWeekPlan(weekNum) {
+  const wp = weekPlans[weekNum];
+  if (!wp) { document.getElementById('wp-content').innerHTML='<div style="text-align:center;padding:32px;color:rgba(243,241,238,.3);font-size:13px;">No data for this week yet</div>'; return; }
 
+  const isPast = weekNum < currentWeek;
+  const isCurrent = weekNum === currentWeek;
+  const isFuture = weekNum > currentWeek;
 
+  // Update header
+  let suffix = '';
+  if (isPast) suffix = ' <span style="font-size:12px;color:rgba(243,241,238,.3);font-weight:400;">(past)</span>';
+  if (isFuture) suffix = ' <span style="font-size:12px;color:rgba(139,92,246,.5);font-weight:400;">(upcoming)</span>';
+  document.getElementById('wp-week-label').innerHTML = 'Week <span style="color:#9cdcaa;">' + weekNum + '</span>' + suffix;
+  document.getElementById('wp-date-label').textContent = wp.week_start + ' — ' + wp.week_end;
+  const badge = document.getElementById('wp-badge');
+  if (isCurrent) { badge.style.display = 'inline-block'; badge.textContent = 'CURRENT WEEK'; badge.style.background = 'rgba(156,220,170,.08)'; badge.style.color = '#9cdcaa'; }
+  else if (isPast) { badge.style.display = 'inline-block'; badge.textContent = 'COMPLETED'; badge.style.background = 'rgba(255,255,255,.05)'; badge.style.color = 'rgba(243,241,238,.3)'; }
+  else { badge.style.display = 'inline-block'; badge.textContent = 'PREVIEW'; badge.style.background = 'rgba(139,92,246,.08)'; badge.style.color = 'rgba(139,92,246,.6)'; }
 
-<div class="stitle"><div class="ico">✅</div> Done (5)</div>
-<div style="margin-bottom:28px;">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:rgba(156,220,170,.02);border:1px solid rgba(156,220,170,.08);border-radius:12px;margin-bottom:6px;opacity:.7;">
-    <div style="width:22px;height:22px;border-radius:6px;background:rgba(156,220,170,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9cdcaa;">✓</div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.5);text-decoration:line-through;text-decoration-color:rgba(243,241,238,.15);margin-bottom:3px;">Create Google Drive folder structure</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="color:rgba(243,241,238,.25);">JD</span>
-        <span style="color:rgba(156,220,170,.4);">2026-04-07</span>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:rgba(156,220,170,.02);border:1px solid rgba(156,220,170,.08);border-radius:12px;margin-bottom:6px;opacity:.7;">
-    <div style="width:22px;height:22px;border-radius:6px;background:rgba(156,220,170,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9cdcaa;">✓</div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.5);text-decoration:line-through;text-decoration-color:rgba(243,241,238,.15);margin-bottom:3px;">LOCK LAUNCH PRODUCT DECISION — GUITAR chosen</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="color:rgba(243,241,238,.25);">JD</span>
-        <span style="color:rgba(156,220,170,.4);">2026-04-05</span>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:rgba(156,220,170,.02);border:1px solid rgba(156,220,170,.08);border-radius:12px;margin-bottom:6px;opacity:.7;">
-    <div style="width:22px;height:22px;border-radius:6px;background:rgba(156,220,170,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9cdcaa;">✓</div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.5);text-decoration:line-through;text-decoration-color:rgba(243,241,238,.15);margin-bottom:3px;">Set up recurring Thursday meeting</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="color:rgba(243,241,238,.25);">JD</span>
-        <span style="color:rgba(156,220,170,.4);">pre-existing</span>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:rgba(156,220,170,.02);border:1px solid rgba(156,220,170,.08);border-radius:12px;margin-bottom:6px;opacity:.7;">
-    <div style="width:22px;height:22px;border-radius:6px;background:rgba(156,220,170,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9cdcaa;">✓</div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.5);text-decoration:line-through;text-decoration-color:rgba(243,241,238,.15);margin-bottom:3px;">Research KS entity options</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="color:rgba(243,241,238,.25);">JD</span>
-        <span style="color:rgba(156,220,170,.4);">2026-04-07</span>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:rgba(156,220,170,.02);border:1px solid rgba(156,220,170,.08);border-radius:12px;margin-bottom:6px;opacity:.7;">
-    <div style="width:22px;height:22px;border-radius:6px;background:rgba(156,220,170,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9cdcaa;">✓</div>
-    <div style="flex:1;">
-      <div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.5);text-decoration:line-through;text-decoration-color:rgba(243,241,238,.15);margin-bottom:3px;">Set up Claude Code environment for project management</div>
-      <div style="display:flex;gap:8px;font-size:10px;">
-        <span style="color:rgba(243,241,238,.25);">JD</span>
-        <span style="color:rgba(156,220,170,.4);">2026-04-07</span>
-      </div>
-    </div>
-  </div>
-  
-  
-</div>
+  // Navigation button states
+  document.getElementById('wp-prev').style.opacity = weekNum <= 1 ? '0.2' : '1';
+  document.getElementById('wp-prev').style.pointerEvents = weekNum <= 1 ? 'none' : 'auto';
+  document.getElementById('wp-next').style.opacity = weekNum >= maxWeek ? '0.2' : '1';
+  document.getElementById('wp-next').style.pointerEvents = weekNum >= maxWeek ? 'none' : 'auto';
 
+  // Build task HTML
+  let html = '';
+  const total = wp.total_items || 0;
+  const done = wp.done_count || 0;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
 
+  // Progress bar
+  html += '<div style="margin-bottom:24px;"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px;">';
+  html += '<span style="color:rgba(243,241,238,.4);">' + done + ' of ' + total + ' done</span>';
+  html += '<span style="color:#9cdcaa;font-weight:600;">' + pct + '%</span></div>';
+  html += '<div style="height:6px;border-radius:3px;background:rgba(255,255,255,.06);overflow:hidden;">';
+  html += '<div style="height:100%;border-radius:3px;background:#9cdcaa;width:' + pct + '%;transition:width .3s;"></div></div></div>';
 
+  // Group tasks
+  const pending = wp.tasks.filter(t => t.status === 'pending' || t.status === 'in_progress');
+  const carried = wp.tasks.filter(t => t.status === 'carried_over');
+  const doneList = wp.tasks.filter(t => t.status === 'done');
 
-<!-- Blockers -->
+  // To Do
+  if (pending.length > 0) {
+    const label = isFuture ? 'Planned' : 'To Do';
+    html += '<div class="stitle"><div class="ico">⬜</div> ' + label + ' (' + pending.length + ')</div><div style="margin-bottom:28px;">';
+    pending.forEach(t => { html += renderTask(t); });
+    html += '</div>';
+  }
 
+  // Carried over (past weeks only)
+  if (carried.length > 0) {
+    html += '<div class="stitle"><div class="ico" style="background:rgba(204,102,102,.1);">⚠</div> Not Completed — Carried Forward (' + carried.length + ')</div><div style="margin-bottom:28px;">';
+    carried.forEach(t => { html += renderCarriedTask(t); });
+    html += '</div>';
+  }
+
+  // Done
+  if (doneList.length > 0) {
+    html += '<div class="stitle"><div class="ico">✅</div> Done (' + doneList.length + ')</div><div style="margin-bottom:28px;">';
+    doneList.forEach(t => { html += renderDoneTask(t); });
+    html += '</div>';
+  }
+
+  if (wp.tasks.length === 0) {
+    html += '<div style="text-align:center;padding:32px;color:rgba(243,241,238,.3);font-size:13px;">No tasks for this week</div>';
+  }
+
+  // Blockers
+  if (wp.blockers && wp.blockers.length > 0) {
+    html += '<div class="stitle"><div class="ico">🚧</div> Blockers</div>';
+    wp.blockers.forEach(b => {
+      html += '<div class="blocker-card"><div class="bname">' + esc(b.description) + '</div>';
+      html += '<div class="binfo">' + esc(b.project_id) + ' — ' + esc(b.owner) + ' — Due W' + b.week + '</div></div>';
+    });
+  }
+
+  document.getElementById('wp-content').innerHTML = html;
+}
+
+function renderTask(t) {
+  const isIP = t.status === 'in_progress';
+  const borderColor = isIP ? 'rgba(240,198,116,.2)' : 'rgba(255,255,255,.05)';
+  const dotBorder = isIP ? '#f0c674' : 'rgba(255,255,255,.15)';
+  const dotContent = isIP ? '🔄' : '';
+  let h = '<div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(255,255,255,.02);border:1px solid ' + borderColor + ';border-radius:12px;margin-bottom:8px;">';
+  h += '<div style="width:22px;height:22px;border-radius:6px;border:2px solid ' + dotBorder + ';flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;">' + dotContent + '</div>';
+  h += '<div style="flex:1;"><div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.8);margin-bottom:4px;">' + esc(t.description) + '</div>';
+  if (t.detail) h += '<div style="font-size:11px;color:rgba(243,241,238,.3);margin-bottom:4px;line-height:1.4;">' + esc(t.detail.substring(0,150)) + (t.detail.length > 150 ? '…' : '') + '</div>';
+  if (t.measurable_result) h += '<div style="font-size:10px;color:rgba(156,220,170,.5);margin-bottom:4px;">✓ Done = ' + esc(t.measurable_result) + '</div>';
+  h += '<div style="display:flex;gap:8px;font-size:10px;"><span style="padding:2px 8px;border-radius:6px;background:rgba(156,220,170,.1);color:#9cdcaa;font-weight:600;">' + esc(t.owner) + '</span></div>';
+  h += '</div></div>';
+  return h;
+}
+
+function renderCarriedTask(t) {
+  let h = '<div style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:rgba(204,102,102,.03);border:1px solid rgba(204,102,102,.15);border-radius:12px;margin-bottom:8px;">';
+  h += '<div style="width:22px;height:22px;border-radius:6px;background:rgba(204,102,102,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#cc6666;">→</div>';
+  h += '<div style="flex:1;"><div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.7);margin-bottom:4px;">' + esc(t.description) + '</div>';
+  if (t.measurable_result) h += '<div style="font-size:10px;color:rgba(204,102,102,.5);margin-bottom:4px;">Pending: ' + esc(t.measurable_result) + '</div>';
+  h += '<div style="display:flex;gap:8px;font-size:10px;"><span style="padding:2px 8px;border-radius:6px;background:rgba(204,102,102,.1);color:#cc6666;font-weight:600;">Arrastrada → W' + (viewingWeek + 1) + '</span>';
+  h += '<span style="padding:2px 8px;border-radius:6px;background:rgba(156,220,170,.1);color:#9cdcaa;font-weight:600;">' + esc(t.owner) + '</span></div>';
+  h += '</div></div>';
+  return h;
+}
+
+function renderDoneTask(t) {
+  let h = '<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:rgba(156,220,170,.02);border:1px solid rgba(156,220,170,.08);border-radius:12px;margin-bottom:6px;">';
+  h += '<div style="width:22px;height:22px;border-radius:6px;background:rgba(156,220,170,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9cdcaa;">✓</div>';
+  h += '<div style="flex:1;"><div style="font-size:13px;font-weight:500;color:rgba(243,241,238,.5);text-decoration:line-through;text-decoration-color:rgba(243,241,238,.15);margin-bottom:3px;">' + esc(t.description) + '</div>';
+  // Verification / evidence
+  if (t.verification) {
+    h += '<div style="margin:4px 0 6px;padding:6px 10px;border-radius:8px;background:rgba(156,220,170,.04);border:1px solid rgba(156,220,170,.1);font-size:10px;line-height:1.5;color:rgba(156,220,170,.6);">';
+    h += renderVerification(t.verification);
+    h += '</div>';
+  }
+  h += '<div style="display:flex;gap:8px;font-size:10px;"><span style="color:rgba(243,241,238,.25);">' + esc(t.owner) + '</span>';
+  if (t.completed_date) h += '<span style="color:rgba(156,220,170,.4);">' + t.completed_date + '</span>';
+  h += '</div></div></div>';
+  return h;
+}
+
+function renderVerification(v) {
+  if (!v) return '';
+  // Split by | for multiple pieces of evidence
+  const parts = v.split(' | ');
+  return parts.map(p => {
+    p = p.trim();
+    // Auto-link URLs
+    if (p.match(/^https?:\/\//)) {
+      const short = p.length > 60 ? p.substring(0, 57) + '…' : p;
+      return '🔗 <a href="' + esc(p) + '" target="_blank" style="color:#9cdcaa;text-decoration:underline;text-decoration-color:rgba(156,220,170,.3);">' + esc(short) + '</a>';
+    }
+    return '✓ ' + esc(p);
+  }).join('<br>');
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+function wpNav(dir) {
+  const next = viewingWeek + dir;
+  if (next < 1 || next > maxWeek) return;
+  viewingWeek = next;
+  renderWeekPlan(viewingWeek);
+}
+
+// Initial render
+renderWeekPlan(currentWeek);
+</script>
 
 </div><!-- /tab-weekplan -->
 
@@ -731,123 +696,131 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
 <div id="tab-meetingprep" class="tab-content">
 
 <div class="meeting-header">
-  <h2>Thursday Meeting — <span>W1</span></h2>
-  <div style="display:flex;gap:8px;">
+  <h2>Thursday Meeting — <span>W2</span></h2>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <a href="https://meet.google.com/sec-dpza-jav" target="_blank" class="btn" style="text-decoration:none;">🔗 Join Google Meet</a>
     <button class="btn" onclick="copyAgenda()">📋 Copy Agenda</button>
-    <button class="btn" onclick="window.print()">🖨️ Print</button>
   </div>
 </div>
+<div style="text-align:center;margin-top:-8px;margin-bottom:20px;font-size:11px;color:rgba(243,241,238,.3);">2026-04-16 &nbsp;|&nbsp; 2:30 PM Ecuador &nbsp;|&nbsp; 29 weeks to launch</div>
 
-<!-- Last Meeting Recap -->
+<!-- ═══ LAST MEETING SUMMARY ═══ -->
 
-<div style="padding:16px 20px;border-radius:12px;background:rgba(129,162,190,.05);border:1px solid rgba(129,162,190,.15);margin-bottom:20px;font-size:12px;color:rgba(243,241,238,.4);">
-  No previous meeting recap available. After your next meeting, share the transcript with Claude Code to populate this section.
+<div class="stitle"><div class="ico">📝</div> Last Meeting Summary — W1 (2026-04-02)</div>
+<div class="agenda-box" style="border-color:rgba(129,162,190,.2);margin-bottom:24px;">
+
+  
+  <div class="agenda-section">
+    <h4>Key Points</h4>
+    
+    <div class="aitem">First formal team meeting under the new operations plan</div>
+    
+    <div class="aitem">Juanca confirmed willing to make planning payment to JD</div>
+    
+    <div class="aitem">Thor has cajon spec sheets at 95% completion for both sizes</div>
+    
+    <div class="aitem">Guitar quality concerns raised: hardware, headstock shape, neck feel need work</div>
+    
+    <div class="aitem">Passive speaker needs redesign — incompatible with modern phone sizes</div>
+    
+    <div class="aitem">Website is live — SSL certificate pending (Diego confirmed in progress)</div>
+    
+    <div class="aitem">Juanca + Diego will visit Quito in December 2026 for full product review</div>
+    
+  </div>
+  
+
+  
+  <div class="agenda-section">
+    <h4>Decisions Made</h4>
+    
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ Guitar confirmed as hero launch product alongside Cajon (Juanca's preference)</div>
+    
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ JD + Thor trusted to make touch-and-feel quality decisions on all instruments (delegated by Juanca)</div>
+    
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ Thursday meetings confirmed as recurring weekly at 2:30 PM Ecuador time</div>
+    
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ Team to respond promptly in WhatsApp group when JD sends invites</div>
+    
+  </div>
+  
+
+  
+  <div class="agenda-section">
+    <h4>Action Items Assigned</h4>
+    
+    <div class="aitem">Create Google Drive folder structure — <strong>JD</strong> (W1)</div>
+    
+    <div class="aitem">Lock launch product decision (guitar vs ukulele) — <strong>JD</strong> (W2)</div>
+    
+    <div class="aitem">JD + Juanca alignment conversation (payment, budget, KS entity) — <strong>JD</strong> (W1)</div>
+    
+    <div class="aitem">Research KS entity options — <strong>JD</strong> (W1)</div>
+    
+    <div class="aitem">Confirm cajon production cost with Thor — <strong>JD</strong> (W1)</div>
+    
+    <div class="aitem">Create spec sheet template (Spanish, visual, Ivan-UX) — <strong>JD</strong> (W2)</div>
+    
+    <div class="aitem">Set up Claude Code environment — <strong>JD</strong> (W1)</div>
+    
+  </div>
+  
 </div>
 
 
-<!-- Structured Agenda -->
+<!-- ═══ MEETING AGENDA ═══ -->
 <div class="agenda-box">
-  <h3>MEETING AGENDA</h3>
-  <div class="agenda-sub">2026-04-09 &nbsp;|&nbsp; Week 1 &nbsp;|&nbsp; 30 weeks to launch</div>
+  <h3>MEETING AGENDA — W2</h3>
 
   <div class="agenda-section">
-    <h4>1. Status Round <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(5 min)</span></h4>
+    <h4>1. W1 Review — What Got Done <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(10 min)</span></h4>
+    <div class="aitem" style="font-size:11px;color:rgba(243,241,238,.3);border-left-color:transparent;padding-left:0;">Review completed tasks from the Week Plan tab. Each completed item has verification evidence.</div>
     
-    <div class="aitem"><strong>JD:</strong> Completed: [COMPLETE] Google Drive folder created — Consultoría JD - Instrument Project (7 subfolders) | In progress: JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity)</div>
     
-    <div class="aitem"><strong>JUANCA:</strong> Completed: No completions this period | In progress: No upcoming milestones</div>
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ [COMPLETE] Claude Code environment set up (JD)</div>
     
-    <div class="aitem"><strong>DIEGO:</strong> Completed: No completions this period | In progress: No upcoming milestones</div>
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ [COMPLETE] Task tracking tool set up + shared with team — Google Sheet with 48 milestones (JD)</div>
     
-    <div class="aitem"><strong>THOR:</strong> Completed: No completions this period | In progress: No upcoming milestones</div>
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ [COMPLETE] JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity) (JD)</div>
+    
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ [COMPLETE] Google Drive folder created — Consultoría JD - Instrument Project (7 subfolders) (JD)</div>
+    
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ [COMPLETE] Spec sheet template defined — Guitar + Ukulele fichas técnicas generated in Spanish, checkbox-driven, uploaded to Drive (JD (UKULELE, GUITAR, SPEAKER, STAND))</div>
+    
+    <div class="aitem" style="border-left-color:#9cdcaa;">✓ [COMPLETE] Launch product decision locked — Guitar + Cajon for KS launch (decided 2026-04-05) (JD (UKULELE, GUITAR, SPEAKER, STAND))</div>
+    
     
   </div>
 
   <div class="agenda-section">
-    <h4>2. Milestone Check <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(10 min)</span></h4>
+    <h4>2. What Was NOT Done — Blockers <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(10 min)</span></h4>
+    <div class="aitem" style="font-size:11px;color:rgba(243,241,238,.3);border-left-color:transparent;padding-left:0;">Unfinished tasks: why? Pivot, carry forward, or drop?</div>
     
-    <div class="aitem">Due this week: JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity) (JD)</div>
-    
-    
-    <div class="aitem">Overdue: None</div>
-    
-    <div class="aitem">Completed: [COMPLETE] Claude Code environment set up, [COMPLETE] Task tracking tool set up + shared with team — Google Sheet with 48 milestones, [COMPLETE] Google Drive folder created — Consultoría JD - Instrument Project (7 subfolders)</div>
-  </div>
-
-  <div class="agenda-section">
-    <h4>3. Blockers <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(15 min)</span></h4>
-    
-    <div class="aitem">No blockers identified</div>
+    <div class="aitem">No overdue items or blockers</div>
     
   </div>
 
   <div class="agenda-section">
-    <h4>4. Decisions Needed <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(15 min)</span></h4>
+    <h4>3. Decisions Needed <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(10 min)</span></h4>
     
     <div class="aitem">No pending decisions</div>
     
   </div>
 
   <div class="agenda-section">
-    <h4>5. Next Week Commitments <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(5 min)</span></h4>
+    <h4>4. W2 Commitments — What's Due Next <span style="color:#9cdcaa;font-size:10px;font-weight:400;">(10 min)</span></h4>
+    <div class="aitem" style="font-size:11px;color:rgba(243,241,238,.3);border-left-color:transparent;padding-left:0;">Each person commits to specific deliverables for the coming week.</div>
     
-    
-    <div class="aitem">W2: Spec sheet template defined (JD (UKULELE, GUITAR, SPEAKER, STAND))</div>
-    
-    <div class="aitem">W2: Launch product decision locked (guitar or ukulele — URGENT) (JD (UKULELE, GUITAR, SPEAKER, STAND))</div>
     
     <div class="aitem">W2: KS entity decision made (Ecuador entity viability + third-party backup) (JD)</div>
     
-    <div class="aitem">W2: Document presented to full team — goals + owners confirmed (JD)</div>
+    <div class="aitem">W2: Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks (JD)</div>
     
-    <div class="aitem">W2: JD revised milestone payment schedule agreed with Juanca (JD)</div>
+    <div class="aitem">W2: JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp (JD)</div>
     
     
   </div>
 </div>
-
-<!-- Status Round Cards -->
-<div class="stitle"><div class="ico">🎤</div> Status Round Detail</div>
-<div class="status-cards">
-  
-  <div class="status-card">
-    <div class="scname">JD</div>
-    <div class="scitem"><span class="sclabel">✓ Done:</span> [COMPLETE] Google Drive folder created — Consultoría JD - Instrument Project (7 subfolders)</div>
-    <div class="scitem"><span class="sclabel">→ Doing:</span> JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity)</div>
-  </div>
-  
-  <div class="status-card">
-    <div class="scname">JUANCA</div>
-    <div class="scitem"><span class="sclabel">✓ Done:</span> No completions this period</div>
-    <div class="scitem"><span class="sclabel">→ Doing:</span> No upcoming milestones</div>
-  </div>
-  
-  <div class="status-card">
-    <div class="scname">DIEGO</div>
-    <div class="scitem"><span class="sclabel">✓ Done:</span> No completions this period</div>
-    <div class="scitem"><span class="sclabel">→ Doing:</span> No upcoming milestones</div>
-  </div>
-  
-  <div class="status-card">
-    <div class="scname">THOR</div>
-    <div class="scitem"><span class="sclabel">✓ Done:</span> No completions this period</div>
-    <div class="scitem"><span class="sclabel">→ Doing:</span> No upcoming milestones</div>
-  </div>
-  
-</div>
-
-<!-- Decisions -->
-
-
-<!-- Metrics -->
-
-<div class="stitle"><div class="ico">📊</div> Tool Activity (Last 7 Days)</div>
-<div class="stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px;">
-  <div class="stat"><div class="num">37</div><div class="lbl">Tool Runs</div></div>
-  <div class="stat"><div class="num">92.0%</div><div class="lbl">Success Rate</div></div>
-  <div class="stat"><div class="num">2</div><div class="lbl">Tools Used</div></div>
-</div>
-
 
 </div><!-- /tab-meetingprep -->
 
@@ -924,10 +897,10 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
         
         
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);background:rgba(156,220,170,.05);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;color:rgba(243,241,238,.3);">
             Apr W2
           </td>
-          <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
+          <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.35);">
             M1: Plan approved, work begins
           </td>
           <td style="padding:10px 16px;">
@@ -946,10 +919,10 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
         
         
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);background:rgba(156,220,170,.05);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;color:rgba(243,241,238,.3);">
             Apr W2-W4
           </td>
-          <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
+          <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.35);">
             KS entity — Wyoming LLC (Juanca registers from DC) <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
           </td>
           <td style="padding:10px 16px;">
@@ -1944,36 +1917,36 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
       <div class="tl-bar" style="left:3.2%;width:25.8%;background:#81a2be20;border:1px solid #81a2be30;">
       </div>
       
-      <div class="tl-dot" style="left:4.8%;background:#de935f;border-color:#de935f">
-        <div class="tl-tooltip"><span class="tt-week">W2</span> Spec sheet template defined <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
+      <div class="tl-dot" style="left:4.8%;background:#9cdcaa;border-color:#9cdcaa">
+        <div class="tl-tooltip"><span class="tt-week">W2</span> [COMPLETE] Spec sheet template defined — Guitar + Ukulele fichas técnicas generated in Spanish, checkbox-driven, uploaded to Drive <span class="tt-status" style="background:#9cdcaa25;color:#9cdcaa">Completed</span></div>
       </div>
       
-      <div class="tl-dot" style="left:4.8%;background:#de935f;border-color:#de935f">
-        <div class="tl-tooltip"><span class="tt-week">W2</span> Launch product decision locked (guitar or ukulele — URGENT) <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
+      <div class="tl-dot" style="left:4.8%;background:#9cdcaa;border-color:#9cdcaa">
+        <div class="tl-tooltip"><span class="tt-week">W2</span> [COMPLETE] Launch product decision locked — Guitar + Cajon for KS launch (decided 2026-04-05) <span class="tt-status" style="background:#9cdcaa25;color:#9cdcaa">Completed</span></div>
       </div>
       
       <div class="tl-dot" style="left:11.3%;background:#81a2be;border-color:#81a2be">
-        <div class="tl-tooltip"><span class="tt-week">W4</span> Ukulele + guitar spec sheet first drafts <span class="tt-status" style="background:#81a2be25;color:#81a2be">On Track</span></div>
+        <div class="tl-tooltip"><span class="tt-week">W4</span> Guitar + ukulele spec sheets filled with real measurements and prototype photos. Done = all dimension fields populated, 5+ reference photos pasted, shared with Thor for review <span class="tt-status" style="background:#81a2be25;color:#81a2be">On Track</span></div>
       </div>
       
       <div class="tl-dot" style="left:14.5%;background:#666666;border-color:#666666">
-        <div class="tl-tooltip"><span class="tt-week">W5</span> Cajon x2 spec sheets finalized from Thor's existing 95% draft <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+        <div class="tl-tooltip"><span class="tt-week">W5</span> Cajon x2 spec sheets finalized from Thor's 95% draft. Done = both cajon fichas técnicas complete in same format as guitar/ukulele, uploaded to Drive <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
       </div>
       
       <div class="tl-dot" style="left:14.5%;background:#666666;border-color:#666666">
-        <div class="tl-tooltip"><span class="tt-week">W5</span> Passive speaker + guitar stand spec sheet first drafts <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+        <div class="tl-tooltip"><span class="tt-week">W5</span> Passive speaker + guitar stand spec sheet first drafts. Done = fichas técnicas generated and uploaded, pending Ivan review <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
       </div>
       
       <div class="tl-dot" style="left:21.0%;background:#666666;border-color:#666666">
-        <div class="tl-tooltip"><span class="tt-week">W7</span> Ivan reviews all 6 spec sheets for production feasibility <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+        <div class="tl-tooltip"><span class="tt-week">W7</span> Ivan reviews all 6 spec sheets. Done = written feedback from Ivan on each sheet (WhatsApp or annotated PDF), logged in context file <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
       </div>
       
       <div class="tl-dot" style="left:24.2%;background:#666666;border-color:#666666">
-        <div class="tl-tooltip"><span class="tt-week">W8</span> All revisions completed <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+        <div class="tl-tooltip"><span class="tt-week">W8</span> All revisions from Ivan feedback completed. Done = revised versions uploaded to Drive, Ivan confirms no further changes needed <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
       </div>
       
       <div class="tl-dot" style="left:27.4%;background:#666666;border-color:#666666">
-        <div class="tl-tooltip"><span class="tt-week">W9</span> ALL 6 SPECS LOCKED — approved JD + Juanca <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
+        <div class="tl-tooltip"><span class="tt-week">W9</span> ALL 6 SPECS LOCKED. Done = JD + Juanca both sign approval section on each ficha técnica <span class="tt-status" style="background:#66666625;color:#666666">Upcoming</span></div>
       </div>
       
       <div class="tl-current" style="left:1.6%"></div>
@@ -2185,8 +2158,8 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
         <div class="tl-tooltip"><span class="tt-week">W1</span> [COMPLETE] Task tracking tool set up + shared with team — Google Sheet with 48 milestones <span class="tt-status" style="background:#9cdcaa25;color:#9cdcaa">Completed</span></div>
       </div>
       
-      <div class="tl-dot" style="left:1.6%;background:#f0c674;border-color:#f0c674">
-        <div class="tl-tooltip"><span class="tt-week">W1</span> JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity) <span class="tt-status" style="background:#f0c67425;color:#f0c674">Due This Week</span></div>
+      <div class="tl-dot" style="left:1.6%;background:#9cdcaa;border-color:#9cdcaa">
+        <div class="tl-tooltip"><span class="tt-week">W1</span> [COMPLETE] JD + Juanca alignment conversation (success definition, compensation, budget ceiling, KS entity) <span class="tt-status" style="background:#9cdcaa25;color:#9cdcaa">Completed</span></div>
       </div>
       
       <div class="tl-dot" style="left:1.6%;background:#9cdcaa;border-color:#9cdcaa">
@@ -2194,11 +2167,11 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
       </div>
       
       <div class="tl-dot" style="left:4.8%;background:#de935f;border-color:#de935f">
-        <div class="tl-tooltip"><span class="tt-week">W2</span> Document presented to full team — goals + owners confirmed <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
+        <div class="tl-tooltip"><span class="tt-week">W2</span> Share project plan in Thursday meeting. Done = each team member verbally confirms their deliverables for next 4 weeks <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
       </div>
       
       <div class="tl-dot" style="left:4.8%;background:#de935f;border-color:#de935f">
-        <div class="tl-tooltip"><span class="tt-week">W2</span> JD revised milestone payment schedule agreed with Juanca <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
+        <div class="tl-tooltip"><span class="tt-week">W2</span> JD revised milestone payment schedule agreed with Juanca. Done = Juanca responds with approval or counter-proposal via WhatsApp <span class="tt-status" style="background:#de935f25;color:#de935f">At Risk</span></div>
       </div>
       
       <div class="tl-current" style="left:1.6%"></div>
@@ -2247,7 +2220,7 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
 
 <!-- ═══ FOOTER ═══ -->
 <div class="foot">
-  <p>Instrument Project — Operations Dashboard — Generated 2026-04-07 23:42</p>
+  <p>Instrument Project — Operations Dashboard — Generated 2026-04-09 11:59</p>
   <p style="margin-top:4px;">Press <kbd style="background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;">F</kbd> for Focus Mode</p>
 </div>
 

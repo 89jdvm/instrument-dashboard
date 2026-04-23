@@ -213,7 +213,7 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
 <div class="header">
   <div class="pill"><div class="dot"></div> Live Dashboard</div>
   <h1>Instrument Project<br><span>Operations Dashboard</span></h1>
-  <p class="sub">W3 of 31 &nbsp;|&nbsp; 27 weeks remaining &nbsp;|&nbsp; Generated 2026-04-23 11:13</p>
+  <p class="sub">W3 of 31 &nbsp;|&nbsp; 27 weeks remaining &nbsp;|&nbsp; Generated 2026-04-23 12:46</p>
 </div>
 
 <!-- ═══ STATS ═══ -->
@@ -859,53 +859,358 @@ renderWeekPlan(currentWeek);
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div id="tab-budget" class="tab-content">
 
-<!-- Juanca's total investment picture — single consolidated card -->
+<!-- ── SECTION 1: FINANCIAL SUMMARY CARD ── -->
 <div class="budget-card" style="margin-bottom:20px;border-color:rgba(240,198,116,.25);background:rgba(240,198,116,.04);text-align:center;padding:24px 20px;">
   <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;letter-spacing:.15em;margin-bottom:8px;">Total Juanca Investment at Launch</div>
-  <div style="font-size:34px;font-weight:800;color:#f0c674;">~$6,968 – $7,668</div>
-  <div style="font-size:11px;color:rgba(243,241,238,.35);margin-top:10px;line-height:1.6;">
-    Already invested ~$2,500 <span style="color:rgba(243,241,238,.2);">|</span>
-    New pre-campaign: JD fees $3,600 + operational $868–$1,568
+  <div style="font-size:34px;font-weight:800;color:#f0c674;">~$6,000 – $8,500</div>
+  <div style="font-size:11px;color:rgba(243,241,238,.35);margin-top:10px;line-height:1.7;">
+    Already invested ~$2,000–$3,000 <span style="color:rgba(243,241,238,.2);">|</span>
+    New pre-campaign: JD fees $3,600 + ops $668–$1,868
   </div>
-  <div style="font-size:10px;color:rgba(156,220,170,.5);margin-top:8px;">Recovered at target KS scenario (80 backers → $35K+)</div>
+  <div style="font-size:10px;color:rgba(243,241,238,.25);margin-top:6px;">M7 ($900) paid from KS proceeds — not pre-campaign cash</div>
+  <div style="font-size:10px;color:rgba(156,220,170,.5);margin-top:8px;">Recovered at Target scenario (115 backers → $46K gross)</div>
 </div>
 
-<!-- What's already been invested -->
-<div class="stitle"><div class="ico">📋</div> Existing Investment (Already Spent by Juanca)</div>
-<div class="budget-card" style="margin-bottom:28px;padding:0;overflow:hidden;">
+<!-- ── SECTION 2: FOB & SHIPPING QUOTE INPUTS ── -->
+<div class="stitle"><div class="ico">🚢</div> FOB & Shipping Quote Inputs — For Thor / Panatlantic</div>
+<div style="font-size:11px;color:rgba(243,241,238,.35);margin-bottom:16px;margin-top:-8px;">This block answers Thor's question. All inputs needed before Panatlantic can give a final quote.</div>
+
+<div class="budget-card" style="margin-bottom:28px;padding:18px 20px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.35);margin-bottom:8px;font-weight:600;">HS Codes</div>
+      <div style="font-size:12px;line-height:1.8;">
+        <div><span style="color:rgba(243,241,238,.5);">Guitar:</span> <span style="color:#9cdcaa;font-weight:600;">9202.90.60.00</span> <span style="font-size:10px;background:rgba(156,220,170,.12);color:#9cdcaa;padding:2px 6px;border-radius:4px;margin-left:4px;">✅ Confirmed</span></div>
+        <div style="margin-top:4px;"><span style="color:rgba(243,241,238,.5);">Cajón:</span> <span style="color:#9cdcaa;font-weight:600;">9206.00.20</span> <span style="font-size:10px;background:rgba(156,220,170,.12);color:#9cdcaa;padding:2px 6px;border-radius:4px;margin-left:4px;">✅ Confirmed</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.35);margin-bottom:8px;font-weight:600;">FOB Value per Unit</div>
+      <div style="font-size:12px;line-height:1.8;">
+        <div><span style="color:rgba(243,241,238,.5);">Guitar:</span> <span style="color:#f0c674;font-weight:600;">⚠️ TBD</span> <span style="font-size:10px;color:rgba(243,241,238,.3);">pending Ivan confirmation</span></div>
+        <div style="margin-top:4px;"><span style="color:rgba(243,241,238,.5);">Cajón:</span> <span style="color:#9cdcaa;font-weight:600;">~$64</span> <span style="font-size:10px;background:rgba(222,147,95,.12);color:#de935f;padding:2px 6px;border-radius:4px;margin-left:4px;">🔶 Est</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.35);margin-bottom:8px;font-weight:600;">Dimensions & Weight</div>
+      <div style="font-size:12px;color:#f0c674;font-weight:600;">⚠️ TBD — prototype pickup W5 (2026-04-24)</div>
+      <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:4px;">Measurements unlock Panatlantic final quote</div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.35);margin-bottom:8px;font-weight:600;">Shipment Volume & Route</div>
+      <div style="font-size:12px;line-height:1.8;">
+        <div><span style="color:rgba(243,241,238,.5);">Volume:</span> <span style="color:rgba(243,241,238,.7);font-weight:600;">~115 units</span> <span style="font-size:10px;color:rgba(243,241,238,.3);">(Target scenario)</span></div>
+        <div style="margin-top:4px;"><span style="color:rgba(243,241,238,.5);">Origin:</span> <span style="color:rgba(243,241,238,.7);">Guayaquil, Ecuador</span></div>
+        <div style="margin-top:4px;"><span style="color:rgba(243,241,238,.5);">Destinations:</span> <span style="color:rgba(243,241,238,.7);">US (Miami/LA) + EU</span></div>
+        <div style="margin-top:4px;"><span style="color:rgba(243,241,238,.5);">Incoterms:</span> <span style="color:#f0c674;font-weight:600;">⚠️ TBD</span> <span style="font-size:10px;color:rgba(243,241,238,.3);">confirm with Thor</span></div>
+      </div>
+    </div>
+
+  </div>
+  <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);font-size:10px;color:rgba(243,241,238,.3);line-height:1.6;">
+    <strong style="color:rgba(243,241,238,.4);">EU note:</strong> Ecuador has a 0% preferential duty rate with the EU under the EU-Colombia-Peru-Ecuador Trade Agreement (in force 2017). Valid EUR.1 origin certificate required per shipment — Thor must issue. Without it, 3.2% MFN duty applies.
+  </div>
+</div>
+
+<!-- ── SECTION 3: PER-UNIT ECONOMICS — CORRECTED ── -->
+<div class="stitle"><div class="ico">🎸</div> Per-Unit Economics — Corrected Cost Stack (Guitar $140 mid / Cajón)</div>
+<div style="font-size:11px;color:rgba(243,241,238,.35);margin-bottom:16px;margin-top:-8px;">Pass-through shipping (backer pays via BackerKit). Margin is region-agnostic except US import duty. Source: Financial Model v1 + W4 research sprint.</div>
+
+<div class="budget-card" style="margin-bottom:16px;padding:0;overflow:hidden;">
   <table style="width:100%;border-collapse:collapse;font-size:12px;">
-    <tbody>
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Prototypes — 6 instruments built by Ivan (guitar, ukulele, 2 cajons, speaker, stand)</td>
-        <td style="text-align:right;padding:10px 16px;font-weight:600;color:rgba(243,241,238,.5);white-space:nowrap;">~$1,500–$2,000</td>
-        <td style="padding:10px 16px;text-align:right;"><span style="font-size:9px;font-weight:600;padding:3px 8px;border-radius:6px;background:rgba(156,220,170,.15);color:#9cdcaa;">SPENT</span></td>
-      </tr>
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Brand guide + logo design (Nohemi, Poppins, celadon palette)</td>
-        <td style="text-align:right;padding:10px 16px;font-weight:600;color:rgba(243,241,238,.5);">Included</td>
-        <td style="padding:10px 16px;text-align:right;"><span style="font-size:9px;font-weight:600;padding:3px 8px;border-radius:6px;background:rgba(156,220,170,.15);color:#9cdcaa;">SPENT</span></td>
-      </tr>
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Landing page — instrumentproject.co (SSL pending)</td>
-        <td style="text-align:right;padding:10px 16px;font-weight:600;color:rgba(243,241,238,.5);">Included</td>
-        <td style="padding:10px 16px;text-align:right;"><span style="font-size:9px;font-weight:600;padding:3px 8px;border-radius:6px;background:rgba(156,220,170,.15);color:#9cdcaa;">SPENT</span></td>
-      </tr>
+    <thead>
       <tr style="background:rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;font-weight:700;color:rgba(243,241,238,.6);">Total Already Invested</td>
-        <td style="text-align:right;padding:10px 16px;font-weight:800;color:rgba(243,241,238,.6);">~$2,000–$3,000</td>
-        <td></td>
+        <th style="text-align:left;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Cost Line</th>
+        <th style="text-align:right;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Cajón 🥁</th>
+        <th style="text-align:right;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Guitar 🎸 ($140)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">Production (Ivan)</td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$64</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">✅</span>
+        </td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$140</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">🔶</span>
+        </td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">Packaging</td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$10</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">🔶</span>
+        </td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$22</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">🔶</span>
+        </td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">Bulk Ecuador→US (LCL)</td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$10</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">🔶</span>
+        </td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$10</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">🔶</span>
+        </td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">KS + Stripe (9.5%)</td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$23.66</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">✅</span>
+        </td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$47.41</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">✅</span>
+        </td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">BackerKit (2%)</td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$4.98</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">✅</span>
+        </td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$9.98</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">✅</span>
+        </td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">US Import Duty</td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$0</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">✅</span>
+        </td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">~$12.20</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">🔶</span>
+        </td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">Contingency (10%)</td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$10.87</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">✅</span>
+        </td>
+        <td style="padding:10px 16px;text-align:right;">
+          <span style="color:rgba(243,241,238,.6);font-weight:500;">$24.16</span>
+          <span style="font-size:9px;margin-left:4px;color:rgba(243,241,238,.3);">✅</span>
+        </td>
+      </tr>
+      
+      <tr style="background:rgba(255,255,255,.05);border-top:2px solid rgba(255,255,255,.08);">
+        <td style="padding:10px 16px;font-weight:700;color:rgba(243,241,238,.8);">Total Variable Cost</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#de935f;">~$124</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#de935f;">~$265</td>
+      </tr>
+      <tr style="background:rgba(156,220,170,.04);border-top:1px solid rgba(156,220,170,.1);">
+        <td style="padding:10px 16px;font-weight:700;color:#9cdcaa;">Sale Price (KS)</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#9cdcaa;">$249</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#9cdcaa;">$499</td>
+      </tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.06);">
+        <td style="padding:10px 16px;font-weight:700;color:rgba(243,241,238,.7);">Gross Margin</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:800;font-size:14px;color:#9cdcaa;">~50.2%</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:800;font-size:14px;color:#f0c674;">~46.9%</td>
       </tr>
     </tbody>
   </table>
-  <div style="padding:10px 16px;font-size:10px;color:rgba(243,241,238,.25);border-top:1px solid rgba(255,255,255,.04);">This money is already spent regardless of KS outcome. The pre-campaign budget below is the new capital needed.</div>
 </div>
 
-<!-- ── CASH FLOW TIMELINE — What's spent when ── -->
-<div class="stitle"><div class="ico">📅</div> Cash Flow Timeline — When Each Dollar Is Spent</div>
-<div style="font-size:11px;color:rgba(243,241,238,.35);margin-bottom:16px;margin-top:-8px;">Every payment Juanca needs to make, in order, by month. Principle: defer costs post-KS where possible.</div>
+<!-- Margin correction callout -->
+<div class="budget-card" style="margin-bottom:16px;border-color:rgba(156,220,170,.2);background:rgba(156,220,170,.03);padding:14px 18px;">
+  <div style="font-size:11px;font-weight:600;color:#9cdcaa;margin-bottom:6px;">✅ W4 Cost Stack Correction</div>
+  <div style="font-size:11px;color:rgba(243,241,238,.45);line-height:1.6;">
+    The cajón was previously shown at 59.7% margin. The correct figure is <strong style="color:rgba(243,241,238,.7);">~50.2%</strong> — the earlier number excluded bulk transport and BackerKit fees. With W4 research revisions (LCL freight $10 vs $20, packaging $10 vs $20), the cajón now <em>clears</em> the 50% floor. This is not a pricing problem — it's a cost-stack correction and a logistics improvement.
+  </div>
+</div>
 
-<!-- Monthly cash flow table -->
+<!-- Guitar sensitivity rows -->
 <div class="budget-card" style="margin-bottom:28px;padding:0;overflow:hidden;">
+  <div style="padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.35);font-weight:600;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.05);">Guitar Cost Sensitivity — 3 Scenarios (Ivan quote pending W7)</div>
+  <table style="width:100%;border-collapse:collapse;font-size:12px;">
+    <thead>
+      <tr style="background:rgba(255,255,255,.02);">
+        <th style="text-align:left;padding:8px 16px;font-size:10px;color:rgba(243,241,238,.3);font-weight:500;">Ivan Cost</th>
+        <th style="text-align:right;padding:8px 16px;font-size:10px;color:rgba(243,241,238,.3);font-weight:500;">Var Cost</th>
+        <th style="text-align:right;padding:8px 16px;font-size:10px;color:rgba(243,241,238,.3);font-weight:500;">Margin $</th>
+        <th style="text-align:right;padding:8px 16px;font-size:10px;color:rgba(243,241,238,.3);font-weight:500;">Margin %</th>
+        <th style="text-align:center;padding:8px 16px;font-size:10px;color:rgba(243,241,238,.3);font-weight:500;">vs 50% Floor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:8px 16px;color:rgba(243,241,238,.6);">$100 <span style="font-size:9px;color:rgba(243,241,238,.3);">Best case</span></td>
+        <td style="padding:8px 16px;text-align:right;color:rgba(243,241,238,.5);">~$225</td>
+        <td style="padding:8px 16px;text-align:right;color:#9cdcaa;font-weight:600;">$274</td>
+        <td style="padding:8px 16px;text-align:right;font-weight:700;color:#9cdcaa;">54.9%</td>
+        <td style="padding:8px 16px;text-align:center;"><span style="font-size:9px;background:rgba(156,220,170,.15);color:#9cdcaa;padding:2px 8px;border-radius:4px;">✅ Clears</span></td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);background:rgba(240,198,116,.03);">
+        <td style="padding:8px 16px;color:#f0c674;font-weight:600;">$140 <span style="font-size:9px;color:rgba(243,241,238,.3);font-weight:400;">Plan of record</span></td>
+        <td style="padding:8px 16px;text-align:right;color:rgba(243,241,238,.5);">~$265</td>
+        <td style="padding:8px 16px;text-align:right;color:#f0c674;font-weight:600;">$234</td>
+        <td style="padding:8px 16px;text-align:right;font-weight:700;color:#f0c674;">46.9%</td>
+        <td style="padding:8px 16px;text-align:center;"><span style="font-size:9px;background:rgba(222,147,95,.15);color:#de935f;padding:2px 8px;border-radius:4px;">🔶 -3.1pp</span></td>
+      </tr>
+      <tr>
+        <td style="padding:8px 16px;color:rgba(243,241,238,.6);">$180 <span style="font-size:9px;color:rgba(243,241,238,.3);">Worst case</span></td>
+        <td style="padding:8px 16px;text-align:right;color:rgba(243,241,238,.5);">~$305</td>
+        <td style="padding:8px 16px;text-align:right;color:#cc6666;font-weight:600;">$194</td>
+        <td style="padding:8px 16px;text-align:right;font-weight:700;color:#cc6666;">38.9%</td>
+        <td style="padding:8px 16px;text-align:center;"><span style="font-size:9px;background:rgba(204,102,102,.15);color:#cc6666;padding:2px 8px;border-radius:4px;">⚠️ -11.1pp</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding:10px 16px;font-size:10px;color:rgba(243,241,238,.3);border-top:1px solid rgba(255,255,255,.04);">50% floor is an aspiration, not a gate, until Ivan confirms guitar cost (W7). At $140 mid-case, blended campaign margin is 42–48% depending on mix.</div>
+</div>
+
+<!-- ── SECTION 4: CAMPAIGN SCENARIOS ── -->
+<div class="stitle"><div class="ico">🎯</div> Campaign Scenarios — Guitar ($499) + Cajón ($249) + Bundle ($699)</div>
+<div style="font-size:11px;color:rgba(243,241,238,.35);margin-bottom:16px;margin-top:-8px;">Based on Financial Model v1. Guitar cost = $140 mid-case. Pass-through shipping. Margin range = low ($180 Ivan) / mid ($140) / high ($100).</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:8px;">
+  
+  
+  <div class="budget-card" style="text-align:center;">
+    <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;margin-bottom:8px;font-weight:500;">Conservative</div>
+    <div style="font-size:28px;font-weight:800;color:#de935f;">70</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:10px;">backers</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:8px;line-height:1.6;">40C + 20G + 10B</div>
+    <div style="font-size:18px;font-weight:700;color:rgba(243,241,238,.6);">$36,910</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:10px;">gross revenue</div>
+    <div style="font-size:13px;font-weight:700;color:#de935f;margin-top:6px;">27–35%</div>
+    <div style="font-size:9px;color:rgba(243,241,238,.3);">blended GM (low/mid/high guitar cost)</div>
+  </div>
+  
+  <div class="budget-card" style="text-align:center;border-color:rgba(156,220,170,.25);background:rgba(156,220,170,.03);">
+    <div style="font-size:10px;color:#9cdcaa;text-transform:uppercase;margin-bottom:8px;font-weight:700;">Target ★ Plan of Record</div>
+    <div style="font-size:28px;font-weight:800;color:#9cdcaa;">115</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:10px;">backers</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:8px;line-height:1.6;">60C + 35G + 20B</div>
+    <div style="font-size:18px;font-weight:700;color:#9cdcaa;">$46,385</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:10px;">gross revenue</div>
+    <div style="font-size:13px;font-weight:700;color:#9cdcaa;margin-top:6px;">37–48%</div>
+    <div style="font-size:9px;color:rgba(243,241,238,.3);">blended GM (low/mid/high guitar cost)</div>
+  </div>
+  
+  <div class="budget-card" style="text-align:center;">
+    <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;margin-bottom:8px;font-weight:500;">Stretch</div>
+    <div style="font-size:28px;font-weight:800;color:#b294bb;">180</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:10px;">backers</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:8px;line-height:1.6;">90C + 55G + 35B</div>
+    <div style="font-size:18px;font-weight:700;color:rgba(243,241,238,.6);">$74,320</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:10px;">gross revenue</div>
+    <div style="font-size:13px;font-weight:700;color:#b294bb;margin-top:6px;">37–48%</div>
+    <div style="font-size:9px;color:rgba(243,241,238,.3);">blended GM (low/mid/high guitar cost)</div>
+  </div>
+  
+</div>
+<div style="font-size:10px;color:rgba(243,241,238,.25);margin-bottom:8px;padding:0 2px;">Reference comps: La Voix du Luthier 101 backers/$891 avg (closest analog) · Loog Original 440/$148 · Novadrum 65/$385</div>
+<div style="font-size:10px;color:rgba(243,241,238,.25);margin-bottom:28px;padding:0 2px;">Audience note: reaching 115 backers requires ~2,300–3,800 pre-launch email subscribers (3% conversion benchmark). Audience size is the primary risk, not price point.</div>
+
+<!-- ── SECTION 5: FIXED CAMPAIGN COSTS ── -->
+<div class="stitle"><div class="ico">📋</div> Fixed Campaign Costs — One-Time, Absorbed by Gross Margin</div>
+<div style="font-size:11px;color:rgba(243,241,238,.35);margin-bottom:16px;margin-top:-8px;">These are campaign-level costs separate from per-unit COGS. Break-even = ~20 pledges at Target mix.</div>
+
+<div class="budget-card" style="margin-bottom:28px;padding:0;overflow:hidden;">
+  <table style="width:100%;border-collapse:collapse;font-size:12px;">
+    <thead>
+      <tr style="background:rgba(255,255,255,.04);">
+        <th style="text-align:left;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Item</th>
+        <th style="text-align:right;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Amount</th>
+        <th style="text-align:center;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Prototype production (1 guitar + 1 cajón for photo/video)</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:600;color:rgba(243,241,238,.6);">$500</td>
+        <td style="padding:10px 16px;text-align:center;font-size:11px;">🔶</td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Photography session</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:600;color:rgba(243,241,238,.6);">$0</td>
+        <td style="padding:10px 16px;text-align:center;font-size:11px;">✅</td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Video production (AI tools: Runway, ElevenLabs, CapCut)</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:600;color:rgba(243,241,238,.6);">$150</td>
+        <td style="padding:10px 16px;text-align:center;font-size:11px;">🔶</td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Customs broker retainer</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:600;color:rgba(243,241,238,.6);">$1,000</td>
+        <td style="padding:10px 16px;text-align:center;font-size:11px;">🔶</td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">EUDR documentation setup (pallet-intake log)</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:600;color:rgba(243,241,238,.6);">$100</td>
+        <td style="padding:10px 16px;text-align:center;font-size:11px;">🔶</td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Phytosanitary certs + export docs — AGROCALIDAD (2 shipments)</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:600;color:rgba(243,241,238,.6);">$200</td>
+        <td style="padding:10px 16px;text-align:center;font-size:11px;">🔶</td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Meta/Google paid ads pre-launch</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:600;color:rgba(243,241,238,.6);">$800</td>
+        <td style="padding:10px 16px;text-align:center;font-size:11px;">🔶</td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Ivan contract legal review</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:600;color:rgba(243,241,238,.6);">$500</td>
+        <td style="padding:10px 16px;text-align:center;font-size:11px;">🔶</td>
+      </tr>
+      
+      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Giveaway unit (1 cajón at cost)</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:600;color:rgba(243,241,238,.6);">$104</td>
+        <td style="padding:10px 16px;text-align:center;font-size:11px;">✅</td>
+      </tr>
+      
+      <tr style="background:rgba(255,255,255,.04);border-top:2px solid rgba(255,255,255,.08);">
+        <td style="padding:10px 16px;font-weight:700;color:rgba(243,241,238,.8);">Total Fixed Costs</td>
+        <td style="padding:10px 16px;text-align:right;font-weight:800;font-size:15px;color:#de935f;">~$3,354</td>
+        <td style="padding:10px 16px;text-align:center;font-size:10px;color:rgba(243,241,238,.35);">Break-even: ~20 pledges</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── SECTION 6: JUANCA CASH FLOW TIMELINE ── -->
+<div class="stitle"><div class="ico">📅</div> Juanca Cash Flow Timeline — When Each Dollar Is Spent</div>
+<div style="font-size:11px;color:rgba(243,241,238,.35);margin-bottom:16px;margin-top:-8px;">Every payment in order. Principle: defer costs post-KS where possible. M7 paid from KS proceeds.</div>
+
+<div class="budget-card" style="margin-bottom:20px;padding:0;overflow:hidden;">
   <table style="width:100%;border-collapse:collapse;font-size:12px;">
     <thead>
       <tr style="background:rgba(255,255,255,.04);">
@@ -913,23 +1218,18 @@ renderWeekPlan(currentWeek);
         <th style="text-align:left;padding:12px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);">What</th>
         <th style="text-align:left;padding:12px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);">Category</th>
         <th style="text-align:right;padding:12px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);">Amount</th>
-        <th style="text-align:right;padding:12px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);">Running Total</th>
+        <th style="text-align:right;padding:12px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);">Running</th>
       </tr>
     </thead>
     <tbody>
       
-
       
-
       
-        
         
         
         
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;color:rgba(243,241,238,.3);">
-            Apr W2
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.3);font-weight:500;white-space:nowrap;">Apr W2</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.35);">
             M1: Plan approved, work begins
           </td>
@@ -947,33 +1247,8 @@ renderWeekPlan(currentWeek);
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;color:rgba(243,241,238,.3);">
-            Apr W2-W4
-          </td>
-          <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.35);">
-            KS entity — Wyoming LLC (Juanca registers from DC) <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
-          </td>
-          <td style="padding:10px 16px;">
-            <span style="font-size:9px;font-weight:600;padding:3px 8px;border-radius:6px;background:#de935f15;color:#de935f;text-transform:uppercase;letter-spacing:.06em;">Operational</span>
-          </td>
-          <td style="padding:10px 16px;text-align:right;font-weight:600;font-size:13px;color:#de935f;">
-            $200
-          </td>
-          <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $600
-          </td>
-        </tr>
-      
-        
-        
-        
-        
-        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;color:rgba(243,241,238,.3);">
-            Apr W3
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.3);font-weight:500;white-space:nowrap;">Apr W3</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.35);">
             Email platform (Kit) — first month
           </td>
@@ -984,18 +1259,15 @@ renderWeekPlan(currentWeek);
             $15
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $615
+            $415
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            May W8-W9
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">May W8-W9</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             Packaging research (2+ quotes) <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
           </td>
@@ -1006,18 +1278,15 @@ renderWeekPlan(currentWeek);
             $75
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $690
+            $490
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            May W9
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">May W9</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             M2: All 6 spec sheets locked
           </td>
@@ -1028,18 +1297,15 @@ renderWeekPlan(currentWeek);
             $600
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $1290
+            $1090
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            May W9
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">May W9</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             Email platform — month 2
           </td>
@@ -1050,18 +1316,15 @@ renderWeekPlan(currentWeek);
             $15
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $1305
+            $1105
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Jun W10
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Jun W10</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             AI tools begin (Runway, ElevenLabs) <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
           </td>
@@ -1072,18 +1335,15 @@ renderWeekPlan(currentWeek);
             $20
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $1325
+            $1125
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Jun
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Jun</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             Email platform — month 3
           </td>
@@ -1094,18 +1354,15 @@ renderWeekPlan(currentWeek);
             $15
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $1340
+            $1140
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Jul W14
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Jul W14</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             Legal review of Ivan contract <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
           </td>
@@ -1116,18 +1373,15 @@ renderWeekPlan(currentWeek);
             $200
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $1540
+            $1340
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Jul W15
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Jul W15</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             M3: Ivan contract signed
           </td>
@@ -1138,18 +1392,15 @@ renderWeekPlan(currentWeek);
             $500
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $2040
+            $1840
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Jul W18
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Jul W18</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             M4: Foundation complete / G0
           </td>
@@ -1160,18 +1411,15 @@ renderWeekPlan(currentWeek);
             $600
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $2640
+            $2440
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Jul-Aug
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Jul-Aug</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             AI tools — video production <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
           </td>
@@ -1182,18 +1430,15 @@ renderWeekPlan(currentWeek);
             $60
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $2700
+            $2500
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Jul
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Jul</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             Email platform — month 4
           </td>
@@ -1204,18 +1449,15 @@ renderWeekPlan(currentWeek);
             $15
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $2715
+            $2515
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Aug
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Aug</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             Email platform — month 5
           </td>
@@ -1226,18 +1468,15 @@ renderWeekPlan(currentWeek);
             $15
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $2730
+            $2530
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Aug-Sep
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Aug-Sep</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             AI tools — video finishing <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
           </td>
@@ -1248,18 +1487,15 @@ renderWeekPlan(currentWeek);
             $56
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $2786
+            $2586
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Sep W23
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Sep W23</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             M5: Video approved / G3
           </td>
@@ -1270,18 +1506,15 @@ renderWeekPlan(currentWeek);
             $800
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $3586
+            $3386
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Sep
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Sep</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             Email platform — month 6
           </td>
@@ -1292,18 +1525,15 @@ renderWeekPlan(currentWeek);
             $15
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $3601
+            $3401
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Oct W26-W31
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Oct W26-W31</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             Paid advertising (Meta/IG) <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
           </td>
@@ -1311,43 +1541,37 @@ renderWeekPlan(currentWeek);
             <span style="font-size:9px;font-weight:600;padding:3px 8px;border-radius:6px;background:#de935f15;color:#de935f;text-transform:uppercase;letter-spacing:.06em;">Operational</span>
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:600;font-size:13px;color:#de935f;">
-            $400
+            $800
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $4001
+            $4201
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Oct W29
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Oct W29</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
-            Giveaway — 1 instrument at cost <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
+            Giveaway — 1 cajón at cost ($84 + $20 transport) <span style="font-size:9px;color:rgba(243,241,238,.25);">EST</span>
           </td>
           <td style="padding:10px 16px;">
             <span style="font-size:9px;font-weight:600;padding:3px 8px;border-radius:6px;background:#de935f15;color:#de935f;text-transform:uppercase;letter-spacing:.06em;">Operational</span>
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:600;font-size:13px;color:#de935f;">
-            $90
+            $104
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $4091
+            $4305
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Oct W30
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Oct W30</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
             M6: Pre-launch ready / G4
           </td>
@@ -1358,18 +1582,15 @@ renderWeekPlan(currentWeek);
             $700
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $4791
+            $5005
           </td>
         </tr>
       
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);background:rgba(240,198,116,.06);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Nov W31
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Nov W31</td>
           <td style="padding:10px 16px;font-weight:700;color:#f0c674;">
             CAMPAIGN LIVE
           </td>
@@ -1387,13 +1608,10 @@ renderWeekPlan(currentWeek);
         
         
         
-        
         <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">
-            Dec W36
-          </td>
+          <td style="padding:10px 16px;color:rgba(243,241,238,.5);font-weight:500;white-space:nowrap;">Dec W36</td>
           <td style="padding:10px 16px;font-weight:400;color:rgba(243,241,238,.7);">
-            M7: Campaign closed (from KS $)
+            M7: Campaign closed (from KS proceeds)
           </td>
           <td style="padding:10px 16px;">
             <span style="font-size:9px;font-weight:600;padding:3px 8px;border-radius:6px;background:#9cdcaa15;color:#9cdcaa;text-transform:uppercase;letter-spacing:.06em;">JD Fee</span>
@@ -1402,29 +1620,26 @@ renderWeekPlan(currentWeek);
             $900
           </td>
           <td style="padding:10px 16px;text-align:right;font-weight:500;font-size:12px;color:rgba(243,241,238,.4);">
-            $5691
+            $5905
           </td>
         </tr>
       
-
-      <!-- Totals row -->
       <tr style="background:rgba(255,255,255,.04);border-top:2px solid rgba(156,220,170,.15);">
         <td colspan="3" style="padding:12px 16px;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:rgba(243,241,238,.5);">Total Pre-Campaign (Juanca pays)</td>
-        <td style="padding:12px 16px;text-align:right;font-weight:800;font-size:16px;color:#f0c674;">$4791</td>
+        <td style="padding:12px 16px;text-align:right;font-weight:800;font-size:16px;color:#f0c674;">$5005</td>
         <td style="padding:12px 16px;text-align:right;font-size:10px;color:rgba(243,241,238,.3);">M7 ($900) from KS proceeds</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- Legend -->
 <div style="display:flex;gap:20px;margin-bottom:28px;font-size:10px;color:rgba(243,241,238,.4);">
   <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#9cdcaa;margin-right:4px;"></span> JD Milestone Fees ($4500)</span>
-  <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#de935f;margin-right:4px;"></span> Operational Costs ($1,247 est.)</span>
-  <span><span style="font-size:9px;background:rgba(243,241,238,.08);padding:2px 6px;border-radius:3px;margin-right:4px;">EST</span> Estimate — will be confirmed</span>
+  <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#de935f;margin-right:4px;"></span> Operational Costs</span>
+  <span><span style="font-size:9px;background:rgba(243,241,238,.08);padding:2px 6px;border-radius:3px;margin-right:4px;">EST</span> Estimate</span>
 </div>
 
-<!-- ── MONTHLY SPENDING SUMMARY ── -->
+<!-- ── SECTION 7: MONTHLY SPENDING SUMMARY ── -->
 <div class="stitle"><div class="ico">📊</div> Monthly Spending Summary</div>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:28px;">
   
@@ -1432,11 +1647,11 @@ renderWeekPlan(currentWeek);
   
   <div class="budget-card" style="text-align:center;padding:14px 10px;border-color:rgba(156,220,170,.25);">
     <div style="font-size:10px;color:#9cdcaa;text-transform:uppercase;font-weight:700;margin-bottom:6px;">Apr</div>
-    <div style="font-size:18px;font-weight:700;color:#de935f;margin-bottom:6px;">$615</div>
+    <div style="font-size:18px;font-weight:700;color:rgba(243,241,238,.6);margin-bottom:6px;">$415</div>
     
     <div style="font-size:9px;line-height:1.5;">
       <div style="color:#9cdcaa;">JD $400</div>
-      <div style="color:#de935f;">Ops $215</div>
+      <div style="color:#de935f;">Ops $15</div>
     </div>
     
   </div>
@@ -1492,11 +1707,11 @@ renderWeekPlan(currentWeek);
   
   <div class="budget-card" style="text-align:center;padding:14px 10px;">
     <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;font-weight:500;margin-bottom:6px;">Sep</div>
-    <div style="font-size:18px;font-weight:700;color:#de935f;margin-bottom:6px;">$871</div>
+    <div style="font-size:18px;font-weight:700;color:#de935f;margin-bottom:6px;">$815</div>
     
     <div style="font-size:9px;line-height:1.5;">
       <div style="color:#9cdcaa;">JD $800</div>
-      <div style="color:#de935f;">Ops $71</div>
+      <div style="color:#de935f;">Ops $15</div>
     </div>
     
   </div>
@@ -1504,11 +1719,11 @@ renderWeekPlan(currentWeek);
   
   <div class="budget-card" style="text-align:center;padding:14px 10px;">
     <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;font-weight:500;margin-bottom:6px;">Oct</div>
-    <div style="font-size:18px;font-weight:700;color:#cc6666;margin-bottom:6px;">$1,190</div>
+    <div style="font-size:18px;font-weight:700;color:#cc6666;margin-bottom:6px;">$1,604</div>
     
     <div style="font-size:9px;line-height:1.5;">
       <div style="color:#9cdcaa;">JD $700</div>
-      <div style="color:#de935f;">Ops $490</div>
+      <div style="color:#de935f;">Ops $904</div>
     </div>
     
   </div>
@@ -1534,336 +1749,328 @@ renderWeekPlan(currentWeek);
   
 </div>
 
-<!-- ── PER-UNIT ECONOMICS — Launch Products ── -->
-<div class="stitle"><div class="ico">🎸</div> Per-Unit Economics — Guitar + Cajón (Launch Products)</div>
-<div style="font-size:11px;color:rgba(243,241,238,.35);margin-bottom:16px;margin-top:-8px;">Updated Apr 7: Guitar $499 (production $150), Cajón $379 (production $80). All values are working estimates until Ivan contract (W15) and pricing model (W18).</div>
-
-<div class="budget-card" style="margin-bottom:16px;padding:0;overflow:hidden;">
-  <table style="width:100%;border-collapse:collapse;font-size:12px;">
-    <thead>
-      <tr style="background:rgba(255,255,255,.04);">
-        <th style="text-align:left;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Cost Item</th>
-        <th style="text-align:right;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Guitar 🎸</th>
-        <th style="text-align:center;padding:10px 16px;font-size:9px;color:rgba(243,241,238,.25);font-weight:500;">Confidence</th>
-        <th style="text-align:right;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Cajón 🥁</th>
-        <th style="text-align:center;padding:10px 16px;font-size:9px;color:rgba(243,241,238,.25);font-weight:500;">Confidence</th>
-      </tr>
-    </thead>
-    <tbody>
-      
-      
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);" title="Guitar: More materials, hardware, labor than ukulele ($80). | Cajón: Same as ukulele — confirmed reference price.">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">Production (Ivan)</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$150</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Estimate</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$80</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Estimate</td>
-      </tr>
-      
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);" title="Guitar: Standard box + padding. Hard case TBD. | Cajón: Standard box + padding.">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">Packaging</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$20</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Estimate</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$20</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Estimate</td>
-      </tr>
-      
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);" title="Guitar: Dimensional weight estimate. Guitar length may increase. | Cajón: Larger/heavier box → higher cost.">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">Shipping — US</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$30</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Estimate</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$35</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Estimate</td>
-      </tr>
-      
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);" title="Guitar: International rates. Import duties NOT included. | Cajón: Import duties NOT included.">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">Shipping — EU</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$48</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Estimate</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$50</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Estimate</td>
-      </tr>
-      
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);" title="Guitar: 8% of $499. | Cajón: 8% of $379.">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">KS Platform Fees (8%)</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$39.92</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">✅ Fixed</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$30.32</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">✅ Fixed</td>
-      </tr>
-      
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);" title="Guitar: 10% of production+packaging+shipping. | Cajón: 10% of production+packaging+shipping.">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);font-weight:500;">Contingency (10%)</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$20.00</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">✅ Policy</td>
-        <td style="padding:10px 16px;text-align:right;color:rgba(243,241,238,.5);font-weight:500;">$13.50</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">✅ Policy</td>
-      </tr>
-      
-
-      <!-- Totals -->
-      <tr style="background:rgba(255,255,255,.04);border-top:2px solid rgba(255,255,255,.08);">
-        <td style="padding:10px 16px;font-weight:700;color:rgba(243,241,238,.7);">Total Variable Cost — US</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#de935f;">~$260</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Est</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#de935f;">~$179</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Est</td>
-      </tr>
-      <tr style="background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;font-weight:700;color:rgba(243,241,238,.7);">Total Variable Cost — EU</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#de935f;">~$278</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Est</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#de935f;">~$194</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Est</td>
-      </tr>
-
-      <!-- Sale price -->
-      <tr style="background:rgba(156,220,170,.04);border-top:2px solid rgba(156,220,170,.15);">
-        <td style="padding:10px 16px;font-weight:700;color:#9cdcaa;">Working Sale Price</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#9cdcaa;">$499</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Target</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#9cdcaa;">$379</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:rgba(243,241,238,.3);">🔶 Est</td>
-      </tr>
-
-      <!-- Margin analysis -->
-      <tr style="border-top:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;font-weight:600;color:rgba(243,241,238,.5);">Gross Margin — US</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#f0c674;">~48%</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:#de935f;">🔶 Near 50%</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#9cdcaa;">~53%</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:#9cdcaa;">✅ Above</td>
-      </tr>
-      <tr style="border-top:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;font-weight:600;color:rgba(243,241,238,.5);">Gross Margin — EU</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#de935f;">~44%</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:#de935f;">🔶 Below</td>
-        <td style="padding:10px 16px;text-align:right;font-weight:700;color:#f0c674;">~49%</td>
-        <td style="padding:10px 6px;text-align:center;font-size:9px;color:#de935f;">🔶 Near 50%</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Margin note callout -->
-<div class="budget-card" style="margin-bottom:28px;border-color:rgba(222,147,95,.25);background:rgba(222,147,95,.04);padding:14px 18px;">
-  <div style="font-size:11px;font-weight:600;color:#de935f;margin-bottom:6px;">🔶 Margin Check — US Near Target, EU Below 50% Floor</div>
-  <div style="font-size:11px;color:rgba(243,241,238,.4);line-height:1.6;">
-    With updated production costs (Guitar $150, Cajón $80), US margins are close to the 50% target.
-    EU margins are 44–49% due to higher shipping — import duties not yet included.
-    <strong style="color:rgba(243,241,238,.55);">Levers:</strong> raise EU price tier, negotiate shipping rates, or adjust margin floor for international.
-    <br><span style="color:rgba(243,241,238,.3);">Resolution: Project 3 — Financial Model (W15–W18). All prices are working estimates.</span>
-  </div>
-</div>
-
-<!-- ── KS SCENARIOS — Guitar + Cajón ── -->
-<div class="stitle"><div class="ico">🎯</div> Kickstarter Scenarios — Guitar ($499) + Cajón ($379)</div>
-<div style="font-size:11px;color:rgba(243,241,238,.35);margin-bottom:16px;margin-top:-8px;">Based on estimated costs: Guitar production $150, Cajón $80. 50/50 backer mix. All US shipping. Profit = after all costs + Juanca investment recovery + JD M7 fee.</div>
-
-<!-- Scenario cards -->
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px;">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="budget-card" style="text-align:center;">
-    <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;margin-bottom:8px;font-weight:500;">Conservative</div>
-    <div style="font-size:24px;font-weight:800;color:#de935f;">40</div>
-    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:10px;">backers (20G + 20C)</div>
-    <div style="font-size:16px;font-weight:600;color:rgba(243,241,238,.5);">$17,560</div>
-    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:4px;margin-bottom:10px;">gross revenue</div>
-
-    <!-- Cost breakdown -->
-    <div style="text-align:left;font-size:10px;border-top:1px solid rgba(255,255,255,.06);padding-top:10px;margin-top:4px;">
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>KS fees (8%)</span><span>-$1,405</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Production (Ivan)</span><span>-$4,600</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Packaging + Shipping</span><span>-$2,100</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Contingency (10%)</span><span>-$670</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Juanca investment</span><span>-$7,318</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:6px;"><span>JD M7 fee</span><span>-$900</span></div>
-      <div style="display:flex;justify-content:space-between;font-weight:700;font-size:12px;color:#f0c674;border-top:1px solid rgba(255,255,255,.08);padding-top:6px;">
-        <span>Net Profit</span><span>$567</span>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="budget-card" style="text-align:center;border-color:rgba(156,220,170,.25);background:rgba(156,220,170,.03);">
-    <div style="font-size:10px;color:#9cdcaa;text-transform:uppercase;margin-bottom:8px;font-weight:700;">Target</div>
-    <div style="font-size:24px;font-weight:800;color:#9cdcaa;">80</div>
-    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:10px;">backers (40G + 40C)</div>
-    <div style="font-size:16px;font-weight:700;color:#9cdcaa;">$35,120</div>
-    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:4px;margin-bottom:10px;">gross revenue</div>
-
-    <!-- Cost breakdown -->
-    <div style="text-align:left;font-size:10px;border-top:1px solid rgba(255,255,255,.06);padding-top:10px;margin-top:4px;">
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>KS fees (8%)</span><span>-$2,810</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Production (Ivan)</span><span>-$9,200</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Packaging + Shipping</span><span>-$4,200</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Contingency (10%)</span><span>-$1,340</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Juanca investment</span><span>-$7,318</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:6px;"><span>JD M7 fee</span><span>-$900</span></div>
-      <div style="display:flex;justify-content:space-between;font-weight:700;font-size:12px;color:#9cdcaa;border-top:1px solid rgba(255,255,255,.08);padding-top:6px;">
-        <span>Net Profit</span><span>$9,352</span>
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="budget-card" style="text-align:center;">
-    <div style="font-size:10px;color:rgba(243,241,238,.4);text-transform:uppercase;margin-bottom:8px;font-weight:500;">Stretch</div>
-    <div style="font-size:24px;font-weight:800;color:#b294bb;">120</div>
-    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-bottom:10px;">backers (60G + 60C)</div>
-    <div style="font-size:16px;font-weight:600;color:rgba(243,241,238,.5);">$52,680</div>
-    <div style="font-size:10px;color:rgba(243,241,238,.3);margin-top:4px;margin-bottom:10px;">gross revenue</div>
-
-    <!-- Cost breakdown -->
-    <div style="text-align:left;font-size:10px;border-top:1px solid rgba(255,255,255,.06);padding-top:10px;margin-top:4px;">
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>KS fees (8%)</span><span>-$4,214</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Production (Ivan)</span><span>-$13,800</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Packaging + Shipping</span><span>-$6,300</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Contingency (10%)</span><span>-$2,010</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:3px;"><span>Juanca investment</span><span>-$7,318</span></div>
-      <div style="display:flex;justify-content:space-between;color:rgba(243,241,238,.35);margin-bottom:6px;"><span>JD M7 fee</span><span>-$900</span></div>
-      <div style="display:flex;justify-content:space-between;font-weight:700;font-size:12px;color:#9cdcaa;border-top:1px solid rgba(255,255,255,.08);padding-top:6px;">
-        <span>Net Profit</span><span>$18,138</span>
-      </div>
-    </div>
-  </div>
-  
-</div>
-<div style="font-size:10px;color:rgba(243,241,238,.25);margin-bottom:28px;">Juanca investment recovery = ~$7,318 (midpoint of $6,968–$7,668). Contingency = 10% of production+packaging+shipping. All estimates — finalized at W18.</div>
-
-
-<!-- ── ASSUMPTIONS & OPEN ITEMS ── -->
+<!-- ── SECTION 8: ASSUMPTIONS & OPEN ITEMS ── -->
 <div class="stitle"><div class="ico">📌</div> Assumptions & Open Items</div>
 <div class="budget-card" style="margin-bottom:16px;padding:0;overflow:hidden;">
   <table style="width:100%;border-collapse:collapse;font-size:12px;">
     <thead>
       <tr style="background:rgba(255,255,255,.04);">
         <th style="text-align:left;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Assumption</th>
-        <th style="text-align:left;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Status</th>
-        <th style="text-align:left;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">When Resolved</th>
+        <th style="text-align:center;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Status</th>
+        <th style="text-align:left;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Owner</th>
+        <th style="text-align:left;padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.4);font-weight:600;">Due</th>
       </tr>
     </thead>
     <tbody>
       
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Guitar production cost ($150 working est.)</td>
-        <td style="padding:10px 16px;color:#de935f;font-size:11px;font-weight:500;white-space:nowrap;">🔶 Estimate</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W9–W15 (spec sheets → Ivan contract)</td>
-      </tr>
+        
+        <tr style="background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.08);">
+          <td colspan="4" style="padding:8px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.3);">✅ CONFIRMED</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Guitar sale price ($499 working est.)</td>
-        <td style="padding:10px 16px;color:#de935f;font-size:11px;font-weight:500;white-space:nowrap;">🔶 Estimate</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W18 — pricing model finalized</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Cajón production cost: $64 (Ivan confirmed)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">Thor</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Done</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Cajón production cost ($80 — same as ukulele)</td>
-        <td style="padding:10px 16px;color:#de935f;font-size:11px;font-weight:500;white-space:nowrap;">🔶 Estimate</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W1 — Thor to confirm</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Cajón sale price: $249 (EB $219)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD/Juanca</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Done</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">KS entity — Wyoming LLC via Juanca (DC)</td>
-        <td style="padding:10px 16px;color:#de935f;font-size:11px;font-weight:500;white-space:nowrap;">🔶 Decision pending</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W2 — after Juanca alignment</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Guitar sale price: $499 (EB $399–449)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD/Juanca</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Done</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">50/50 backer mix (guitar/cajón)</td>
-        <td style="padding:10px 16px;color:#de935f;font-size:11px;font-weight:500;white-space:nowrap;">🔶 Assumption</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W5–W7 — Phase 1 market research</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Bundle price: $699</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD/Juanca</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Done</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Packaging costs ($20 per unit)</td>
-        <td style="padding:10px 16px;color:#de935f;font-size:11px;font-weight:500;white-space:nowrap;">🔶 Rough estimate</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W8–W9 — 2+ provider quotes</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">KS + Stripe fees: 9.5%</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">—</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Fixed rate</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Shipping costs (US $30–35, EU $48–50)</td>
-        <td style="padding:10px 16px;color:#de935f;font-size:11px;font-weight:500;white-space:nowrap;">🔶 Rough estimate</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W9 — logistics research</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">BackerKit fee: 2%</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">—</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Fixed rate</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Import duties US + EU</td>
-        <td style="padding:10px 16px;color:#cc6666;font-size:11px;font-weight:500;white-space:nowrap;">⚠️ Unknown</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W9–W10 — fulfillment provider research</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Contingency: 10%</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">—</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Policy</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Ivan production capacity ~40 units/mo</td>
-        <td style="padding:10px 16px;color:#de935f;font-size:11px;font-weight:500;white-space:nowrap;">🔶 Estimate</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W11–W15 — contract negotiation</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Cajón US import duty: 0% (HTS 9206.00.20)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">—</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Confirmed</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">50% gross margin floor on all products</td>
-        <td style="padding:10px 16px;color:#9cdcaa;font-size:11px;font-weight:500;white-space:nowrap;">✅ Policy</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W18 — pricing model approval</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">EU import duty: 0% with EUR.1 origin cert (EU-Ecuador FTA)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">Thor</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Pre-shipment</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">KS fees = 8% of gross (5% KS + 3% payment)</td>
-        <td style="padding:10px 16px;color:#9cdcaa;font-size:11px;font-weight:500;white-space:nowrap;">✅ Fixed rate</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">Known — KS standard</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">JD milestones M1–M7: amounts and triggers locked</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD/Juanca</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Done</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">JD milestone fees = $4,500 total</td>
-        <td style="padding:10px 16px;color:#9cdcaa;font-size:11px;font-weight:500;white-space:nowrap;">✅ Proposed</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">W1–W2 — Juanca alignment + approval</td>
-      </tr>
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Profit First allocation sequence</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">✅</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">Juanca</td>
+          <td style="padding:9px 16px;color:#9cdcaa;font-size:11px;font-weight:500;">Done</td>
+        </tr>
+        
       
-      <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
-        <td style="padding:10px 16px;color:rgba(243,241,238,.6);">Profit First allocation sequence</td>
-        <td style="padding:10px 16px;color:#9cdcaa;font-size:11px;font-weight:500;white-space:nowrap;">✅ Agreed</td>
-        <td style="padding:10px 16px;color:rgba(243,241,238,.35);font-size:11px;">Confirmed Apr 2 meeting</td>
-      </tr>
+        
+        <tr style="background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.08);">
+          <td colspan="4" style="padding:8px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.3);">🔶 ESTIMATED</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Guitar production cost: $100/$140/$180 scenarios</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">Thor→Ivan</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">W7 (May 15)</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Bulk Ecuador→US LCL freight: $10/unit (revised from $20)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">Thor/JD</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">W5 Panatlantic quote</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Guitar packaging: $22/unit (revised from $25)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">W6 vendor quotes</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Cajón packaging: $10/unit (revised from $20)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">W6 vendor quotes</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Guitar US import duty: 8.7% MFN (revised from 5%)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">W9 broker opinion</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">EU backer VAT: ~€95–110 at delivery (backer's cost, not ours)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">—</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">Campaign copy</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">US domestic shipping: Cajón $35, Guitar $45</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">W7 carrier quotes</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">EU shipping: Cajón $85, Guitar $175</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">W7 carrier quotes</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">50/50 backer mix (guitar/cajón)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">W5–W7 market research</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Ivan production capacity ~40 units/mo</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">🔶</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">Thor</td>
+          <td style="padding:9px 16px;color:#de935f;font-size:11px;font-weight:500;">W15 contract</td>
+        </tr>
+        
+      
+        
+        <tr style="background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.08);">
+          <td colspan="4" style="padding:8px 16px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(243,241,238,.3);">⚠️ TBD / BLOCKING</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Guitar production cost (Ivan quote — highest leverage unknown)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">⚠️</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">Thor→Ivan</td>
+          <td style="padding:9px 16px;color:#cc6666;font-size:11px;font-weight:500;">W7 gate</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Prototype dimensions + weight (unlocks Panatlantic final quote)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">⚠️</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#cc6666;font-size:11px;font-weight:500;">W5 pickup</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">FOB value per unit — guitar (pending Ivan confirmation)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">⚠️</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">Thor</td>
+          <td style="padding:9px 16px;color:#cc6666;font-size:11px;font-weight:500;">W7</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Panatlantic LCL final quote (pending prototype measurements)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">⚠️</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD/Thor</td>
+          <td style="padding:9px 16px;color:#cc6666;font-size:11px;font-weight:500;">W5-W6</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Packaging vendor quotes — guitar + cajón (2+ quotes required)</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">⚠️</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#cc6666;font-size:11px;font-weight:500;">W6</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Carrier shipping quotes — US + EU final rates</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">⚠️</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#cc6666;font-size:11px;font-weight:500;">W7</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">Customs broker written opinion — guitar HTS + duty rate</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">⚠️</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">JD</td>
+          <td style="padding:9px 16px;color:#cc6666;font-size:11px;font-weight:500;">W9</td>
+        </tr>
+        
+      
+        
+        
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);">
+          <td style="padding:9px 16px;color:rgba(243,241,238,.6);">EUR.1 origin cert process confirmation with Thor</td>
+          <td style="padding:9px 16px;text-align:center;font-size:13px;">⚠️</td>
+          <td style="padding:9px 16px;color:rgba(243,241,238,.4);font-size:11px;">Thor/JD</td>
+          <td style="padding:9px 16px;color:#cc6666;font-size:11px;font-weight:500;">W9</td>
+        </tr>
+        
       
     </tbody>
   </table>
@@ -1871,9 +2078,10 @@ renderWeekPlan(currentWeek);
 
 <div style="font-size:10px;color:rgba(243,241,238,.25);margin-bottom:28px;line-height:1.6;padding:0 4px;">
   <strong style="color:rgba(243,241,238,.35);">Confidence key:</strong>
-  ✅ Confirmed/Fixed — these won't change &nbsp;|&nbsp;
-  🔶 Estimate — working number, will be validated &nbsp;|&nbsp;
-  ⚠️ Unknown — no data yet, blocks pricing model
+  ✅ Confirmed — won't change &nbsp;|&nbsp;
+  🔶 Estimate — working number, validated W5–W9 &nbsp;|&nbsp;
+  ⚠️ TBD — no data yet, action required &nbsp;&nbsp;
+  <strong style="color:rgba(243,241,238,.35);">Numbers sourced from:</strong> Financial Model v1 (2026-04-21) + W4 research sprint (2026-04-23)
 </div>
 
 </div><!-- /tab-budget -->
@@ -2321,7 +2529,7 @@ renderWeekPlan(currentWeek);
 
 <!-- ═══ FOOTER ═══ -->
 <div class="foot">
-  <p>Instrument Project — Operations Dashboard — Generated 2026-04-23 11:13</p>
+  <p>Instrument Project — Operations Dashboard — Generated 2026-04-23 12:46</p>
   <p style="margin-top:4px;">Press <kbd style="background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;">F</kbd> for Focus Mode</p>
 </div>
 

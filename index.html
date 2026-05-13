@@ -231,10 +231,18 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
 .foot{text-align:center;padding-top:32px;border-top:1px solid rgba(255,255,255,.05);margin-top:20px;}
 .foot p{font-size:10px;color:rgba(243,241,238,.2);font-weight:300;}
 
+/* ── Team Quick Links ── */
+.team-links{display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:12px;background:rgba(156,220,170,.05);border:1px solid rgba(156,220,170,.15);margin-bottom:20px;flex-wrap:wrap;}
+.team-links .tl-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(243,241,238,.4);white-space:nowrap;}
+.team-links a{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#9cdcaa;text-decoration:none;padding:6px 14px;border-radius:8px;background:rgba(156,220,170,.08);border:1px solid rgba(156,220,170,.2);white-space:nowrap;transition:background .15s;}
+.team-links a:hover{background:rgba(156,220,170,.16);}
+.team-links .tl-note{font-size:11px;color:rgba(243,241,238,.3);margin-left:auto;}
+
 /* ── Print ── */
 @media print{
   body{background:#fff!important;color:#1a1a1a!important;background-image:none!important;}
   .ambient,.tab-nav,.no-print{display:none!important;}
+  .team-links{display:none!important;}
   .tab-content{display:block!important;}
   .stat,.proj-card,.risk-cell,.budget-card,.priority-item,.status-card,.decision-card,.blocker-card,.agenda-box,.team-person{border-color:#ddd!important;background:#f8f8f8!important;}
   .stat .num,.header h1 span{color:#16a34a!important;}
@@ -251,16 +259,24 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#f3f1ee;overflow-
 <div class="header">
   <div class="pill"><div class="dot"></div> Live Dashboard</div>
   <h1>Instrument Project<br><span>Operations Dashboard</span></h1>
-  <p class="sub">W6 of 31 &nbsp;|&nbsp; 25 weeks remaining &nbsp;|&nbsp; Generated 2026-05-12 23:11</p>
+  <p class="sub">W6 of 31 &nbsp;|&nbsp; 24 weeks remaining &nbsp;|&nbsp; Generated 2026-05-13 11:16</p>
 </div>
 
 <!-- ═══ STATS ═══ -->
 <div class="stats">
   <div class="stat"><div class="num">W6</div><div class="lbl">Current Week</div></div>
-  <div class="stat"><div class="num">25</div><div class="lbl">Weeks Left</div></div>
+  <div class="stat"><div class="num">24</div><div class="lbl">Weeks Left</div></div>
   <div class="stat"><div class="num">29/73</div><div class="lbl">Milestones</div></div>
   <div class="stat"><div class="num">1/7</div><div class="lbl">Gates Passed</div></div>
   <div class="stat health"><div class="num red">49</div><div class="lbl">Health Score</div></div>
+</div>
+
+<!-- ═══ TEAM QUICK LINKS ═══ -->
+<div class="team-links">
+  <span class="tl-label">Accesos del equipo</span>
+  <a href="https://89jdvm.github.io/instrument-dashboard/" target="_blank">📊 Dashboard (esta página)</a>
+  <a href="https://drive.google.com/drive/folders/1QfJPpw9PD8XF6SbrqLhmXzqjMrEVJSwd" target="_blank">📁 Google Drive</a>
+  <span class="tl-note">Los docs en Drive se actualizan automáticamente · puedes comentar y editar</span>
 </div>
 
 <!-- ═══ TABS ═══ -->
@@ -764,7 +780,7 @@ renderWeekPlan(currentWeek);
     <button class="btn" onclick="copyAgenda()">📋 Copy Agenda</button>
   </div>
 </div>
-<div style="text-align:center;margin-top:-8px;margin-bottom:20px;font-size:11px;color:rgba(243,241,238,.3);">2026-05-14 &nbsp;|&nbsp; 2:30 PM Ecuador &nbsp;|&nbsp; 25 weeks to launch</div>
+<div style="text-align:center;margin-top:-8px;margin-bottom:20px;font-size:11px;color:rgba(243,241,238,.3);">2026-05-14 &nbsp;|&nbsp; 2:30 PM Ecuador &nbsp;|&nbsp; 24 weeks to launch</div>
 
 <!-- ═══ LAST MEETING SUMMARY ═══ -->
 
@@ -906,7 +922,7 @@ renderWeekPlan(currentWeek);
   <div style="text-align:right;">
     <div style="font-size:10px;color:rgba(243,241,238,.35);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Launch Gate</div>
     <div style="font-size:24px;font-weight:800;color:#f0c674;">Nov 3, 2026</div>
-    <div style="font-size:10px;color:rgba(243,241,238,.3);">W31 · 25 weeks away</div>
+    <div style="font-size:10px;color:rgba(243,241,238,.3);">W31 · 24 weeks away</div>
   </div>
 </div>
 
@@ -3618,7 +3634,7 @@ renderWeekPlan(currentWeek);
 
 <!-- ═══ FOOTER ═══ -->
 <div class="foot">
-  <p>Instrument Project — Operations Dashboard — Generated 2026-05-12 23:11</p>
+  <p>Instrument Project — Operations Dashboard — Generated 2026-05-13 11:16</p>
   <p style="margin-top:4px;">Press <kbd style="background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;">F</kbd> for Focus Mode</p>
 </div>
 

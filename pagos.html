@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Estado y pagos · The Instrument Project</title>
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0b0b;
+    --surface: #141614;
+    --surface-2: #1a1d1a;
+    --line: #262a26;
+    --ink: #f2f3f0;
+    --ink-2: #b8beb6;
+    --ink-3: #838a81;
+    --celadon: #9cdcaa;
+    --celadon-dim: rgba(156, 220, 170, 0.14);
+    --amber: #e8c268;
+    --amber-dim: rgba(232, 194, 104, 0.12);
+    --future: #8a8f98;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 50% at 50% -10%, rgba(156, 220, 170, 0.07), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 110%, rgba(156, 220, 170, 0.04), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 20px 64px;
+  }
+
+  /* Reveal animation */
+  .rv { opacity: 0; transform: translateY(14px); animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; } .d3 { animation-delay: 0.25s; }
+  .d4 { animation-delay: 0.35s; } .d5 { animation-delay: 0.45s; } .d6 { animation-delay: 0.55s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .rv { animation: none; opacity: 1; transform: none; } }
+
+  /* Header */
+  header { display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+  header img { width: 44px; height: 44px; }
+  .brand { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--celadon); }
+  .brand small { display: block; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 11.5px; letter-spacing: 0.02em; text-transform: none; color: var(--ink-3); margin-top: 2px; }
+
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(30px, 6vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  h1 em { font-style: normal; color: var(--celadon); }
+  .meta { color: var(--ink-3); font-size: 13.5px; margin-bottom: 40px; }
+  .meta b { color: var(--ink-2); font-weight: 500; }
+
+  h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 52px 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h2::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+  /* Stat tiles */
+  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (min-width: 640px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 16px 15px;
+  }
+  .tile.hero { grid-column: span 2; background: linear-gradient(150deg, var(--celadon-dim), var(--surface) 65%); border-color: rgba(156, 220, 170, 0.35); }
+  @media (min-width: 640px) { .tile.hero { grid-column: span 2; } }
+  .tile .k { font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  .tile .v { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(26px, 5vw, 34px); letter-spacing: -0.02em; margin-top: 4px; }
+  .tile.hero .v { color: var(--celadon); font-size: clamp(34px, 7vw, 44px); }
+  .tile .s { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+
+  /* Money bar */
+  .bar-block { margin-top: 26px; }
+  .bar { display: flex; gap: 2px; height: 34px; border-radius: 8px; overflow: hidden; }
+  .bar .seg { position: relative; display: flex; align-items: center; justify-content: center; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px; white-space: nowrap; }
+  .seg.earned { background: var(--celadon); color: #0b0b0b; }
+  .seg.signing { background: var(--amber); color: #0b0b0b; }
+  .seg.future { background: var(--surface-2); color: var(--ink-3); border: 1px dashed var(--line); border-radius: 0 8px 8px 0; }
+  .seg .lbl-short { display: none; }
+  @media (max-width: 480px) {
+    .seg .lbl-full { display: none; }
+    .seg .lbl-short { display: inline; }
+  }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px 22px; margin-top: 12px; font-size: 12.5px; color: var(--ink-2); }
+  .legend .li { display: flex; align-items: center; gap: 7px; }
+  .dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
+
+  /* Milestone rows */
+  .m-row {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 4px 14px;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 8px;
+  }
+  .m-row.earned { border-color: rgba(156, 220, 170, 0.4); background: linear-gradient(120deg, var(--celadon-dim), var(--surface) 55%); }
+  .m-row.signing { border-color: rgba(232, 194, 104, 0.38); background: linear-gradient(120deg, var(--amber-dim), var(--surface) 55%); }
+  .m-id { grid-row: span 2; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 17px; color: var(--ink-3); background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+  .m-row.earned .m-id { color: #0b0b0b; background: var(--celadon); border-color: var(--celadon); }
+  .m-row.signing .m-id { color: #0b0b0b; background: var(--amber); border-color: var(--amber); }
+  .m-what { font-weight: 500; font-size: 14.5px; }
+  .m-amount { grid-row: span 2; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; text-align: right; }
+  .m-row.earned .m-amount { color: var(--celadon); }
+  .m-row.signing .m-amount { color: var(--amber); }
+  .m-sub { grid-column: 2; font-size: 12.5px; color: var(--ink-3); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; padding: 2px 10px; border-radius: 99px; margin-right: 8px; }
+  .pill.earned { background: var(--celadon-dim); color: var(--celadon); }
+  .pill.signing { background: var(--amber-dim); color: var(--amber); }
+  .pill.future { background: var(--surface-2); color: var(--future); }
+
+  /* Cards / prose */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 22px 20px;
+    margin-bottom: 10px;
+  }
+  .card h3 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .card h3 span { color: var(--celadon); }
+  .card p { color: var(--ink-2); font-size: 13.5px; margin-bottom: 8px; }
+  .card p:last-child { margin-bottom: 0; }
+  .card a { color: var(--celadon); text-decoration: none; border-bottom: 1px solid rgba(156, 220, 170, 0.35); }
+  .card a:hover { border-bottom-color: var(--celadon); }
+  .ev { display: flex; gap: 10px; align-items: baseline; font-size: 13.5px; color: var(--ink-2); padding: 7px 0; border-top: 1px solid var(--line); }
+  .ev:first-of-type { border-top: none; }
+  .ev .tick { color: var(--celadon); font-weight: 600; flex-shrink: 0; }
+
+  .principle {
+    border-left: 3px solid var(--celadon);
+    background: var(--surface);
+    border-radius: 0 14px 14px 0;
+    padding: 20px 22px;
+    margin-bottom: 10px;
+  }
+  .principle b { color: var(--ink); font-weight: 600; }
+  .principle p { color: var(--ink-2); font-size: 14px; }
+
+  /* Chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    padding: 6px 14px;
+  }
+  .chip b { color: var(--celadon); font-weight: 600; }
+
+  /* Next steps */
+  .next { list-style: none; }
+  .next li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; color: var(--ink-2); }
+  .next li:last-child { border-bottom: none; }
+  .next .w { font-family: 'Manrope', sans-serif; font-weight: 700; color: var(--ink-3); flex-shrink: 0; width: 86px; font-size: 12.5px; padding-top: 1px; }
+  .next b { color: var(--ink); font-weight: 600; }
+
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 12.5px; display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: space-between; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="rv d1">
+    <img src="assets/icon.png" alt="The Instrument Project">
+    <div class="brand">The Instrument Project<small>Instrumentos de madera recuperada de pallets · Ecuador</small></div>
+  </header>
+
+  <h1 class="rv d1">Estado del proyecto<br>y <em>pagos por hitos</em></h1>
+  <p class="meta rv d1">Corte al <b>2 de julio de 2026</b> · Semana <b>13 de 31</b> · Lanzamiento Kickstarter: <b>3 de noviembre de 2026</b> · Montos en USD</p>
+
+  <section class="tiles rv d2" aria-label="Resumen de pagos">
+    <div class="tile hero">
+      <div class="k">Devengado, pendiente de pago</div>
+      <div class="v">$1,000</div>
+      <div class="s">Hitos M1 + M2, cumplidos con evidencia</div>
+    </div>
+    <div class="tile">
+      <div class="k">Pagado a la fecha</div>
+      <div class="v">$0</div>
+      <div class="s">Ningún pago realizado</div>
+    </div>
+    <div class="tile">
+      <div class="k">A la firma del contrato</div>
+      <div class="v">$500</div>
+      <div class="s">M3 · est. semana del 8 jul</div>
+    </div>
+  </section>
+
+  <div class="bar-block rv d2">
+    <div class="bar" role="img" aria-label="Del plan total de $4,500: $1,000 devengado, $500 a la firma, $3,000 en hitos futuros">
+      <div class="seg earned" style="width:22.2%" title="Devengado: $1,000 (M1 + M2)">$1,000</div>
+      <div class="seg signing" style="width:11.1%" title="A la firma del contrato: $500 (M3)">$500</div>
+      <div class="seg future" style="width:66.7%" title="Hitos futuros: $3,000 (M4 a M7)"><span class="lbl-full">$3,000 restantes del plan</span><span class="lbl-short">$3,000</span></div>
+    </div>
+    <div class="legend">
+      <span class="li"><span class="dot" style="background:var(--celadon)"></span>Devengado (M1, M2)</span>
+      <span class="li"><span class="dot" style="background:var(--amber)"></span>A la firma (M3)</span>
+      <span class="li"><span class="dot" style="background:var(--surface-2); border:1px dashed var(--line)"></span>Futuro (M4 a M7)</span>
+      <span class="li">Plan total: <b style="color:var(--ink); font-weight:600">&nbsp;$4,500</b></span>
+    </div>
+  </div>
+
+  <h2 class="rv d3">Cómo funciona el esquema</h2>
+  <div class="principle rv d3">
+    <p><b>La compensación de JD se pactó por hitos en la conversación de alineación del 1 de abril de 2026</b> (registrada en el plan del proyecto): $4,500 en total, divididos en 7 hitos. Cada pago se libera únicamente cuando el hito está cumplido y con evidencia verificable. Cero adelantos. Este esquema existe precisamente para proteger la inversión de Juanca: si el trabajo no avanza, no se paga.</p>
+  </div>
+  <div class="principle rv d3" style="border-left-color: var(--amber)">
+    <p>Hoy hay <b>2 hitos cumplidos ($1,000) y ningún pago realizado</b>. El tercer hito ($500) se dispara con la firma del contrato de Iván, que ya está redactado y en revisión del equipo.</p>
+  </div>
+
+  <h2 class="rv d4">Calendario de pagos por hito</h2>
+  <div class="rv d4">
+    <div class="m-row earned">
+      <div class="m-id">M1</div>
+      <div class="m-what">Plan aprobado por el equipo, arranque del trabajo</div>
+      <div class="m-amount">$400</div>
+      <div class="m-sub"><span class="pill earned">✓ Devengado</span>Cumplido en W2 (8 abr 2026) · sin pagar</div>
+    </div>
+    <div class="m-row earned">
+      <div class="m-id">M2</div>
+      <div class="m-what">Fichas técnicas aprobadas y firmadas</div>
+      <div class="m-amount">$600</div>
+      <div class="m-sub"><span class="pill earned">✓ Devengado</span>Fichas de guitarra y cajón aprobadas por el equipo · sin pagar</div>
+    </div>
+    <div class="m-row signing">
+      <div class="m-id">M3</div>
+      <div class="m-what">Contrato con Iván firmado</div>
+      <div class="m-amount">$500</div>
+      <div class="m-sub"><span class="pill signing">⏳ En curso</span>Contrato en revisión del equipo · firma est. semana del 8 jul</div>
+    </div>
+    <div class="m-row">
+      <div class="m-id">M4</div>
+      <div class="m-what">Modelo de precios aprobado (gate G0)</div>
+      <div class="m-amount">$600</div>
+      <div class="m-sub"><span class="pill future">○ Futuro</span>Plan: W18 (29 jul 2026)</div>
+    </div>
+    <div class="m-row">
+      <div class="m-id">M5</div>
+      <div class="m-what">Video de campaña aprobado por el equipo (gate G3)</div>
+      <div class="m-amount">$800</div>
+      <div class="m-sub"><span class="pill future">○ Futuro</span>Plan: W23 (2 sep 2026)</div>
+    </div>
+    <div class="m-row">
+      <div class="m-id">M6</div>
+      <div class="m-what">Pre-lanzamiento listo (gate G4)</div>
+      <div class="m-amount">$700</div>
+      <div class="m-sub"><span class="pill future">○ Futuro</span>Plan: W30 (21 oct 2026)</div>
+    </div>
+    <div class="m-row">
+      <div class="m-id">M7</div>
+      <div class="m-what">Campaña cerrada</div>
+      <div class="m-amount">$900</div>
+      <div class="m-sub"><span class="pill future">○ Futuro</span>Plan: W36 (3 dic 2026) · se paga de los fondos de Kickstarter</div>
+    </div>
+  </div>
+
+  <h2 class="rv d5">Evidencia de los hitos cumplidos</h2>
+
+  <div class="card rv d5">
+    <h3><span>M1</span> · Plan aprobado y trabajo en marcha ($400)</h3>
+    <div class="ev"><span class="tick">✓</span><span>Plan maestro de 31 semanas aprobado en la reunión del 1 de abril: 6 proyectos, 6 gates de decisión, presupuesto y calendario de pagos.</span></div>
+    <div class="ev"><span class="tick">✓</span><span>Trabajo corriendo desde esa semana: reuniones de seguimiento todos los jueves, entregables semana a semana, dashboard del proyecto operativo.</span></div>
+    <div class="ev"><span class="tick">✓</span><span>Fase de investigación completada (gate G1, 24 abr): 25 reportes que fijaron aranceles definitivos, logística de exportación, cumplimiento EUDR e ISPM 15, y análisis de mercado de cajón y guitarra.</span></div>
+    <div class="ev"><span class="tick">✓</span><span>Estrategia de campaña aprobada por el equipo (gate G2, 22 may).</span></div>
+  </div>
+
+  <div class="card rv d5">
+    <h3><span>M2</span> · Fichas técnicas aprobadas ($600)</h3>
+    <div class="ev"><span class="tick">✓</span><span><a href="https://docs.google.com/document/d/1xIQrvAkBWNRPm-k5efymRbVCmqLjX_-FV319Ihupclw/edit?usp=drivesdk" target="_blank" rel="noopener">Ficha técnica de la guitarra (v4)</a>: documento de ingeniería completo con 10 secciones, 18 criterios de calidad con fotos de referencia, decisiones de construcción cerradas y protocolo de control de calidad pre-entrega.</span></div>
+    <div class="ev"><span class="tick">✓</span><span><a href="https://docs.google.com/document/d/1pfAUyCv7beBXy7S25n83VHb4doCi8Wc5sITLTLdzg58/edit?usp=drivesdk" target="_blank" rel="noopener">Ficha técnica del cajón (v4)</a>: misma estructura, 9 criterios de calidad adaptados a percusión.</span></div>
+    <div class="ev"><span class="tick">✓</span><span>Ambas fichas aprobadas por el equipo. Son el anexo técnico del contrato de producción: definen exactamente qué se le exige a Iván en cada unidad.</span></div>
+    <div class="ev"><span class="tick">✓</span><span>Nota de alcance: el lanzamiento quedó acotado a guitarra + cajón por decisión de equipo (5 abr). Las fichas de los otros 4 productos quedan listas en plantilla para la Colección 2.</span></div>
+  </div>
+
+  <div class="card rv d5" style="border-color: rgba(232, 194, 104, 0.3)">
+    <h3><span style="color:var(--amber)">M3</span> · Contrato con Iván (en curso, $500 a la firma)</h3>
+    <div class="ev"><span class="tick" style="color:var(--amber)">→</span><span>Contrato redactado (versión 3): 12 artículos que cubren precios por volumen, capacidad de producción, gates de calidad con las fichas como anexo, propiedad intelectual, madera recuperada (cumplimiento EUDR) y pagos por lote.</span></div>
+    <div class="ev"><span class="tick" style="color:var(--amber)">→</span><span>Entregado al equipo y en revisión esta semana. Firma estimada: semana del 8 de julio.</span></div>
+    <div class="ev"><span class="tick" style="color:var(--amber)">→</span><span>Con la firma se libera M3 y arranca la relación formal de producción.</span></div>
+  </div>
+
+  <h2 class="rv d6">Trabajo adicional entregado dentro de estos hitos</h2>
+  <div class="chips rv d6">
+    <span class="chip"><b>25</b> reportes de investigación</span>
+    <span class="chip">Modelo financiero v2 con aranceles definitivos</span>
+    <span class="chip"><b>4</b> landing pages en vivo para test de audiencia</span>
+    <span class="chip">Corpus de <b>461</b> citas de compradores reales</span>
+    <span class="chip">Playbooks de marketing y pricing en Drive</span>
+    <span class="chip">Kit de prensa</span>
+    <span class="chip">Copy completo de la página de Kickstarter</span>
+    <span class="chip">Secuencias de email de lanzamiento</span>
+    <span class="chip">Cuenta de Kickstarter verificada</span>
+    <span class="chip">Dashboard de seguimiento del proyecto</span>
+  </div>
+
+  <h2 class="rv d6">Lo que viene</h2>
+  <ul class="next rv d6">
+    <li><span class="w">Esta semana</span><span><b>Firma del contrato con Iván</b> → libera M3 ($500) y formaliza la producción.</span></li>
+    <li><span class="w">Fin de julio</span><span><b>Modelo de precios aprobado (G0)</b> → libera M4 ($600). Define precios finales de campaña con margen validado.</span></li>
+    <li><span class="w">Septiembre</span><span><b>Video de campaña aprobado (G3)</b> → libera M5 ($800).</span></li>
+    <li><span class="w">Octubre</span><span><b>Pre-lanzamiento listo (G4)</b> → libera M6 ($700). Lista de correos, página de campaña y prensa en posición.</span></li>
+    <li><span class="w">3 nov</span><span><b>Lanzamiento en Kickstarter.</b> M7 ($900) se paga del recaudo al cierre de la campaña.</span></li>
+  </ul>
+
+  <footer class="rv d6">
+    <span>Preparado por JD · 2 de julio de 2026</span>
+    <span>The Instrument Project</span>
+  </footer>
+
+</div>
+</body>
+</html>
